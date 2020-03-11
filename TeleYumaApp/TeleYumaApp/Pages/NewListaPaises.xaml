@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:custom="clr-namespace:TeleYumaApp" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Seleccione el País"   
+	x:Class="TeleYumaApp.Pages.NewListaPaises" >
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Padding="0" Margin="0">
+            <Frame VerticalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <StackLayout >
+                      <custom:CustomEntry x:Name="SearchBar" Image="bus" ImageAlignment="Left" LineColor="Black" TextChanged="SearchBar_TextChanged" VerticalOptions="FillAndExpand" />
+                    </StackLayout>
+                    <ListView x:Name="list" SeparatorColor="Green" ItemSelected="list_ItemSelected" VerticalOptions="FillAndExpand" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                              <custom:CustomViewCell SelectedItemBackgroundColor="#ADF3BE">
+                                <ViewCell.View>
+                                  <StackLayout Orientation="Horizontal"  VerticalOptions="Center">
+                                    <Image Source="{Binding image}" WidthRequest="60"/>
+                                    <Label Text="{Binding Nombre}" TextColor="Black" Font="16" VerticalOptions="Center"></Label>
+                                  </StackLayout>
+                                </ViewCell.View>
+                              </custom:CustomViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

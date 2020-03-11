@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TeleYumaApp"       
+             xmlns:Behaviors="clr-namespace:TeleYumaApp.Behaviors"     
+             xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects" 
+             xmlns:material="clr-namespace:SuaveControls.MaterialForms;assembly=SuaveControls.MaterialForms"
+             x:Class="TeleYumaApp.PagesInicio.Login"
+             BackgroundColor="#232397">
+    <ContentPage.Content>
+
+        <Grid VerticalOptions="FillAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" BackgroundColor="White" Padding="10">
+                <Grid VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Grid.RowSpan="2"  Source="Connexion.png"/>
+                    <Image Grid.Row="2" Source="logo1.png" />
+                </Grid>
+            </StackLayout>
+
+            <StackLayout BackgroundColor="White" Padding="10"
+                x:Name="LayoutCargando"
+                IsVisible="False"
+                Grid.Row="1"   
+                         Grid.RowSpan="2"
+                VerticalOptions="FillAndExpand">
+                <Grid VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ActivityIndicator 
+                        Grid.Row="1"
+                        IsRunning="True"
+                        IsVisible="True" 
+                        Color="Orange"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"/>
+                    <Label Grid.Row="2" Text="Espere un momento por favor." TextColor="White" Font="12" HorizontalOptions="Center" VerticalOptions="Start"/>
+                </Grid>
+            </StackLayout >
+
+            <StackLayout   x:Name="LayoutFormulario" Grid.Row="1" BackgroundColor="#232397" Padding="20">
+                <!--<material:MaterialEntry                       
+                        AccentColor="Black"                      
+                        DefaultColor="Blue"                        
+                        x:Name="txtLogin"     
+                        Placeholder="Usuario" >
+                    <material:MaterialEntry.Behaviors>
+                        <Behaviors:MaterialEntryBehavior  placeholderColor="White" textcolor="White"/>
+                    </material:MaterialEntry.Behaviors>
+                </material:MaterialEntry>
+                <material:MaterialEntry                      
+                        AccentColor="Black"                       
+                        DefaultColor="Blue"                        
+                        x:Name="txtPassword" 
+                        IsPassword="True" 
+                        Placeholder="Contraseña">
+                    <material:MaterialEntry.Behaviors>
+                        <Behaviors:MaterialEntryBehavior  placeholderColor="White" textcolor="White"/>
+                    </material:MaterialEntry.Behaviors>
+                </material:MaterialEntry>-->
+
+                <local:CustomEntry  x:Name="txtLogin"  
+                    PlaceholderColor="White" 
+                    TextColor="White"  
+                                    Text=""
+                    Placeholder="Email" 
+                                    Image="user32"
+                                    ImageHeight="20"
+                                    ImageWidth="20"
+                    FontAttributes="Italic"/>
+
+                <local:CustomEntry x:Name="txtPassword"                    
+                    PlaceholderColor="White"
+                    TextColor="White"
+                                   Text=""
+                    Placeholder="Contraseña" 
+                    FontAttributes="Italic" 
+                                   Image="pass32"
+                                   ImageHeight="20"
+                                   ImageWidth="20"
+                    IsPassword="True" />
+
+                <Label  x:Name="lblVerPaswword" 
+                        Text="Recuperar contraseña."
+                        TextColor="Aqua"
+                        BackgroundColor="Transparent" 
+                        HorizontalOptions="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="lblRecuperar" Tapped="lblRecuperar_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+            <StackLayout x:Name="LayoutBotones" IsVisible="True" BackgroundColor="#232397" Grid.Row="2" Padding="20,10,20,10" >
+
+
+
+                <Button  x:Name="bntConectar" Clicked="bntConectar_Clicked" BackgroundColor="#36B820" Text="Conectar" FontAttributes="Bold" TextColor="White" ></Button>
+                <Button  x:Name="bntCrearCuenta" Clicked="bntCrearCuenta_Clicked" Text="Crear Cuenta" BackgroundColor="Orange" FontAttributes="Bold"  TextColor="White" ></Button>
+
+
+
+            </StackLayout>
+
+        </Grid>
+
+
+
+
+    </ContentPage.Content>
+</ContentPage>

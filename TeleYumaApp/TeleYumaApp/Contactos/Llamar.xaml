@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TeleYumaApp"
+             xmlns:custom="clr-namespace:TeleYumaApp"
+             Title="Llamar"
+             x:Class="TeleYumaApp.Contactos.Llamar">
+
+    <ContentPage.Content>
+        <StackLayout Margin="10" HorizontalOptions="CenterAndExpand">
+            <Label Text="Por favor para realizar llamadas internacionales guarde sus contactos de la siguiente manera: Código del país y el número de su contacto. Ejemplo celular de Cuba:  53 5xxxxxxx"/>
+
+            <StackLayout Orientation="Horizontal">
+              
+                <custom:CustomEntry 
+                x:Name="txtTelefono"
+                Placeholder="Teléfono"              
+                LineColor="Black"
+                PlaceholderColor="Gray"
+                HorizontalOptions="FillAndExpand"
+               />
+                <Image Source="contactos1.jpg" HeightRequest="50" WidthRequest="50">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Seleccionar_Clicked"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+              
+            </StackLayout>
+
+            <Button
+             Text="Llamar" 
+                x:Name="btnLlamar"
+                BackgroundColor="Green"
+                TextColor="White"
+               Clicked="BtnLlamar_Clicked"
+            />
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

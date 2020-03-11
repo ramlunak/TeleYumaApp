@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"           
+             xmlns:custom="clr-namespace:TeleYumaApp" 
+             xmlns:behaviors="clr-namespace:TeleYumaApp.Behaviors"
+             x:Class="TeleYumaApp.PagesInicio.Telefono" 
+             BackgroundColor="#232397" Title="Introdusca su número de teléfono">
+    <ContentPage.Content>
+
+        <StackLayout VerticalOptions="Center" Margin="15" Spacing="15">
+
+            <StackLayout x:Name="formulario" IsVisible="True">
+                <custom:CustomEntry
+                x:Name="txtPais"
+                LineColor="White" 
+                TextColor="White" 
+                Image="location" 
+                    ImageWidth="25"
+                    ImageHeight="25"
+                Focused="txtPais_Focused"
+                Placeholder="País"
+                PlaceholderColor="White"/>
+
+                <custom:CustomEntry                    
+                x:Name="txtTelefono" 
+                LineColor="White"
+                HorizontalOptions="FillAndExpand"
+                TextColor="White"
+                Image="phone1"
+                     ImageWidth="25"
+                    ImageHeight="25"
+                Keyboard="Numeric"
+                Placeholder="Teléfono" 
+                PlaceholderColor="White"/>
+
+                <Button
+                x:Name="btnSiguiente"
+                BackgroundColor="#36B820"
+                Text="Siguiente" 
+                FontAttributes="Bold"
+                TextColor="White" 
+                HeightRequest="65"
+                Clicked="btnSiguiente_Clicked"/>
+            </StackLayout>
+
+            <StackLayout x:Name="cargando" IsVisible="False"  VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+                <ActivityIndicator IsVisible="True" WidthRequest="200" IsRunning="True" Color="Orange" />
+                <Label Text="Espere un momento..." HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

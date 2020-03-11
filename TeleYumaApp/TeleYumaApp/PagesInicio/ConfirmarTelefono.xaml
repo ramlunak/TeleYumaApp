@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:custom="clr-namespace:TeleYumaApp" 
+              xmlns:behaviors="clr-namespace:TeleYumaApp.Behaviors"
+             x:Class="TeleYumaApp.PagesInicio.ConfirmarTelefono" 
+             Title="Confirmar Teléfono" BackgroundColor="#232397">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="15">
+
+            <Frame BackgroundColor="White" >
+
+                <Grid Margin="5,5,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Font="16" HorizontalTextAlignment="Center" Text="Entre en código de 4 digitos enviado a su de telefono" TextColor="Black"/>
+
+                    <StackLayout BackgroundColor="Gray" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand">
+                        <custom:CustomEntry x:Name="txtDigit_1"  TextColor="White" LineColor="Gray" TextChanged="txtDigit_1_TextChanged"
+                                            FontSize="Large" HorizontalTextAlignment="Center" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+                    <StackLayout BackgroundColor="Gray" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand">
+                        <custom:CustomEntry x:Name="txtDigit_2" TextColor="White" LineColor="Gray" TextChanged="txtDigit_2_TextChanged"
+                                            FontSize="Large" HorizontalTextAlignment="Center" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+                    <StackLayout BackgroundColor="Gray" Grid.Row="1" Grid.Column="2" HorizontalOptions="FillAndExpand">
+                        <custom:CustomEntry x:Name="txtDigit_3" TextColor="White" LineColor="Gray" TextChanged="txtDigit_3_TextChanged"
+                                            FontSize="Large" HorizontalTextAlignment="Center" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+                    <StackLayout BackgroundColor="Gray" Grid.Row="1" Grid.Column="3" HorizontalOptions="FillAndExpand">
+                        <custom:CustomEntry  x:Name="txtDigit_4" TextColor="White" LineColor="Gray" TextChanged="txtDigit_4_TextChanged"
+                                             FontSize="Large" HorizontalTextAlignment="Center" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <behaviors:EntryMaxLengthValidatorBehavior MaxLength="1"/>
+                            </Entry.Behaviors>
+                        </custom:CustomEntry>
+                    </StackLayout>
+
+                </Grid>
+            </Frame>
+
+            <Button x:Name="btnCompletar" Text="Completar" HeightRequest="65" Clicked="btnCompletar_Clicked" TextColor="White"  BackgroundColor="#36B820" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

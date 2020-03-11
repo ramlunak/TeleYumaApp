@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TeleYumaApp"
+              xmlns:custom="clr-namespace:TeleYumaApp"             
+             Title="Verificar Tarjeta"
+             x:Class="TeleYumaApp.Cuenta.VerificarTarjeta">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="layoutEnviandoAutorize" VerticalOptions="FillAndExpand" IsVisible="False">
+                    <Grid VerticalOptions="FillAndExpand" Padding="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Row="1">
+                            <ActivityIndicator IsRunning="True" IsVisible="True"/>
+                            <Label Text="Por favor espere un momento la aplicación le está enviando la autorización de cobro."/> 
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <StackLayout x:Name="layoutContenido" Margin="10" HorizontalOptions="CenterAndExpand" IsVisible="True">
+                    <Label x:Name="lblMonto"></Label>
+                    <Frame  BackgroundColor="#4472C4">
+                        <Label FontSize="15" TextColor="White" Text="Estimado usuario!! Por cuestiones de seguridad necesitamos verificar que usted es el propietario de la tarjeta ingresada, el sistema le ha hecho una autorización de  cobro menor de un $1.00, revice su cuenta de banco y ingrese abajo el monto  de verificación.EL MONTO COBRADO SERA REMBOLSADO AL TERMINAR LA VERIFICACION. Gracias!."/>
+                    </Frame>
+                    <Frame x:Name="frameIntentoFallido" IsVisible="False" BackgroundColor="Maroon" >
+                        <Label FontSize="15" TextColor="White" Text="Usted tiene un intento fallido en comprobar su tarjeta, por favor compruebe el monto del cobro correctamente o su cuenta será bloqueada."/>
+                    </Frame>
+                    <Frame x:Name="frameComprovacionCorrecta" IsVisible="False" BackgroundColor="Green">
+                        <Label FontSize="15" TextColor="White" Text="Su cuenta ha sido verificada correctamente,gracias por utilizar nuestros servicios"/>
+                    </Frame>
+                    <Frame x:Name="frameFormulario">
+                        <StackLayout>
+                            <Label Text="Ingrese el monto del cobro enviado para comprobar que es el propetario" TextColor="Black"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <custom:CustomEntry   Grid.Column="0"
+                            IsEnabled="False"
+                     LineColor="Gray"                          
+                     Placeholder="0,"                   
+                     PlaceholderColor="Gray"
+                     HorizontalOptions="FillAndExpand"/>
+
+                                <custom:CustomEntry Grid.Column="1"                    
+                                 x:Name="txtUnidad"
+                                 LineColor="Gray"                            
+                                 Placeholder="0"       
+                                 WidthRequest="60"
+                                                TextChanged="txtUnidadTextChanged"
+                                 Keyboard="Numeric"                       
+                                 PlaceholderColor="Gray"
+                                 HorizontalOptions="FillAndExpand"/>
+                                <custom:CustomEntry Grid.Column="2"                   
+                                 x:Name="txtDecena"                           
+                                 Placeholder="0"                   
+                                 Keyboard="Numeric"
+                                                 TextChanged="txtDecenaTextChanged"
+                                 WidthRequest="60"
+                                 LineColor="Gray"
+                                 PlaceholderColor="Gray"
+                                 HorizontalOptions="FillAndExpand"/>
+                                <ActivityIndicator  Grid.Column="3"     
+                                x:Name="loadinComprobando" 
+                                IsRunning="True"
+                                IsVisible="False"/>
+                            </Grid>
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
