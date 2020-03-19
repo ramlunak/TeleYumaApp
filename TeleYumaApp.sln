@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeleYumaApp.iOS", "TeleYuma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeleYumaApp", "TeleYumaApp\TeleYumaApp\TeleYumaApp.csproj", "{EF6916E7-6B25-480D-A4EB-7660FC46CD75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeleYumaLibrary", "D:\TeleYumaLibrary\TeleYumaLibrary\TeleYumaLibrary.csproj", "{7AFEBB8F-289A-4713-A39B-7A840AF2FB0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeleYumaLibrary", "..\TeleYumaLibrary\TeleYumaLibrary\TeleYumaLibrary.csproj", "{7AFEBB8F-289A-4713-A39B-7A840AF2FB0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

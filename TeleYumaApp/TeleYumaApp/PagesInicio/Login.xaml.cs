@@ -100,7 +100,15 @@ namespace TeleYumaApp.PagesInicio
                 MostrarCargando(true);
                 var account = await GetAccountrByLogin(user, clave);
                 MostrarCargando(false);
-
+                if (_Global.CurrentAccount.id is null)
+                {
+                    return;
+                }
+                    if (_Global.CurrentAccount.blocked is null)
+                {
+                    await DisplayAlert("TeleYuma", "Error al conectarse con el servidor, compruebe su conexión a internet.", "ok");
+                    return;
+                }
                 if (_Global.CurrentAccount.blocked == "Y")
                 {
                     await DisplayAlert("TeleYuma", "Su cuenta ha sido bloqueada", "ok");

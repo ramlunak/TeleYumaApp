@@ -11,7 +11,9 @@ namespace TeleYumaApp.Class
         [DataMember]
         public string login { get; set; }
         [DataMember]
-        public string password { get; set; }
+        public string password { get; set; } 
+        [DataMember]
+        public string session_id { get; set; }
         
     }
 }

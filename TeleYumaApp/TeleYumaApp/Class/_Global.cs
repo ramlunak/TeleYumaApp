@@ -76,7 +76,7 @@ namespace TeleYumaApp.Class
     public static class _Global
     {
 
-        public static bool ModoPrueba = false;
+        public static bool ModoPrueba = true;
 
         [DefaultValue(false)]
         public static bool IsOpen { get; set; }
@@ -238,8 +238,8 @@ namespace TeleYumaApp.Class
         }
 
         public static string MasterURL = "https://teleyumarestapi.azurewebsites.net/api/"; // IIS      
-                                                                                           // public static string MasterURL = "http://192.168.42.145/teleyuma/api/"; // IIS
-                                                                                           // public static string MasterURL = "http://192.168.42.145:58723/api/"; // IIS
+       // public static string MasterURL = "http://192.168.42.145/teleyuma/api/"; // IIS
+       // public static string MasterURL = "http://192.168.42.145:58723/api/"; // IIS
 
 
         //public static string MasterURL = "http://192.168.42.180/service/Service1.svc/"; // url anclaje
@@ -339,8 +339,7 @@ namespace TeleYumaApp.Class
             {
                 var admin = new AuthInfo
                 {
-                    login = "app-45-yuma",
-                    password = "appyuma8708@**"
+                    session_id = "9a5d0bcc0236d542cccc6cf158840562"
                 };
                 return JsonConvert.SerializeObject(admin);
             }

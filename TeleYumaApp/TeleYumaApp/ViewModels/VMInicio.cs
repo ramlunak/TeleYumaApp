@@ -147,8 +147,7 @@ namespace TeleYumaApp.ViewModels
             }
             catch (Exception ex)
             {
-
-                App.Current.MainPage.DisplayAlert("System", ex.Message, "ok");
+               // App.Current.MainPage.DisplayAlert("System", ex.Message, "ok");
             }
                      
                
