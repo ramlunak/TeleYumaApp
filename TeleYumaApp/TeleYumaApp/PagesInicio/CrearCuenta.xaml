@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TeleYumaApp.Behaviors"
              xmlns:custom="clr-namespace:TeleYumaApp"
-             x:Class="TeleYumaApp.PagesInicio.CrearCuenta" Title="Cuenta">
+             x:Class="TeleYumaApp.PagesInicio.CrearCuenta"            
+             Title="Cuenta">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <ScrollView>
-                <Frame Margin="10" >
+        <StackLayout >
+            <ScrollView >
+                <Frame Margin="10" IsVisible="False" >
                     <Grid  RowSpacing="3" BackgroundColor="White"  VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -84,7 +86,7 @@
                     </Grid>
                 </Frame>
             </ScrollView>
-            <StackLayout BackgroundColor="#70AD47" HorizontalOptions="FillAndExpand">
+            <StackLayout IsVisible="False" BackgroundColor="#70AD47" HorizontalOptions="FillAndExpand">
                 <Button x:Name="btnCompletar" Text="Siguiente"  BackgroundColor="#36B820" Clicked="btnCompletar_Clicked" TextColor="White" Font="16" FontAttributes="Bold" HeightRequest="50" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
         </StackLayout>

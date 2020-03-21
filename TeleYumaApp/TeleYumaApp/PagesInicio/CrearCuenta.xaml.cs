@@ -27,7 +27,7 @@ namespace TeleYumaApp.PagesInicio
         public CrearCuenta()
         {
             InitializeComponent();
-           
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         public void CargarEventosValidar()

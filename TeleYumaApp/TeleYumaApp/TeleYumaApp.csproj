@@ -95,6 +95,9 @@
     <EmbeddedResource Update="PagesNew\Compras.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\DatosUsuario.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="PagesNew\Inicio.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -149,6 +152,15 @@
     <EmbeddedResource Update="rlkControles\Contador.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\rlkButtonCancel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\rlkButtonNet.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="rlkControles\rlkButtonSeguridad.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="rlkControles\Textbox.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -198,6 +210,9 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="PagesNew\Compras.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="PagesNew\DatosUsuario.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="PagesNew\Inicio.xaml">
@@ -264,6 +279,9 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="rlkControles\Contador.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="rlkControles\rlkButtonNet.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="rlkControles\Textbox.xaml">

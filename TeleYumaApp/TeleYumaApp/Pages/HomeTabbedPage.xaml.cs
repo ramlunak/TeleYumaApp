@@ -29,7 +29,7 @@ namespace TeleYumaApp.Pages
                 if (valor)
                 {
 
-                     _Global.SQLiteLogin.Salir();
+                    _Global.SQLiteLogin.Salir();
                     _Global.RunTask = false;
                     Application.Current.MainPage = new NavigationPage(new PagesInicio.Login());
 
@@ -46,17 +46,17 @@ namespace TeleYumaApp.Pages
         {
             try
             {
-                var cuenta = new PagesInicio.CrearCuenta();
-                cuenta.Transaction = TipoTransaction.Edit;
-                cuenta.CargarDatos();
-                this.Navigation.PushAsync(cuenta);
+                //var cuenta = new PagesInicio.CrearCuenta();
+                //cuenta.Transaction = TipoTransaction.Edit;
+                //cuenta.CargarDatos();
+                //this.Navigation.PushAsync(cuenta);
 
-                
+                var datosUsuario = new PagesNew.DatosUsuario();
+                this.Navigation.PushModalAsync(datosUsuario);
             }
-            catch
+            catch (Exception ex)
             {
-
-
+                DisplayAlert("Error", ex.ToString(), "ok");
             }
         }
 

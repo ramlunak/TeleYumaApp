@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
+             x:Class="TeleYumaApp.PagesNew.DatosUsuario">
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+
+            <Image Source="newUser" Margin="20"/>
+
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="user1" Grid.Column="0"/>
+                <Label Grid.Column="1"
+                       Text="Royber Arias Moreno"
+                       FontSize="Large"
+                       TextColor="DarkBlue"/>
+                <Image Source="newEdit" Grid.Column="2"/>
+                
+            </Grid>
+
+
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="newEmail" Grid.Column="0"/>
+                <Label Grid.Column="1"
+                       Text="Royber Arias Moreno"
+                       FontSize="Large"
+                       TextColor="DarkBlue"/>
+                <Image Source="newEdit" Grid.Column="2"/>
+
+            </Grid>
+
+
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="br" Grid.Column="0"/>
+                <Label Grid.Column="1"
+                       Text="47988739261"
+                       FontSize="Large"
+                       TextColor="DarkBlue"/>
+                <Image Source="" Grid.Column="2"/>
+
+            </Grid>
+
+            <rlk:rlkButtonSeguridad>
+                <rlk:rlkButtonSeguridad.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding NextCommand}"/>
+                </rlk:rlkButtonSeguridad.GestureRecognizers>
+            </rlk:rlkButtonSeguridad>
+
+            <rlk:rlkButtonCancel VerticalOptions="EndAndExpand">
+                <rlk:rlkButtonCancel.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding CancelarCommand}"/>
+                </rlk:rlkButtonCancel.GestureRecognizers>
+            </rlk:rlkButtonCancel>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
