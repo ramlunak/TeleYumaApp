@@ -168,7 +168,6 @@ namespace TeleYumaApp.PagesInicio
                 Prefijo = Pais.GetPrefijo(pais);
                 _Global.Vistas.PageNewListaPaises.Selected = new EPais { PrefijoTelefonico = Prefijo, Nombre = pais };
                 _Global.PaisSeleccionado = new EPais { PrefijoTelefonico = Prefijo, Nombre = pais };
-
                 ;
             }
             catch 

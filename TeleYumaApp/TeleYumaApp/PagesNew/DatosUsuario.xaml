@@ -5,29 +5,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
+             xmlns:local="clr-namespace:TeleYumaApp.Behaviors"
              x:Class="TeleYumaApp.PagesNew.DatosUsuario">
-    <ContentPage.Content> 
-      <StackLayout Margin="10" HorizontalOptions="FillAndExpand">
+    <ContentPage.Content>
+        <StackLayout Margin="10" HorizontalOptions="FillAndExpand">
 
             <Grid >
                 <ActivityIndicator IsVisible="{Binding IsLoading}" IsRunning="True" />
-                <Image Source="newUser" Margin="25"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>              
+                <Image Source="newUser" Margin="25"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
             </Grid>
-                    
-                    <Grid Margin="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="25"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="25"/>
-                        </Grid.ColumnDefinitions>
 
-                        <Image Source="user1" Grid.Column="0"/>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
 
-                        <Entry  Grid.Column="1" IsVisible="{Binding ShowEditName}"
+                <Image Source="user1" Grid.Column="0"/>
+
+                <Entry  Grid.Column="1" IsVisible="{Binding ShowEditName}"
                         Text="{Binding Nombre,Mode=TwoWay}"
                         HorizontalOptions="Fill"/>
 
-                        <Label Grid.Column="1" IsVisible="{Binding ShowLabelName}"
+                <Label Grid.Column="1" IsVisible="{Binding ShowLabelName}"
                        Text="{Binding Nombre,Mode=TwoWay}"
                        FontSize="Large"
                       
@@ -35,33 +36,34 @@
                        
                        TextColor="DarkBlue"/>
 
-                        <Image Source="newEdit" Grid.Column="2" IsVisible="{Binding !ShowEditName}">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ShowEditNameCommand}"/>
-                            </Image.GestureRecognizers>
-                        </Image>
+                <Image Source="newEdit" Grid.Column="2" IsVisible="{Binding !ShowEditName}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ShowEditNameCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
 
-                     <Image Source="ok" Grid.Column="2" IsVisible="{Binding ShowEditName}" >
-                            <Image.GestureRecognizers>
+                <Image Source="ok" Grid.Column="2" IsVisible="{Binding ShowEditName}" >
+                    <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ActualizarNameCommand}"/>
-                            </Image.GestureRecognizers>
-                        </Image>
+                    </Image.GestureRecognizers>
+                </Image>
 
-                    </Grid>             
+            </Grid>
 
-                    <Grid Margin="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="25"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="25"/>
-                        </Grid.ColumnDefinitions>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
 
-                        <Image Source="user1" Grid.Column="0"/>
+                <Image Source="user1" Grid.Column="0"/>
 
-                        <Entry  Grid.Column="1" IsVisible="{Binding ShowEditEmail}"
+                <Entry  Grid.Column="1" IsVisible="{Binding ShowEditEmail}"
                         Text="{Binding Email,Mode=TwoWay}"/>
 
-                        <Label Grid.Column="1" IsVisible="{Binding ShowLabelEmail}"
+
+                <Label Grid.Column="1" IsVisible="{Binding ShowLabelEmail}"
                        Text="{Binding Email,Mode=TwoWay}"
                        LineBreakMode="TailTruncation"
                     
@@ -69,51 +71,49 @@
                                           
                        TextColor="DarkBlue"/>
 
-                     <Image Source="newEdit" Grid.Column="2" IsVisible="{Binding !ShowEditEmail}">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ShowEditEmailCommand}"/>
-                            </Image.GestureRecognizers>
-                        </Image>
+                <Image Source="newEdit" Grid.Column="2" IsVisible="{Binding !ShowEditEmail}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ShowEditEmailCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
 
-                        <Image Source="ok" Grid.Column="2" IsVisible="{Binding ShowEditEmail}">
-                            <Image.GestureRecognizers>
+                <Image Source="ok" Grid.Column="2" IsVisible="{Binding ShowEditEmail}">
+                    <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ActualizarEmailCommand}"/>
-                            </Image.GestureRecognizers>
-                        </Image>
-
-                
+                    </Image.GestureRecognizers>
+                </Image>
 
             </Grid>
-              
-                    <Grid Margin="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="25"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="25"/>
-                        </Grid.ColumnDefinitions>
 
-                        <Image Source="br" Grid.Column="0"/>
-                        <Label Grid.Column="1"
-                       Text="47988739261"
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{Binding Bandera}" Grid.Column="0"/>
+                <Label Grid.Column="1"
+                       Text="{Binding Phone}"
                        FontSize="Large"
                        TextColor="DarkBlue"/>
-                        <Image Source="" Grid.Column="2"/>
+                <Image Source="" Grid.Column="2"/>
 
-                    </Grid>
-              
-          
-                <rlk:rlkButtonSeguridad>
-                    <rlk:rlkButtonSeguridad.GestureRecognizers>
-                        <TapGestureRecognizer  Command="{Binding NextCommand}"/>
-                    </rlk:rlkButtonSeguridad.GestureRecognizers>
-                </rlk:rlkButtonSeguridad>
+            </Grid>
 
-                <rlk:rlkButtonCancel VerticalOptions="EndAndExpand">
-                    <rlk:rlkButtonCancel.GestureRecognizers>
-                        <TapGestureRecognizer  Command="{Binding CancelarCommand}"/>
-                    </rlk:rlkButtonCancel.GestureRecognizers>
-                </rlk:rlkButtonCancel>
 
-            </StackLayout>      
+            <rlk:rlkButtonSeguridad>
+                <rlk:rlkButtonSeguridad.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding NextCommand}"/>
+                </rlk:rlkButtonSeguridad.GestureRecognizers>
+            </rlk:rlkButtonSeguridad>
+
+            <rlk:rlkButtonCancel VerticalOptions="EndAndExpand">
+                <rlk:rlkButtonCancel.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding CancelarCommand}"/>
+                </rlk:rlkButtonCancel.GestureRecognizers>
+            </rlk:rlkButtonCancel>
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

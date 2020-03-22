@@ -9,6 +9,10 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace TeleYumaApp.ViewModels
 {
@@ -27,12 +31,14 @@ namespace TeleYumaApp.ViewModels
 
         public VMDatosUsuario()
         {
-            Nombre = "Royber Arias Moreno";
-            Email = "teleyumamasteremail@gmail.com";
+            Nombre = _Global.CurrentAccount.fullname;
+            Email = _Global.CurrentAccount.email;
+            Phone = _Global.CurrentAccount.phone1;
+            Bandera = Pais.GetIso2(_Global.CurrentAccount.country);
 
             ShowEditName = false;
-            ShowEditEmail= false;
-           
+            ShowEditEmail = false;
+
         }
 
         private bool CanSubmitExecute(object parameter)
@@ -41,7 +47,7 @@ namespace TeleYumaApp.ViewModels
         }
 
         #region Propiedades
-
+      
         private string _nombre;
 
         public string Nombre
@@ -58,6 +64,21 @@ namespace TeleYumaApp.ViewModels
             set { _email = value; OnPropertyChanged(); }
         }
 
+        private string _phone;
+
+        public string Phone
+        {
+            get { return _phone; }
+            set { _phone = value; OnPropertyChanged(); }
+        }
+
+        private string _bandera;
+
+        public string Bandera
+        {
+            get { return _bandera; }
+            set { _bandera = value; OnPropertyChanged(); }
+        }
 
         private bool _isLoading;
 
@@ -165,12 +186,27 @@ namespace TeleYumaApp.ViewModels
 
         public async void ActualizarNameExecute(object parameter)
         {
+            if (string.IsNullOrEmpty(Nombre))
+            {
+                await CurrentPage.DisplayAlert("TeleYuma", "El nombre no puede estar em blanco.", "ok");
+                return;
+            }
+
             IsLoading = true;
-            await Task.Delay(3000);
+           
+            _Global.CurrentAccount.firstname = Nombre;
+            _Global.CurrentAccount.lastname = "";
+            _Global.CurrentAccount.cont1 = Nombre;
+
+            if (await UpdateCuenta(true))
+            {
+                await UpdateCuenta(false);
+            }         
             IsLoading = false;
 
             ShowEditName = false;
-          
+
+
         }
 
         #endregion
@@ -191,8 +227,20 @@ namespace TeleYumaApp.ViewModels
 
         public async void ActualizarEmailExecute(object parameter)
         {
+            bool valido = Regex.IsMatch(Email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+            if (!valido)
+            {
+                await CurrentPage.DisplayAlert("TeleYuma","Escriba un correo válido.", "ok");
+                return;
+            }
+            
             IsLoading = true;
-            await Task.Delay(3000);
+            _Global.CurrentAccount.email = Email;
+         
+            if (await UpdateCuenta(true))
+            {
+                await UpdateCuenta(false);
+            }
             IsLoading = false;
 
             ShowEditEmail = false;
@@ -241,6 +289,68 @@ namespace TeleYumaApp.ViewModels
         }
 
         #endregion
+
+        public async Task<bool> UpdateCuenta(bool validate)
+        {
+
+            using (HttpClient client = new HttpClient())
+            {
+                var URL = "";
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var param = JsonConvert.SerializeObject(new { account_info = _Global.CurrentAccount });
+                    if (validate)
+                    {
+                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    }
+                    else
+                    {
+                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.update_account + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    }
+                    var response = await client.GetAsync(URL);
+                    var json = await response.Content.ReadAsStringAsync();
+                    var ErrorHandling = JsonConvert.DeserializeObject<ErrorHandling>(json);
+                    if (ErrorHandling.faultstring is null)
+                    {
+                        string id = null;
+                        if (validate)
+                        {
+                            id = JsonConvert.DeserializeObject<AccountObject>(json).account_info.id;
+                        }
+                        else
+                        {
+                            id = JsonConvert.DeserializeObject<account_info>(json).i_account.ToString();
+                        }
+                                             
+
+                        if (id is null)
+                        {
+                            await CurrentPage.DisplayAlert("TeleYuma", "Error al conectarse con el servidor, compruebe su conexión a internet.", "ok");
+                            return false;
+                        }
+                        else
+                        {                            
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        await CurrentPage.DisplayAlert("TeleYuma", ErrorHandling.faultstring, "ok");
+                        return false;
+                    }
+
+                }
+                catch(Exception ex)
+                {
+                    await CurrentPage.DisplayAlert("TeleYuma", "Error al conectarse con el servidor, compruebe su conexión a internet.", "ok");
+                    return false;
+                }
+
+            }
+
+        }
 
     }
 }
