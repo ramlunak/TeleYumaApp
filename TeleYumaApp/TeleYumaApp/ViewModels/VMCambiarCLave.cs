@@ -132,7 +132,7 @@ namespace TeleYumaApp.ViewModels
             if (ClaveInsegura) return;
 
             ClaveNoCoinciden = NuevaClave != ConfirmarClave;
-            if (ClaveInsegura) return;
+            if (ClaveNoCoinciden) return;
 
             IsLoading = true;
             _Global.CurrentAccount.password = NuevaClave;
@@ -141,7 +141,8 @@ namespace TeleYumaApp.ViewModels
             {
                 if (await UpdateCuenta(false))
                 {
-                    CurrentPage.DisplayAlert("TeleYuma", "La contraseña ha sido cambiada exitosamente", "OK");
+                   await CurrentPage.DisplayAlert("TeleYuma", "La contraseña ha sido cambiada exitosamente", "OK");
+                   await CurrentPage.Navigation.PopModalAsync();
                 }
             }
             IsLoading = false;
