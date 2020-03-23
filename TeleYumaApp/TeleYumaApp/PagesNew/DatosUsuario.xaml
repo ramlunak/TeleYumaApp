@@ -11,8 +11,8 @@
         <StackLayout Margin="10" HorizontalOptions="FillAndExpand">
 
             <Grid >
-                <ActivityIndicator IsVisible="{Binding IsLoading}" IsRunning="True" />
-                <Image Source="newUser" Margin="25"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <ActivityIndicator IsVisible="{Binding IsLoading}" WidthRequest="150" IsRunning="True" />
+                <Image Source="newUser" Margin="25" WidthRequest="150"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
             </Grid>
 
             <Grid Margin="10">
@@ -57,7 +57,7 @@
                     <ColumnDefinition Width="25"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Source="user1" Grid.Column="0"/>
+                <Image Source="gmail" Grid.Column="0"/>
 
                 <Entry  Grid.Column="1" IsVisible="{Binding ShowEditEmail}"
                         Text="{Binding Email,Mode=TwoWay}"/>
@@ -104,7 +104,7 @@
 
             <rlk:rlkButtonSeguridad>
                 <rlk:rlkButtonSeguridad.GestureRecognizers>
-                    <TapGestureRecognizer  Command="{Binding NextCommand}"/>
+                    <TapGestureRecognizer  Command="{Binding CambiarClaveCommand}"/>
                 </rlk:rlkButtonSeguridad.GestureRecognizers>
             </rlk:rlkButtonSeguridad>
 

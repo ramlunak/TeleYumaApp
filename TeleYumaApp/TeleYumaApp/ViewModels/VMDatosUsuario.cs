@@ -122,23 +122,23 @@ namespace TeleYumaApp.ViewModels
 
         #endregion
 
-        #region NextCommand
-        private ICommand _NextCommand;
-        public ICommand NextCommand
+        #region CambiarClaveCommand
+        private ICommand _CambiarClaveCommand;
+        public ICommand CambiarClaveCommand
         {
             get
             {
-                if (_NextCommand == null)
+                if (_CambiarClaveCommand == null)
                 {
-                    _NextCommand = new RelayCommand(NextExecute, CanSubmitExecute);
+                    _CambiarClaveCommand = new RelayCommand(CambiarClaveExecute, CanSubmitExecute);
                 }
-                return _NextCommand;
+                return _CambiarClaveCommand;
             }
         }
 
-        public async void NextExecute(object parameter)
+        public async void CambiarClaveExecute(object parameter)
         {
-            ;
+            CurrentPage.Navigation.PushModalAsync(new PagesNew.CambiarClave());
         }
         #endregion
 

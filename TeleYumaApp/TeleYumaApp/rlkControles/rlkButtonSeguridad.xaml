@@ -16,7 +16,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="1"
-                        Text="Cambier Clave" 
+                        Text="Cambiar Clave" 
                         VerticalTextAlignment="Center" 
                         HorizontalTextAlignment="Center"
                         TextColor="Black"
