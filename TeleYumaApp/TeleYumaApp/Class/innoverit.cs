@@ -20,12 +20,12 @@ namespace TeleYumaApp.Class
         public string costo { get; set; }
         public string iso { get; set; }
         public decimal balance { get; set; }
-                       
+
         public async Task Send()
         {
 
-          //var r = await _Global.Post <innoverit> ("https://www.innoverit.com/api/smssend",this);
-           // ;
+            //var r = await _Global.Post <innoverit> ("https://www.innoverit.com/api/smssend",this);
+            // ;
             //using (HttpClient client = new HttpClient())
             //{
             //    client.DefaultRequestHeaders.Accept.Clear();
@@ -57,6 +57,13 @@ namespace TeleYumaApp.Class
 
         }
 
+        public class SendResponse
+        {
+            public string error_code { get; set; }
+            public string status { get; set; }
+            public string message { get; set; }
+            public string error { get; set; }
+        }
 
     }
 }

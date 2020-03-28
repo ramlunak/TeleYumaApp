@@ -159,7 +159,8 @@ namespace TeleYumaApp.Class
                 {
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();
-                    return new MessageResponse { ErrorCode = "null" };
+                    var sendResponse = JsonConvert.DeserializeObject<innoverit.SendResponse>(json);
+                    return new MessageResponse { ErrorCode = sendResponse.error_code ,ErrorMessage = sendResponse.message};
                 }
                 catch (Exception ex)
                 {

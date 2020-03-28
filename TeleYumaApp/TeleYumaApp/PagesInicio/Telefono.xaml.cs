@@ -27,6 +27,7 @@ namespace TeleYumaApp.PagesInicio
         public Telefono()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private void btnCompletar_Clicked(object sender, EventArgs e)
@@ -46,22 +47,20 @@ namespace TeleYumaApp.PagesInicio
             CargarDatosAccount();
 
             MostrarCargando(true);
-            if (await VerificarSiExisteTelefono())
+            if (await ValidarEnTelinta())
             {
                 var confirmar = new PagesInicio.ConfirmarTelefono();
                 var repuesta = await confirmar.SendSms();
-                if (repuesta.delivery_status == "OK")
+
+                if (repuesta.ErrorCode is null)
                 {
                     MostrarCargando(false);
                     await this.Navigation.PushAsync(confirmar);
-
                 }
-                else
-                 if (repuesta.error != null)
+                else                 
                 {
                     MostrarCargando(false);
                     await DisplayAlert("TeleYuma", "El número de télefono no es correcto", "ok");
-
                 }
 
             }
@@ -114,7 +113,7 @@ namespace TeleYumaApp.PagesInicio
             _Global.CurrentAccount.phone1 = telefono.Trim();
         }
 
-        public async Task<bool> VerificarSiExisteTelefono()
+        public async Task<bool> ValidarEnTelinta()
         {
             
             using (HttpClient client = new HttpClient())
@@ -158,6 +157,10 @@ namespace TeleYumaApp.PagesInicio
 
         }
 
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            this.Navigation.PopAsync();
+        }
     }
 
 }

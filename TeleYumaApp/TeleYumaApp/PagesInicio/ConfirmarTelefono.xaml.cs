@@ -23,7 +23,7 @@ namespace TeleYumaApp.PagesInicio
             BindingContext = _Global.CurrentAccount;
         }
 
-        public async Task<innoverit> SendSms()
+        public async Task<MessageResponse> SendSms()
         {
             codigo_verificacion = _Global.CodigoVerificacion;
             var telefono = _Global.CurrentAccount.phone1;
@@ -35,16 +35,17 @@ namespace TeleYumaApp.PagesInicio
                 NumeroTelefono = telefono,
                 RemitenteNumero = "TeleYumaApp verificar telefono"
             };
-            var respuesta = await smsConfirmacio.Enviar();           
-            if (respuesta.ErrorCode == "null")
-            {
-                return new innoverit { delivery_status = "OK"};              
-            }
-            else
-            {
-                await DisplayAlert("TeleYuma", respuesta.ErrorMessage, "OK");
-                return new innoverit { error = "1" };
-            }
+            return await smsConfirmacio.Enviar();        
+            
+            //if (respuesta.ErrorCode == "null")
+            //{
+            //    return new innoverit { delivery_status = "OK"};              
+            //}
+            //else
+            //{
+            //    await DisplayAlert("TeleYuma", respuesta.ErrorMessage, "OK");
+            //    return new innoverit { error = respuesta .ErrorCode};
+            //}
                 
 
         }
