@@ -23326,7 +23326,7 @@ namespace TeleYumaApp.Droid
 			public const int location = 2131165691;
 			
 			// aapt resource value: 0x7F0701FC
-			public const int logo1 = 2131165692;
+			public const int logo = 2131165692;
 			
 			// aapt resource value: 0x7F0701FD
 			public const int lr = 2131165693;

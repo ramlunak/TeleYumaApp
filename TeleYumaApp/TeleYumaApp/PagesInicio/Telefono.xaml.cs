@@ -36,7 +36,10 @@ namespace TeleYumaApp.PagesInicio
         }
 
         private async void btnSiguiente_Clicked(object sender, EventArgs e)
-        {        
+        {
+            var confirmar1 = new PagesInicio.ConfirmarTelefono();
+            await this.Navigation.PushAsync(confirmar1);
+            return;
 
             if (txtTelefono.Text == "" || txtTelefono.Text == null || txtPais.Text == "" || txtPais.Text == null)
             {
@@ -50,9 +53,10 @@ namespace TeleYumaApp.PagesInicio
             if (await ValidarEnTelinta())
             {
                 var confirmar = new PagesInicio.ConfirmarTelefono();
+                
                 var repuesta = await confirmar.SendSms();
 
-                if (repuesta.ErrorCode is null)
+                if (repuesta.ErrorCode is null || repuesta.ErrorCode == "0")
                 {
                     MostrarCargando(false);
                     await this.Navigation.PushAsync(confirmar);
@@ -60,7 +64,7 @@ namespace TeleYumaApp.PagesInicio
                 else                 
                 {
                     MostrarCargando(false);
-                    await DisplayAlert("TeleYuma", "El número de télefono no es correcto", "ok");
+                    await DisplayAlert("TeleYuma", repuesta.ErrorMessage, "ok");
                 }
 
             }

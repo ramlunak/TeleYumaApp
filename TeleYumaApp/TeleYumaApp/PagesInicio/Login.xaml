@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TeleYumaApp"       
              xmlns:Behaviors="clr-namespace:TeleYumaApp.Behaviors"     
+             xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
              xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects" 
              xmlns:material="clr-namespace:SuaveControls.MaterialForms;assembly=SuaveControls.MaterialForms"
-             x:Class="TeleYumaApp.PagesInicio.Login"
-             BackgroundColor="#232397">
+             x:Class="TeleYumaApp.PagesInicio.Login">
     <ContentPage.Content>
 
-        <Grid VerticalOptions="FillAndExpand" >
+        <!--<Grid VerticalOptions="FillAndExpand" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -22,9 +22,8 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Grid.RowSpan="2"  Source="Connexion.png"/>
-                    <Image Grid.Row="2" Source="logo1.png" />
+                    </Grid.RowDefinitions>                  
+                    <Image Grid.Row="2" Source="logo.png" />
                 </Grid>
             </StackLayout>
 
@@ -52,26 +51,7 @@
             </StackLayout >
 
             <StackLayout   x:Name="LayoutFormulario" Grid.Row="1" BackgroundColor="#232397" Padding="20">
-                <!--<material:MaterialEntry                       
-                        AccentColor="Black"                      
-                        DefaultColor="Blue"                        
-                        x:Name="txtLogin"     
-                        Placeholder="Usuario" >
-                    <material:MaterialEntry.Behaviors>
-                        <Behaviors:MaterialEntryBehavior  placeholderColor="White" textcolor="White"/>
-                    </material:MaterialEntry.Behaviors>
-                </material:MaterialEntry>
-                <material:MaterialEntry                      
-                        AccentColor="Black"                       
-                        DefaultColor="Blue"                        
-                        x:Name="txtPassword" 
-                        IsPassword="True" 
-                        Placeholder="Contraseña">
-                    <material:MaterialEntry.Behaviors>
-                        <Behaviors:MaterialEntryBehavior  placeholderColor="White" textcolor="White"/>
-                    </material:MaterialEntry.Behaviors>
-                </material:MaterialEntry>-->
-
+               
                 <local:CustomEntry  x:Name="txtLogin"  
                     PlaceholderColor="White" 
                     TextColor="White"  
@@ -115,10 +95,58 @@
 
             </StackLayout>
 
+        </Grid>-->
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*"/>           
+                <RowDefinition Height="60*"/>
+            </Grid.RowDefinitions>
+            
+            <Image Grid.Row="0" Aspect="AspectFill" Source="logo"/>
+            
+            <StackLayout Grid.Row="1" Margin="15">
+
+                <StackLayout Margin="0,0,0,5">
+                    <Frame Padding="10,0,10,0">
+                        <rlk:entry Placeholder="Email*"/>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout>
+                    <Frame Padding="10,0,10,0">
+                        <rlk:entry Placeholder="Contraseña*" IsPassword="True"/>
+                    </Frame>
+                </StackLayout>
+                
+                <Label  x:Name="lblVerPaswword" 
+                        Text="Recuperar contraseña."
+                        TextColor="#15A5E8"
+                        BackgroundColor="Transparent" 
+                        HorizontalOptions="End"
+                        Margin="0,0,0,20">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="lblRecuperar" Tapped="lblRecuperar_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                
+                <StackLayout>
+                    <Frame Padding="10" CornerRadius="25" BackgroundColor="#0A66B8">
+                        <Label HorizontalTextAlignment="Center" TextColor="White" FontSize="Large" FontFamily="Arial" Text="Entrar"/>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout>
+                    <Frame Padding="10" CornerRadius="25" BackgroundColor="#18AB07">
+                        <Label HorizontalTextAlignment="Center" TextColor="White" FontSize="Medium" FontFamily="Arial" Text="No tienes cuenta? Registrate"/>
+                    </Frame>
+                </StackLayout>
+
+                <Label Text="Al continuar, también acepta los Términos de Servicio y la Política de Privacidad " HorizontalTextAlignment="Center" Margin="0,15,0,0" TextDecorations="Underline"/>
+            </StackLayout>
+            
         </Grid>
-
-
-
-
+        
+        
     </ContentPage.Content>
 </ContentPage>

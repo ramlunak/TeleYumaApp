@@ -21,6 +21,8 @@ namespace TeleYumaApp.PagesInicio
         {
             InitializeComponent();
             BindingContext = _Global.CurrentAccount;
+            NavigationPage.SetHasNavigationBar(this, false);
+            IniciarContador();
         }
 
         public async Task<MessageResponse> SendSms()
@@ -72,6 +74,18 @@ namespace TeleYumaApp.PagesInicio
             else await DisplayAlert("Teleyuma", "Ingrese el código", "OK");
         }
 
+        private async void IniciarContador()
+        {
+            LblContador.IsVisible = true;
+            for (int i = 5; i > 0; i++)
+            {
+               await Task.Delay(1000);
+              LblContador.Text = $"Reenviar en {i}s.";
+            }
+            ResendSms.IsVisible = true;
+            LblContador.IsVisible = false;
+        }
+
         private void txtDigit_1_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -94,6 +108,18 @@ namespace TeleYumaApp.PagesInicio
         private void txtDigit_4_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            this.Navigation.PopAsync();
+        }
+
+        private void ResendSmsTapped(object sender, EventArgs e)
+        {
+            ResendSms.IsVisible = false;
+            SendSms();
+            IniciarContador();
         }
 
         //private void btnNuevoCodigo_Clicked(object sender, EventArgs e)
