@@ -43,10 +43,6 @@ namespace TeleYumaApp.PagesInicio
 
         private async void btnCompletar_Clicked(object sender, EventArgs e)
         {
-
-            // await this.Navigation.PushAsync(new PagesInicio.DatosCuenta()); return;
-
-
             var codigo = txtDigit_1.Text + txtDigit_2.Text + txtDigit_3.Text + txtDigit_4.Text;
             if (codigo.Length == 4)
             {

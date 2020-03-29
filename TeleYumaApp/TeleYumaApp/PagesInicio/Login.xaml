@@ -5,7 +5,6 @@
              xmlns:Behaviors="clr-namespace:TeleYumaApp.Behaviors"     
              xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
              xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects" 
-             xmlns:material="clr-namespace:SuaveControls.MaterialForms;assembly=SuaveControls.MaterialForms"
              x:Class="TeleYumaApp.PagesInicio.Login">
     <ContentPage.Content>
 

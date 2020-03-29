@@ -28,34 +28,14 @@ namespace TeleYumaApp
         public App()
         {
             InitializeComponent();
-
-           
-
-            //_Global.IsOpen = true;
-
-
-            //if (!string.IsNullOrEmpty(IdSms))
-            //    _Global.IdSmsFromNoti = Convert.ToInt32(IdSms);
-            //else
-            //    _Global.IdSmsFromNoti = 0;
-
+          
             Login();
         }
 
 
         public async void Login()
         {
-           
-            //var p = await GetProductsBycountryIso("cu");
-            //;
-            //var isos = new Ding.GetProductsRequest
-            //{
-            //    countryIsos = "cu"
-            //};
-            //// var result = await _Global.Get<Ding.agent_balance>("https://api.dingconnect.com/api/V1/GetBalance", new Credenciales {name="api_key",vale = "GuXIN76oLlt6H9SXQf2w5n" } );
-            //var result2 = await _Global.Post<Teleyuma.Ding.GetProductsResponse>("https://api.dingconnect.com/api/V1/GetProducts", isos, new Credenciales {name="api_key",vale = "GuXIN76oLlt6H9SXQf2w5n" } );
-            ////;
-
+         
             try
             {
 

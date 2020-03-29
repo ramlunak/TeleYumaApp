@@ -193,31 +193,24 @@ namespace TeleYumaApp.ViewModels
             }
 
             IsLoading = true;
+            
+            var account = _Global.CurrentAccount;
 
-            var old_firstname = _Global.CurrentAccount.firstname;
-            var old_lastname = _Global.CurrentAccount.lastname;
-            var old_cont1 = _Global.CurrentAccount.cont1;
 
-            _Global.CurrentAccount.firstname = Nombre;
-            _Global.CurrentAccount.lastname = "";
-            _Global.CurrentAccount.cont1 = Nombre;
+            account.firstname = Nombre;
+            account.lastname = "";
+            account.cont1 = Nombre;
 
-            if (await UpdateCuenta(true))
+            if (await UpdateCuenta(true, account))
             {
-                if (!await UpdateCuenta(false))
-                {
-                    _Global.CurrentAccount.firstname = old_firstname;
-                    _Global.CurrentAccount.lastname = old_lastname;
-                    _Global.CurrentAccount.cont1 = old_cont1;
-                    Nombre = old_firstname;
+                if (!await UpdateCuenta(false, account))
+                {                   
+                    Nombre = _Global.CurrentAccount.fullname;
                 }
             }
             else
-            {
-                _Global.CurrentAccount.firstname = old_firstname;
-                _Global.CurrentAccount.lastname = old_lastname;
-                _Global.CurrentAccount.cont1 = old_cont1;
-                Nombre = old_firstname;
+            {             
+                Nombre = _Global.CurrentAccount.fullname;
             }
 
             IsLoading = false;
@@ -253,22 +246,22 @@ namespace TeleYumaApp.ViewModels
             }
 
             IsLoading = true;
+                    
+            var account = _Global.CurrentAccount;
 
-            var old_email = _Global.CurrentAccount.email;
-
-            _Global.CurrentAccount.email = Email;
-
-            if (await UpdateCuenta(true))
+            account.email = Email;
+            account.login = Email;
+         
+            if (await UpdateCuenta(true, account))
             {
-                if (!await UpdateCuenta(false))
+                if (!await UpdateCuenta(false, account))
                 {
-                    _Global.CurrentAccount.email = old_email;
+                    Email = _Global.CurrentAccount.email;
                 }
             }
             else
-            {
-                _Global.CurrentAccount.email = old_email;
-                Email = old_email;
+            {              
+                Email = _Global.CurrentAccount.email; 
             }
             IsLoading = false;
 
@@ -319,7 +312,7 @@ namespace TeleYumaApp.ViewModels
 
         #endregion
 
-        public async Task<bool> UpdateCuenta(bool validate)
+        public async Task<bool> UpdateCuenta(bool validate,account_info accout_Info)
         {
 
             using (HttpClient client = new HttpClient())
@@ -329,7 +322,7 @@ namespace TeleYumaApp.ViewModels
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    var param = JsonConvert.SerializeObject(new { account_info = _Global.CurrentAccount });
+                    var param = JsonConvert.SerializeObject(new { account_info = accout_Info });
                     if (validate)
                     {
                         URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;

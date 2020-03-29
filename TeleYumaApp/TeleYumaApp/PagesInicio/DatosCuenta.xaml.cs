@@ -27,7 +27,7 @@ namespace TeleYumaApp.PagesInicio
         public DatosCuenta()
         {
             InitializeComponent();
-         
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         public void CargarEventosValidar()
@@ -123,8 +123,7 @@ namespace TeleYumaApp.PagesInicio
 
         public void CargarDatos()
         {
-
-            btnCompletar.Text = "Guardar";
+                    
             BindingContext = _Global.CurrentAccount;
 
             try
@@ -155,7 +154,7 @@ namespace TeleYumaApp.PagesInicio
         public void LimpiarForm()
         {
             Transaction = TipoTransaction.New;
-            // btnCompletar.Text = "Crear";
+           
             BindingContext = null;
         }
 
@@ -271,21 +270,7 @@ namespace TeleYumaApp.PagesInicio
                     var ErrorHandling = JsonConvert.DeserializeObject<ErrorHandling>(json);
                     if (ErrorHandling.faultstring is null)
                     {
-                        //_Global.CurrentAccount.i_account = JsonConvert.DeserializeObject<account_info>(json).i_account;
-                        //try
-                        //{
-                        //    //guardar usuario en SQlite
-                        //    _Global.SQLiteLogin.i_account = _Global.CurrentAccount.i_account;
-                        //    _Global.SQLiteLogin.phone1 = _Global.CurrentAccount.phone1;
-                        //    _Global.SQLiteLogin.isloged = true;
-                        //    _Global.SQLiteLogin.user = _Global.CurrentAccount.login;
-                        //    _Global.SQLiteLogin.password = _Global.CurrentAccount.password;
-                        //    _Global.SQLiteLogin.Ingresar();
-                        //}
-                        //catch { }                                             
-
-                        // _Global.RunTask = true;
-                        // //_Global.Vistas.PageHome.DoSomethingAsync();
+                       
                         await DisplayAlert("TeleYuma", "Cuenta creada correctamente,utilize su correo como usuario para acceder a la aplicación", "ok");
                         Application.Current.MainPage = new PagesInicio.Login();
                     }
@@ -349,8 +334,9 @@ namespace TeleYumaApp.PagesInicio
 
         }
 
-      
-
-
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            this.Navigation.PopAsync();
+        }
     }
 }

@@ -8,13 +8,13 @@ namespace TeleYumaApp.Behaviors
 {
     public static class cons
     {
-        public static Color validColor = Color.White;
-        public static Color invalidColor = Color.Orange;
+        public static Color validColor = Color.Black;
+        public static Color invalidColor = Color.Red;
     }
 
     public class EmailValidatorBehavior : Behavior<Entry>
     {
-        const string emailRegex = @"^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$";
+        const string emailRegex = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
 
         protected override void OnAttachedTo(Entry entry)
         {
