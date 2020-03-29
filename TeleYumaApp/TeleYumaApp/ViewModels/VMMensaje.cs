@@ -299,13 +299,12 @@ namespace TeleYumaApp.ViewModels
             Mensaje = string.Empty;
             
         }
-
-
+        
         public async void ActualizarNewSms(Esms esms)
         {
             var result = await esms.Enviar();
             Mensaje = string.Empty;
-            if (result.ErrorCode == "null")
+            if (result.ErrorCode is null || result.ErrorCode == "0")
 
             {
                 esms.image = SMSImageInfo.ic_check_ok_18pt_3x.ToString();

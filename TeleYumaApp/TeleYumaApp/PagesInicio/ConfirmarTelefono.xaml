@@ -104,6 +104,8 @@
                     <Label x:Name="ResendSms" 
                            IsVisible="False" 
                            Text="Aún no tengo mi código."
+                           TextColor="Blue"
+                           TextDecorations="Underline"
                            HorizontalOptions="CenterAndExpand"
                            VerticalTextAlignment="Center">
                         <Label.GestureRecognizers>

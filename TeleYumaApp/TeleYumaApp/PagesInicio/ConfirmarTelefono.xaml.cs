@@ -37,19 +37,8 @@ namespace TeleYumaApp.PagesInicio
                 NumeroTelefono = telefono,
                 RemitenteNumero = "TeleYumaApp verificar telefono"
             };
-            return await smsConfirmacio.Enviar();        
-            
-            //if (respuesta.ErrorCode == "null")
-            //{
-            //    return new innoverit { delivery_status = "OK"};              
-            //}
-            //else
-            //{
-            //    await DisplayAlert("TeleYuma", respuesta.ErrorMessage, "OK");
-            //    return new innoverit { error = respuesta .ErrorCode};
-            //}
-                
-
+            return await smsConfirmacio.Enviar();       
+                     
         }
 
         private async void btnCompletar_Clicked(object sender, EventArgs e)
@@ -77,7 +66,7 @@ namespace TeleYumaApp.PagesInicio
         private async void IniciarContador()
         {
             LblContador.IsVisible = true;
-            for (int i = 5; i > 0; i++)
+            for (int i = 59; i > 0; i--)
             {
                await Task.Delay(1000);
               LblContador.Text = $"Reenviar en {i}s.";
@@ -127,11 +116,6 @@ namespace TeleYumaApp.PagesInicio
         //    SendSms();
         //}
 
-        //private void TapGestureRecognizer_Tapped(object s, EventArgs e)
-        //{
-
-        //    Device.OpenUri(new Uri("https://teleyuma.com/terminos-y-condiciones/"));
-
-        //}
+        
     }
 }

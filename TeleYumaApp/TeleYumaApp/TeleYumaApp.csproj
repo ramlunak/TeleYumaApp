@@ -45,7 +45,6 @@
   <ItemGroup>
     <Folder Include="Behaviors\" />
     <Folder Include="BottonBar\" />
-    <Folder Include="Class\" />
     <Folder Include="Teleyuma\" />
   </ItemGroup>
 

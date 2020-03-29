@@ -128,7 +128,7 @@ namespace TeleYumaApp.Cuenta
                 {
                     var URL = "";
                     var param = JsonConvert.SerializeObject(UpdateAccountPaymentMethodRequest);
-                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + V + _Global.Metodo.update_payment_method + V + _Global.AuthInfoAdminJson + V + param;
+                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + V + _Global.Metodo.update_payment_method + V + await _Global.GetAuthInfoAdminJson() + V + param;
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();
 

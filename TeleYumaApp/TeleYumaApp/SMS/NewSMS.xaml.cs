@@ -204,44 +204,7 @@ namespace TeleYumaApp.SMS
 
             _Global.VM.VMMensaje.ActualizarNewSms(newSms);
            
-
-
             return;
-            var grupo = new GrupoSMS
-            {
-                numero = numero,
-
-                ListaSMS = new List<Esms>() { newSms }
-            };
-
-            if (grupo != null)
-            {
-                _Global.GrupoSMS = grupo;
-                _Global.ListaSMS = grupo.ListaSMS;
-
-                _Global.Vistas.EnviarSMS.Title = numero;
-                await this.Navigation.PushAsync(_Global.Vistas.EnviarSMS);
-            }
-
-            //Quitar NewSMS del navegation
-            pages = Navigation.NavigationStack.ToList();
-            foreach (var page in pages)
-            {
-                if (page.GetType() == typeof(SMS.NewSMS))
-                    Navigation.RemovePage(page);
-            }
-            //------------------------
-
-            _Global.ContactoSeleccionado = new EContacto();
-
-            var respuesta = await newSms.Enviar();
-            if (respuesta.ErrorCode == "null")
-            {
-
-                await _Global.CurrentAccount.MakeTransaction_Manualcharge(Convert.ToDecimal(newSms.monto), "Enviar Mensaje");
-
-            }
-            else await DisplayAlert("TeleYuma", respuesta.ErrorMessage, "OK");
 
         }
 

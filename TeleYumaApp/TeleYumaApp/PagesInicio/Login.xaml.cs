@@ -43,9 +43,9 @@ namespace TeleYumaApp.PagesInicio
 
         public void MostrarCargando(bool value)
         {
-            LayoutBotones.IsVisible = !value;
-            LayoutFormulario.IsVisible = !value;
-            LayoutCargando.IsVisible = value;
+          //  LayoutBotones.IsVisible = !value;
+           // LayoutFormulario.IsVisible = !value;
+           // LayoutCargando.IsVisible = value;
         }
 
         decimal RandomMonto()
@@ -188,7 +188,7 @@ namespace TeleYumaApp.PagesInicio
 
         private void bntConectar_Clicked(object sender, EventArgs e)
         {
-            Loged(txtLogin.Text, txtPassword.Text);
+          Loged(txtLogin.Text, txtPassword.Text);
         }
 
         private void bntCrearCuenta_Clicked(object sender, EventArgs e)
@@ -206,7 +206,7 @@ namespace TeleYumaApp.PagesInicio
                 try
                 {
                     var param = JsonConvert.SerializeObject(new { login = user });
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_account_info + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_account_info + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();
@@ -270,7 +270,7 @@ namespace TeleYumaApp.PagesInicio
                     RemitenteNumero = "TeleYumaApp recupera clave"
                 };
                 var respuesta = await smsConfirmacio.Enviar();
-                if (respuesta.ErrorCode == "null")
+                if (respuesta.ErrorCode is null || respuesta.ErrorCode == "0")
                 {
                     await DisplayAlert("TeleYuma", "El sistema le ha enviado un sms con su clave", "OK");
                 }
@@ -284,6 +284,16 @@ namespace TeleYumaApp.PagesInicio
                 await DisplayAlert("TeleYuma", "El sistema no ha encontrado el usuario", "OK");
             lblVerPaswword.Text = " Recuperar contraseña.";
 
+        }
+
+        private void terminosCondiciones_Tapped(object s, EventArgs e)
+        {
+            Device.OpenUri(new Uri("http://teleyuma.com/terms-conditions/"));
+        }
+
+        private void politicaPrivacidad_Tapped(object s, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://teleyuma.com/privacy-policy/"));
         }
 
     }

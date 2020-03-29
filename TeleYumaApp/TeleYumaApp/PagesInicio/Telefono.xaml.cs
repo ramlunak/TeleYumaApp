@@ -37,10 +37,11 @@ namespace TeleYumaApp.PagesInicio
 
         private async void btnSiguiente_Clicked(object sender, EventArgs e)
         {
-            var confirmar1 = new PagesInicio.ConfirmarTelefono();
-            await this.Navigation.PushAsync(confirmar1);
-            return;
+            Confirmar();
+        }
 
+        public async void Confirmar()
+        {
             if (txtTelefono.Text == "" || txtTelefono.Text == null || txtPais.Text == "" || txtPais.Text == null)
             {
                 await DisplayAlert("TeleYuma", "Ingrese el País y télefono", "ok");
@@ -53,7 +54,7 @@ namespace TeleYumaApp.PagesInicio
             if (await ValidarEnTelinta())
             {
                 var confirmar = new PagesInicio.ConfirmarTelefono();
-                
+
                 var repuesta = await confirmar.SendSms();
 
                 if (repuesta.ErrorCode is null || repuesta.ErrorCode == "0")
@@ -61,7 +62,7 @@ namespace TeleYumaApp.PagesInicio
                     MostrarCargando(false);
                     await this.Navigation.PushAsync(confirmar);
                 }
-                else                 
+                else
                 {
                     MostrarCargando(false);
                     await DisplayAlert("TeleYuma", repuesta.ErrorMessage, "ok");
@@ -128,7 +129,7 @@ namespace TeleYumaApp.PagesInicio
                 try
                 {
                     var param = JsonConvert.SerializeObject(new { account_info = _Global.CurrentAccount });
-                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();

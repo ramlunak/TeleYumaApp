@@ -6,8 +6,8 @@
   <item android:gravity="center"  android:width="100dp"
     android:height="100dp">
     <bitmap
-        android:src="@drawable/icon"
-        android:gravity="center" />
+        android:src="@drawable/splash_icon"
+        android:gravity="center"/>
   </item>
 
 </layer-list>

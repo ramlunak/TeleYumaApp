@@ -204,7 +204,7 @@ namespace TeleYumaApp.Class
 
         public static int IdSmsFromNoti = 0;
 
-      
+
 
         public static bool ShowNitificasion = false;
 
@@ -238,8 +238,8 @@ namespace TeleYumaApp.Class
         }
 
         public static string MasterURL = "https://teleyumarestapi.azurewebsites.net/api/"; // IIS      
-       // public static string MasterURL = "http://192.168.42.145/teleyuma/api/"; // IIS
-       // public static string MasterURL = "http://192.168.42.145:58723/api/"; // IIS
+                                                                                           // public static string MasterURL = "http://192.168.42.145/teleyuma/api/"; // IIS
+                                                                                           // public static string MasterURL = "http://192.168.42.145:58723/api/"; // IIS
 
 
         //public static string MasterURL = "http://192.168.42.180/service/Service1.svc/"; // url anclaje
@@ -333,16 +333,15 @@ namespace TeleYumaApp.Class
             public static SMS.NewSMS NewSMS = new SMS.NewSMS();
         }
 
-        public static string AuthInfoAdminJson
+        public  async static Task<string> GetAuthInfoAdminJson()
         {
-            get
+            var credenciales = await Get<Credenciales>("credenciales/2");
+
+            var admin = new AuthInfo
             {
-                var admin = new AuthInfo
-                {
-                    session_id = "9a5d0bcc0236d542cccc6cf158840562"
-                };
-                return JsonConvert.SerializeObject(admin);
-            }
+                session_id = credenciales.KeyGenerate
+            };
+            return JsonConvert.SerializeObject(admin);
         }
 
         public static string ServicePassword

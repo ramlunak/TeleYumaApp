@@ -9,94 +9,6 @@
              x:Class="TeleYumaApp.PagesInicio.Login">
     <ContentPage.Content>
 
-        <!--<Grid VerticalOptions="FillAndExpand" >
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <StackLayout Grid.Row="0" BackgroundColor="White" Padding="10">
-                <Grid VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>                  
-                    <Image Grid.Row="2" Source="logo.png" />
-                </Grid>
-            </StackLayout>
-
-            <StackLayout BackgroundColor="White" Padding="10"
-                x:Name="LayoutCargando"
-                IsVisible="False"
-                Grid.Row="1"   
-                         Grid.RowSpan="2"
-                VerticalOptions="FillAndExpand">
-                <Grid VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <ActivityIndicator 
-                        Grid.Row="1"
-                        IsRunning="True"
-                        IsVisible="True" 
-                        Color="Orange"
-                        VerticalOptions="FillAndExpand"
-                        HorizontalOptions="FillAndExpand"/>
-                    <Label Grid.Row="2" Text="Espere un momento por favor." TextColor="White" Font="12" HorizontalOptions="Center" VerticalOptions="Start"/>
-                </Grid>
-            </StackLayout >
-
-            <StackLayout   x:Name="LayoutFormulario" Grid.Row="1" BackgroundColor="#232397" Padding="20">
-               
-                <local:CustomEntry  x:Name="txtLogin"  
-                    PlaceholderColor="White" 
-                    TextColor="White"  
-                                    Text=""
-                    Placeholder="Email" 
-                                    Image="user32"
-                                    ImageHeight="20"
-                                    ImageWidth="20"
-                    FontAttributes="Italic"/>
-
-                <local:CustomEntry x:Name="txtPassword"                    
-                    PlaceholderColor="White"
-                    TextColor="White"
-                                   Text=""
-                    Placeholder="Contraseña" 
-                    FontAttributes="Italic" 
-                                   Image="pass32"
-                                   ImageHeight="20"
-                                   ImageWidth="20"
-                    IsPassword="True" />
-
-                <Label  x:Name="lblVerPaswword" 
-                        Text="Recuperar contraseña."
-                        TextColor="Aqua"
-                        BackgroundColor="Transparent" 
-                        HorizontalOptions="End">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="lblRecuperar" Tapped="lblRecuperar_Tapped"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
-
-            <StackLayout x:Name="LayoutBotones" IsVisible="True" BackgroundColor="#232397" Grid.Row="2" Padding="20,10,20,10" >
-
-
-
-                <Button  x:Name="bntConectar" Clicked="bntConectar_Clicked" BackgroundColor="#36B820" Text="Conectar" FontAttributes="Bold" TextColor="White" ></Button>
-                <Button  x:Name="bntCrearCuenta" Clicked="bntCrearCuenta_Clicked" Text="Crear Cuenta" BackgroundColor="Orange" FontAttributes="Bold"  TextColor="White" ></Button>
-
-
-
-            </StackLayout>
-
-        </Grid>-->
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40*"/>           
@@ -109,13 +21,13 @@
 
                 <StackLayout Margin="0,0,0,5">
                     <Frame Padding="10,0,10,0">
-                        <rlk:entry Placeholder="Email*"/>
+                        <rlk:entry x:Name="txtLogin" Placeholder="Email*" />
                     </Frame>
                 </StackLayout>
 
                 <StackLayout>
                     <Frame Padding="10,0,10,0">
-                        <rlk:entry Placeholder="Contraseña*" IsPassword="True"/>
+                        <rlk:entry x:Name="txtPassword" Placeholder="Contraseña*" IsPassword="True"/>
                     </Frame>
                 </StackLayout>
                 
@@ -134,15 +46,38 @@
                     <Frame Padding="10" CornerRadius="25" BackgroundColor="#0A66B8">
                         <Label HorizontalTextAlignment="Center" TextColor="White" FontSize="Large" FontFamily="Arial" Text="Entrar"/>
                     </Frame>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="bntConectar_Clicked"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
 
                 <StackLayout>
                     <Frame Padding="10" CornerRadius="25" BackgroundColor="#18AB07">
                         <Label HorizontalTextAlignment="Center" TextColor="White" FontSize="Medium" FontFamily="Arial" Text="No tienes cuenta? Registrate"/>
                     </Frame>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="bntCrearCuenta_Clicked"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
 
-                <Label Text="Al continuar, también acepta los Términos de Servicio y la Política de Privacidad " HorizontalTextAlignment="Center" Margin="0,15,0,0" TextDecorations="Underline"/>
+                <StackLayout Orientation="Horizontal" Margin="0,15,0,0">
+                    <Label Text="Al continuar, también acepta los" LineBreakMode="NoWrap"/>
+                    <Label Text="Términos de Servicio " LineBreakMode="NoWrap" TextDecorations="Underline" TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="terminosCondiciones_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="y la" LineBreakMode="NoWrap"/>                 
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Política de Privacidad" LineBreakMode="NoWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextDecorations="Underline" TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="politicaPrivacidad_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
             </StackLayout>
             
         </Grid>

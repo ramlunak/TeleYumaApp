@@ -135,14 +135,19 @@ namespace TeleYumaApp.ViewModels
             if (ClaveNoCoinciden) return;
 
             IsLoading = true;
+            var old_password = _Global.CurrentAccount.password;
             _Global.CurrentAccount.password = NuevaClave;
 
             if (await UpdateCuenta(true))
             {
                 if (await UpdateCuenta(false))
                 {
-                   await CurrentPage.DisplayAlert("TeleYuma", "La contraseña ha sido cambiada exitosamente", "OK");
-                   await CurrentPage.Navigation.PopModalAsync();
+                    await CurrentPage.DisplayAlert("TeleYuma", "La contraseña ha sido cambiada exitosamente", "OK");
+                    await CurrentPage.Navigation.PopModalAsync();
+                }
+                else
+                {
+                    _Global.CurrentAccount.password = old_password;
                 }
             }
             IsLoading = false;
@@ -191,11 +196,11 @@ namespace TeleYumaApp.ViewModels
                     var param = JsonConvert.SerializeObject(new { account_info = _Global.CurrentAccount });
                     if (validate)
                     {
-                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     }
                     else
                     {
-                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.update_account + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.update_account + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     }
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();

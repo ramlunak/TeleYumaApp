@@ -47,7 +47,7 @@ namespace TeleYumaApp.ViewModels
         }
 
         #region Propiedades
-      
+
         private string _nombre;
 
         public string Nombre
@@ -193,15 +193,33 @@ namespace TeleYumaApp.ViewModels
             }
 
             IsLoading = true;
-           
+
+            var old_firstname = _Global.CurrentAccount.firstname;
+            var old_lastname = _Global.CurrentAccount.lastname;
+            var old_cont1 = _Global.CurrentAccount.cont1;
+
             _Global.CurrentAccount.firstname = Nombre;
             _Global.CurrentAccount.lastname = "";
             _Global.CurrentAccount.cont1 = Nombre;
 
             if (await UpdateCuenta(true))
             {
-                await UpdateCuenta(false);
-            }         
+                if (!await UpdateCuenta(false))
+                {
+                    _Global.CurrentAccount.firstname = old_firstname;
+                    _Global.CurrentAccount.lastname = old_lastname;
+                    _Global.CurrentAccount.cont1 = old_cont1;
+                    Nombre = old_firstname;
+                }
+            }
+            else
+            {
+                _Global.CurrentAccount.firstname = old_firstname;
+                _Global.CurrentAccount.lastname = old_lastname;
+                _Global.CurrentAccount.cont1 = old_cont1;
+                Nombre = old_firstname;
+            }
+
             IsLoading = false;
 
             ShowEditName = false;
@@ -230,16 +248,27 @@ namespace TeleYumaApp.ViewModels
             bool valido = Regex.IsMatch(Email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
             if (!valido)
             {
-                await CurrentPage.DisplayAlert("TeleYuma","Escriba un correo válido.", "ok");
+                await CurrentPage.DisplayAlert("TeleYuma", "Escriba un correo válido.", "ok");
                 return;
             }
-            
+
             IsLoading = true;
+
+            var old_email = _Global.CurrentAccount.email;
+
             _Global.CurrentAccount.email = Email;
-         
+
             if (await UpdateCuenta(true))
             {
-                await UpdateCuenta(false);
+                if (!await UpdateCuenta(false))
+                {
+                    _Global.CurrentAccount.email = old_email;
+                }
+            }
+            else
+            {
+                _Global.CurrentAccount.email = old_email;
+                Email = old_email;
             }
             IsLoading = false;
 
@@ -303,11 +332,11 @@ namespace TeleYumaApp.ViewModels
                     var param = JsonConvert.SerializeObject(new { account_info = _Global.CurrentAccount });
                     if (validate)
                     {
-                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     }
                     else
                     {
-                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.update_account + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                        URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.update_account + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     }
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();
@@ -323,7 +352,7 @@ namespace TeleYumaApp.ViewModels
                         {
                             id = JsonConvert.DeserializeObject<account_info>(json).i_account.ToString();
                         }
-                                             
+
 
                         if (id is null)
                         {
@@ -331,7 +360,7 @@ namespace TeleYumaApp.ViewModels
                             return false;
                         }
                         else
-                        {                            
+                        {
                             return true;
                         }
                     }
@@ -342,7 +371,7 @@ namespace TeleYumaApp.ViewModels
                     }
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     await CurrentPage.DisplayAlert("TeleYuma", "Error al conectarse con el servidor, compruebe su conexión a internet.", "ok");
                     return false;

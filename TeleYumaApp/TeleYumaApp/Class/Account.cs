@@ -187,7 +187,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(AccountTransactionRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
@@ -219,7 +219,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(MakeAccountTransactionRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
@@ -251,7 +251,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(MakeAccountTransactionRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
@@ -284,7 +284,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(MakeAccountTransactionRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
@@ -314,7 +314,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(new { account_info = _Global.CurrentAccount });
-                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.update_account + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.update_account + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();
                     var ErrorHandling = JsonConvert.DeserializeObject<ErrorHandling>(json);
@@ -464,7 +464,7 @@ namespace TeleYumaApp.Class
                     else
                         param = JsonConvert.SerializeObject(new { this.i_account });
 
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_account_info + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_account_info + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
                     var account = JsonConvert.DeserializeObject<AccountObject>(Result).account_info;
@@ -493,7 +493,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(GetAccountXDRListRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_xdr_list + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_xdr_list + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<GetAccountXDRListResponse>(Result);
@@ -518,7 +518,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(new { i_account = _Global.CurrentAccount.i_account });
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_payment_method_info + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_payment_method_info + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     var response = await client.GetStringAsync(URL);
                     PaymentMethodObject = JsonConvert.DeserializeObject<PaymentMethodObject>(response);
 
@@ -548,7 +548,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(AccountTransactionRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
@@ -581,7 +581,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(MakeAccountTransactionRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
@@ -615,7 +615,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(MakeAccountTransactionRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
@@ -648,7 +648,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(MakeAccountTransactionRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
@@ -681,7 +681,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(MakeAccountTransactionRequest);
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.make_transaction + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var Result = await response.Content.ReadAsStringAsync();
@@ -708,7 +708,7 @@ namespace TeleYumaApp.Class
                 try
                 {
                     var param = JsonConvert.SerializeObject(new { login = user });
-                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_account_info + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_account_info + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     var response = await client.GetStringAsync(URL);
                     var objet = JsonConvert.DeserializeObject<AccountObject>(response);
                     if (objet.account_info != null)

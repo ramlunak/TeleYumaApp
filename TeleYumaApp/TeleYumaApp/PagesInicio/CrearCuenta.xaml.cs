@@ -365,7 +365,7 @@ namespace TeleYumaApp.PagesInicio
                 try
                 {
                     var param = JsonConvert.SerializeObject(new { account_info = _Global.CurrentAccount });
-                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.validate_account_info + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
 
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();
@@ -439,7 +439,7 @@ namespace TeleYumaApp.PagesInicio
                 {
 
                     var param = JsonConvert.SerializeObject(new { account_info = _Global.CurrentAccount });
-                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.update_account + "/" + _Global.AuthInfoAdminJson + "/" + param;
+                    URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.update_account + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();
                     var ErrorHandling = JsonConvert.DeserializeObject<ErrorHandling>(json);
