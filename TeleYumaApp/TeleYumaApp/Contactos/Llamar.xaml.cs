@@ -22,7 +22,7 @@ namespace TeleYumaApp.Contactos
        
         public void LlenarTxtTelefono(string numero)
         {
-            txtTelefono.Text = numero;
+            //txtTelefono.Text = numero;
         }
 
         void Seleccionar_Clicked(object sender, System.EventArgs e)
@@ -32,7 +32,7 @@ namespace TeleYumaApp.Contactos
                 _Global.Vistas.ListaContactos.LlenarLista();
                 _Global.Vistas.ListaContactos.Transaction = TipoTransaction.Llamar;
                 this.Navigation.PushAsync(_Global.Vistas.ListaContactos);
-                _Global.Vistas.ListaContactos.txtLlamar(ref txtTelefono);
+               // _Global.Vistas.ListaContactos.txtLlamar(ref txtTelefono);
             }
             catch
             {
@@ -44,24 +44,24 @@ namespace TeleYumaApp.Contactos
 
         private async void BtnLlamar_Clicked(object sender, EventArgs e)
         {
-            if (txtTelefono.Text == "" || txtTelefono.Text == null)
-            {
-                DisplayAlert("TeleYuma", "Escriba el número", "Ok");
-                return;
-            }
+            //if (txtTelefono.Text == "" || txtTelefono.Text == null)
+            //{
+            //    DisplayAlert("TeleYuma", "Escriba el número", "Ok");
+            //    return;
+            //}
 
-            try
-            {
-                var numero = txtTelefono.Text;
-                var llamada = "7868717144,011" + numero + "#";
-                DependencyService.Get<ICallService>().Call(llamada);
+            //try
+            //{
+            //    var numero = txtTelefono.Text;
+            //    var llamada = "7868717144,011" + numero + "#";
+            //    DependencyService.Get<ICallService>().Call(llamada);
               
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
 
-                ;
-            }
+            //    ;
+            //}
         }
     }
 }
