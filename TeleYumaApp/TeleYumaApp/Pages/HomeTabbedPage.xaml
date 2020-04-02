@@ -16,8 +16,7 @@
 
     </xf:BottomBarPage.ToolbarItems>
  
-    
-    
+        
     <pagesnew:Inicio  Title="Home" Icon="ic_home_black_48dp"/>
 
     <sms:Grupos Title="Chat"  Icon="ic_announcement_black_48dp" 
@@ -27,7 +26,7 @@
     <local:Recargas  Title="Recargar" Icon="ic_add_shopping_cart_black_48dp" 
                      xf:BottomBarPageExtensions.TabColor ="#109C05"   />
 
-    <contactos:Llamar Title="Llamar" Icon="ic_local_phone_48pt"  
+    <pagesnew:Llamadas Title="Llamar" Icon="ic_local_phone_48pt"  
                        xf:BottomBarPageExtensions.TabColor ="#DE0B0E"   />
 
     <pages:Historial Title="Historial" Icon="ic_history_black_48dp" 

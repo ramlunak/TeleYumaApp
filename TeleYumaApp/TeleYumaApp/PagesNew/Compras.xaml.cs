@@ -63,7 +63,7 @@ namespace TeleYumaApp
                 await DisplayAlert("TeleYuma", "Gracias, su pago se realizó correctamente", "OK");
 
                 //Poner dinero en la cuenta manual
-                await _Global.CurrentAccount.MakeTransaction_ManualPayment(new Decimal(_Global.ListaRecargas.TotalPagar), "PayPal Compras");
+                await _Global.CurrentAccount.MakeTransaction_ManualPayment(new Decimal(_Global.ListaRecargas.TotalPagar), "Recargas con PayPal");
 
                 await RecargarMovil();
 
