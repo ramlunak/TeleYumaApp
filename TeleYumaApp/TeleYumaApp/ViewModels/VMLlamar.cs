@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace TeleYumaApp.ViewModels
 {
-  
+
 
     public class VMLlamar : INotifyPropertyChanged
     {
@@ -27,290 +27,69 @@ namespace TeleYumaApp.ViewModels
         }
         Page CurrentPage => Application.Current.MainPage.Navigation?.NavigationStack?.LastOrDefault() ?? Application.Current.MainPage;
 
-        ImageCircle ImagePerfil { get; set; }
-
-        EPerfil CurrentPerfil { get; set; }
-        //CarouselViewControl Carousel { get; set; }
-        Image ImgPromo { get; set; }
-
-        public int ItemsCount = 1;
-
         public VMLlamar()
         {
-           
-           
-            //CargarContactos();
-          
-        }
-
-        public async void CargarContactos()
-        {
-            try
-            {
-                _Global.ListaContactos = await EContacto.GetListaContactos();
-                _Global.Vistas.ListaContactos.LlenarLista();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public static bool StarAnimation { get; set; }
-
-        private string _PromoActiva;
-
-        public string PromoActiva
-        {
-            get { return _PromoActiva; }
-            set { _PromoActiva = value; }
-        }
-
-
-        public async Task StartCarousel()
-        {
-            //try
-            //{
-            //    if (StarAnimation)
-            //    {
-            //        var Position = (Carousel.Position + 1) % ItemsCount;
-
-            //        Carousel.Position = Position;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    ;
-            //}
-           
-            CargarPromociones();
-            await Task.Delay(5000);
-            StartCarousel();
-        }
-
-        public async Task CargarPromociones()
-        {
-            var promos = await _Global.Promociones.GetPromos();
-
-            try
-            {
-                foreach (var item in promos)
-                {
-                    Stream newstream = new MemoryStream(item.image);
-                    ImgPromo.Source = ImageSource.FromStream(() => { return newstream; });
-                    await Task.Delay(5000);
-                }
-                               
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            //ItemsCount = promos.AsCollectionView().Count;
-            // MyItemsSource = promos.AsCollectionView();
-            await Task.Delay(5000);
-            CargarPromociones();
 
         }
 
-        public async Task CargarPerfil()
-        {
-            var login = _Global.SQLiteLogin.GetInfoLogin();
-            if (login.foto is null)
-            {
-                FotoPerfil = "perfil";
-                return;
-            }
+        private string _numero;
 
-            Stream newstream = new MemoryStream(login.foto);
-            ImagePerfil.Source = ImageSource.FromStream(() => { return newstream; });
-        }
-
-        ObservableCollection<View> _myItemsSource;
-        public ObservableCollection<View> MyItemsSource
+        public string Numero
         {
-            set
-            {
-                _myItemsSource = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return _myItemsSource;
-            }
+            get { return _numero; }
+            set { _numero = value; OnPropertyChanged(); }
         }
 
         public Command MyCommand { protected set; get; }
-
-        public async Task ActualizarInformacionCuenta()
-        {
-            try
-            {
-                await _Global.CurrentAccount.GetAccountInfo();
-                ActualizarDatos();
-                await Task.Delay(3000);
-                await ActualizarInformacionCuenta();
-            }
-            catch
-            {
-                ;
-            }
-        }
-
-        public void ActualizarDatos()
-        {
-            if (_Global.CurrentAccount is null) return;
-            saldo = _Global.CurrentAccount.balance.ToString();
-            fullname = _Global.CurrentAccount.fullname;
-            email = _Global.CurrentAccount.email;
-        }
-
-        private string _saldo;
-        private string _fullname;
-        private string _email;
-
-        public string saldo
-        {
-            get
-            {
-                var s = "Saldo: $" + String.Format("{0:#,##0.00}", _Global.CurrentAccount.balance) + " USD";
-                return s;
-            }
-            set
-            {
-                _saldo = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string fullname
-        {
-            get
-            {
-                return _fullname;
-            }
-            set
-            {
-                _fullname = value;
-                OnPropertyChanged();
-            }
-
-        }
-
-        public string email
-        {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private string _FotoPerfil;
-
-        public string FotoPerfil
-        {
-            get { return _FotoPerfil; }
-            set { _FotoPerfil = value; OnPropertyChanged(); }
-        }
-
 
         private bool CanSubmitExecute(object parameter)
         {
             return true;
         }
 
-
-        private ICommand _FotoPerfilTappedCommand;
-        public ICommand FotoPerfilTappedCommand
+        private ICommand _LabelNumeroTappedCommand;
+        public ICommand LabelNumeroTappedCommand
         {
             get
             {
-                if (_FotoPerfilTappedCommand == null)
+                if (_LabelNumeroTappedCommand == null)
                 {
-                    _FotoPerfilTappedCommand = new RelayCommand(FotoPerfilTappedExecute, CanSubmitExecute);
+                    _LabelNumeroTappedCommand = new RelayCommand(LabelNumeroTappedExecute, CanSubmitExecute);
                 }
-                return _FotoPerfilTappedCommand;
+                return _LabelNumeroTappedCommand;
+            }
+        }
+        public async void LabelNumeroTappedExecute(object parameter)
+        {
+            if (parameter is null) return;
+            Numero = Numero + (string)parameter;
+        }
+
+
+        private ICommand _BorrarTappedCommand;
+        public ICommand BorrarTappedCommand
+        {
+            get
+            {
+                if (_BorrarTappedCommand == null)
+                {
+                    _BorrarTappedCommand = new RelayCommand(BorrarTappedExecute, CanSubmitExecute);
+                }
+                return _BorrarTappedCommand;
             }
         }
 
-        public async void FotoPerfilTappedExecute(object parameter)
+        public async void BorrarTappedExecute(object parameter)
         {
-
-            var result = await CurrentPage.DisplayAlert("Teleyuma.", "Desea actualizar la foto de perfil?.", "Si", "No");
-            if (!result) return;
-
-            Stream stream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
-            if (stream != null)
+            if (string.IsNullOrEmpty(Numero)) return;
+            var lista = Numero.ToList();
+            lista.RemoveAt(lista.Count-1);
+            Numero = string.Empty;
+            foreach (var item in lista)
             {
-                byte[] img = null;
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    stream.CopyTo(ms);
-                    img = ms.ToArray();
-                }
-
-                //var p = new EPerfil
-                //{
-                //    IdCuenta = _Global.CurrentAccount.phone1,
-                //    Foto = img
-                //};
-
-                //var promo = new EPromo
-                //{
-
-                //    image = img
-                //};
-
-                //var fg = _Global.Post<EPromo>("Promo", promo);              
-                //StarAnimation = false;
-                //await  CargarPromociones();
-                //EPerfil perfil;
-
-                _Global.SQLiteLogin.foto = img;
-                if (_Global.SQLiteLogin.SetPhotoPerfil())
-                {
-                    Stream newstream = new MemoryStream(img);
-                    ImagePerfil.Source = ImageSource.FromStream(() => { return newstream; });
-                }
-                else
-                {
-                    CurrentPage.DisplayAlert("Teleyuma.", "No se pudo actualizar su foto de perfil.", "Ok");
-                    return;
-                }
-
-                //try
-                //{
-                //   // perfil = await _Global.CurrentAccount.PostPerfil(p);
-                //    //perfil = await _Global.Post<EPerfil>("Perfil", p);
-                //}
-                //catch (Exception ex)
-                //{
-                //    CurrentPage.DisplayAlert("Teleyuma.", "No se pudo actualizar su foto de perfil.", "Ok");
-                //    return;
-                //}
-
-                //if (perfil.Foto is null)
-                //{
-                //    CurrentPage.DisplayAlert("Teleyuma.", "No se pudo actualizar su foto de perfil.", "Ok");
-                //    return;
-                //}
-
-                //if (perfil != null)
-                //{
-                //    CurrentPerfil = perfil;
-                //    Stream newstream = new MemoryStream(CurrentPerfil.Foto);
-                //    ImagePerfil.Source = ImageSource.FromStream(() => { return newstream; });
-                //}
-
+                Numero = Numero + item;
             }
+           
         }
 
     }

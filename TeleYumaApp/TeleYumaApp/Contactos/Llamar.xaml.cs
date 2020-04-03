@@ -17,6 +17,7 @@ namespace TeleYumaApp.Contactos
         public Llamar()
         {
             InitializeComponent();
+            this.BindingContext = new ViewModels.VMLlamar();
         }
 
        
@@ -44,24 +45,34 @@ namespace TeleYumaApp.Contactos
 
         private async void BtnLlamar_Clicked(object sender, EventArgs e)
         {
-            //if (txtTelefono.Text == "" || txtTelefono.Text == null)
-            //{
-            //    DisplayAlert("TeleYuma", "Escriba el número", "Ok");
-            //    return;
-            //}
+            if (txtTelefono.Text == "" || txtTelefono.Text == null)
+            {
+                DisplayAlert("TeleYuma", "Escriba el número", "Ok");
+                return;
+            }
 
-            //try
-            //{
-            //    var numero = txtTelefono.Text;
-            //    var llamada = "7868717144,011" + numero + "#";
-            //    DependencyService.Get<ICallService>().Call(llamada);
-              
-            //}
-            //catch (Exception ex)
-            //{
+            try
+            {
+                var numero = txtTelefono.Text;
+                var llamada = "7868717144,011" + numero + "#";
+                DependencyService.Get<ICallService>().Call(llamada);
 
-            //    ;
-            //}
+            }
+            catch (Exception ex)
+            {
+
+                ;
+            }
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void LabelNumber_Tapped(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace TeleYumaApp.rlkControles
 {
-    public class rlkImageButton : Image
+    public class rlkLabelButton : Label
     {
-        public rlkImageButton() : base()
+        public rlkLabelButton() : base()
         {
             const int _animationTime = 2;
             this.GestureRecognizers.Add(new TapGestureRecognizer
