@@ -303,6 +303,8 @@ namespace TeleYumaApp.Class
 
             public static VMResumenRecarga VMResumenRecarga = new VMResumenRecarga();
 
+            public static VMListaContactos VMListaContactos = new VMListaContactos();
+
         }
 
         public static class Vistas

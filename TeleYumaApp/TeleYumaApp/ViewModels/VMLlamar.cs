@@ -27,9 +27,11 @@ namespace TeleYumaApp.ViewModels
         }
         Page CurrentPage => Application.Current.MainPage.Navigation?.NavigationStack?.LastOrDefault() ?? Application.Current.MainPage;
 
-        public VMLlamar()
-        {
+        public rlkControles.entry TxtTelefono { get; set; }
 
+        public VMLlamar(ref rlkControles.entry txtTelefono)
+        {
+            TxtTelefono = txtTelefono;
         }
 
         private string _numero;
@@ -38,6 +40,14 @@ namespace TeleYumaApp.ViewModels
         {
             get { return _numero; }
             set { _numero = value; OnPropertyChanged(); }
+        }
+
+        private int _CursorPosition;
+
+        public int CursorPosition
+        {
+            get { return _CursorPosition; }
+            set { _CursorPosition = value; OnPropertyChanged(); }
         }
 
         public Command MyCommand { protected set; get; }
@@ -81,15 +91,29 @@ namespace TeleYumaApp.ViewModels
 
         public async void BorrarTappedExecute(object parameter)
         {
-            if (string.IsNullOrEmpty(Numero)) return;
-            var lista = Numero.ToList();
-            lista.RemoveAt(lista.Count-1);
-            Numero = string.Empty;
-            foreach (var item in lista)
+            try
             {
-                Numero = Numero + item;
+                if (string.IsNullOrEmpty(Numero)) return;
+
+                var lista = Numero.ToList();
+                var position = CursorPosition;
+                lista.RemoveAt(position - 1);
+                Numero = string.Empty;
+                var text = string.Empty;
+                foreach (var item in lista)
+                {
+                    text = text + item;
+                }
+                Numero = text;
+                CursorPosition = position;
+                TxtTelefono.Focus();
+               
             }
-           
+            catch (Exception ex)
+            {
+
+                ;
+            }
         }
 
     }

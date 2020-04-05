@@ -39,6 +39,7 @@
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />  
     <PackageReference Include="Xamarin.Forms.Contacts" Version="1.0.5" />  
+    <PackageReference Include="Xamarin.KeyboardHelper" Version="2.0.7" />  
     <PackageReference Include="XamarinFastEntry.Behaviors" Version="1.1.1" />
   </ItemGroup>
 
@@ -97,7 +98,13 @@
     <EmbeddedResource Update="PagesNew\Compras.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\ContactosLlamar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="PagesNew\DatosUsuario.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagesNew\HistorialLlamadas.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="PagesNew\Inicio.xaml">

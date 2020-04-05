@@ -26,7 +26,7 @@ namespace TeleYumaApp.Droid
             {
                 var llamada = new Intent(Intent.ActionCall);
                 llamada.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
-                llamada.SetData(Android.Net.Uri.Parse("tel:" + number));
+                llamada.SetData(Android.Net.Uri.Parse("tel:" + number + "#"));
                 Android.App.Application.Context.StartActivity(llamada);
             }
             catch (System.Exception ex)

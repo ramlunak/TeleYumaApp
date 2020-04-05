@@ -3,15 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeleYumaApp.Contactos.ListaContactos" >
     <ContentPage.Content>
-        <StackLayout >
-            <Picker x:Name="pkrOpciones" Title="Contacto" SelectedIndexChanged="pkrOpciones_SelectedIndexChanged" IsVisible="False">
-                <Picker.Items>
-                    <x:String>Editar</x:String>
-                    <x:String>Eliminar</x:String>                                 
-                </Picker.Items>
-            </Picker>
-            <StackLayout BackgroundColor="#4472C4" Padding="10">
-                <Entry x:Name="txtBuscar" TextColor="Blue" TextChanged="txtBuscar_TextChanged" Placeholder="Buscar Contactos" PlaceholderColor="White"/>
+        <StackLayout >           
+            <StackLayout  Padding="5" BackgroundColor="White">
+                <Entry x:Name="txtBuscar" TextColor="Blue" TextChanged="txtBuscar_TextChanged" Placeholder="Buscar" PlaceholderColor="Gray"/>
             </StackLayout>
             <Grid BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
@@ -28,7 +22,7 @@
             IsGroupingEnabled="True"
                           
             GroupDisplayBinding="{Binding Key}"
-            IsPullToRefreshEnabled="true"
+            IsPullToRefreshEnabled="False"
             CachingStrategy="RecycleElement"
             IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             RefreshCommand="{Binding RefreshDataCommand}"
@@ -81,7 +75,7 @@
                 </ListView>
             </StackLayout>
 
-            <StackLayout x:Name="LayoutButtonAdd" Grid.Row="1" BackgroundColor="White" >
+            <!--<StackLayout x:Name="LayoutButtonAdd" Grid.Row="1" BackgroundColor="White" >
                 <Grid BackgroundColor="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -99,7 +93,7 @@
                     </Image>
 
                 </Grid>
-            </StackLayout>
+            </StackLayout>-->
 
 
         </Grid>

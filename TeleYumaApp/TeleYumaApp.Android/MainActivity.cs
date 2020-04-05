@@ -92,6 +92,8 @@ namespace TeleYumaApp.Droid
 
                 global::Xamarin.Forms.Forms.Init(this, bundle);
 
+                //need this line to init effect in android
+                Xamarin.KeyboardHelper.Platform.Droid.Effects.Init(this);
 
                 CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
                 DependencyService.Register<PicturePickerImplementation>();

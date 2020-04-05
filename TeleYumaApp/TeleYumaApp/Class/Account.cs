@@ -734,7 +734,9 @@ namespace TeleYumaApp.Class
     {
 
         [DataMember]
-        public string i_account { get; set; }
+        public string i_account { get; set; } 
+        [DataMember]
+        public int i_service { get; set; }
         [DataMember]
         public string from_date { get; set; }
         [DataMember]
@@ -802,7 +804,7 @@ namespace TeleYumaApp.Class
         [DataMember]
         public string charged_quantity { get; set; }
         [DataMember]
-        public string call_recording_url { get; set; }
+        public string call_recording_url { get; set; }       
         [DataMember]
         public string disconnect_time { get; set; }
 

@@ -4,12 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:contactos="clr-namespace:TeleYumaApp.Contactos"      
-              xmlns:pages="clr-namespace:TeleYumaApp.Pages"
+             xmlns:pages="clr-namespace:TeleYumaApp.Pages"
+             xmlns:pagesNew="clr-namespace:TeleYumaApp.PagesNew"
              mc:Ignorable="d"
-            BarBackgroundColor="#1648CA"
+             BarBackgroundColor="#1648CA"
              x:Class="TeleYumaApp.PagesNew.Llamadas">
   <!--Pages can be added as references or inline-->
     <contactos:Llamar IconImageSource="NewMarcar" />
-    <contactos:ListaContactos IconImageSource="NewGrupo" />
-    <pages:Historial IconImageSource="NewHistorial" />
+    <pagesNew:ContactosLlamar IconImageSource="NewGrupo" />
+    <pagesNew:HistorialLlamadas IconImageSource="NewHistorial" />
 </TabbedPage>

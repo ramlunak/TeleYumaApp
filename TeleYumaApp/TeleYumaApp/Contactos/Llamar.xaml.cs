@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TeleYumaApp.Class;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using static TeleYumaApp.App;
 
 namespace TeleYumaApp.Contactos
@@ -17,7 +19,7 @@ namespace TeleYumaApp.Contactos
         public Llamar()
         {
             InitializeComponent();
-            this.BindingContext = new ViewModels.VMLlamar();
+            this.BindingContext = new ViewModels.VMLlamar(ref txtTelefono);
         }
 
        
@@ -54,7 +56,7 @@ namespace TeleYumaApp.Contactos
             try
             {
                 var numero = txtTelefono.Text;
-                var llamada = "7868717144,011" + numero + "#";
+                var llamada = "7868717144,011" + numero;
                 DependencyService.Get<ICallService>().Call(llamada);
 
             }
@@ -74,5 +76,11 @@ namespace TeleYumaApp.Contactos
         {
 
         }
+
+        private void Entry_Focused(object sender, FocusEventArgs e)
+        {
+           
+        }
+               
     }
 }

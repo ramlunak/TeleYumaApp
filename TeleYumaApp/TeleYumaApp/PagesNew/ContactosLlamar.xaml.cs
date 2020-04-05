@@ -1,24 +1,18 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using TeleYumaApp.Class;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.Text.RegularExpressions;
 
-namespace TeleYumaApp.Contactos
+namespace TeleYumaApp.PagesNew
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaContactos : ContentPage
+    public partial class ContactosLlamar : ContentPage
     {
         public EContacto ContactoSeleccionado = new EContacto();
 
@@ -31,7 +25,7 @@ namespace TeleYumaApp.Contactos
         [DefaultValue(TipoTransaction.New)]
         public TipoTransaction Transaction { get; set; }
 
-        public ListaContactos()
+        public ContactosLlamar()
         {
             InitializeComponent();
             BindingContext = _Global.VM.VMListaContactos;
@@ -59,14 +53,14 @@ namespace TeleYumaApp.Contactos
         {
             Tipo = "llamar";
             txtTelefono = telefono;
-           
+
         }
 
         public void ReferenciarNumero()
         {
             Tipo = "llamar";
             txtNumero = true;
-          
+
         }
 
         public void HideButtonAdd(ref Entry pais, ref Entry telefono)
@@ -74,7 +68,7 @@ namespace TeleYumaApp.Contactos
             Tipo = "movil";
             txtTelefono = telefono;
             txtPais = pais;
-          
+
         }
 
 
@@ -83,7 +77,7 @@ namespace TeleYumaApp.Contactos
             Tipo = "movil";
             txtTelefono = telefono;
             txtPais = pais;
-          
+
         }
 
 
@@ -91,18 +85,18 @@ namespace TeleYumaApp.Contactos
         {
             Tipo = "nauta";
             txtUserNauta = UserNauta;
-         
+
         }
 
         public void HideButtonAdd(ref CustomEntry UserNauta)
         {
             Tipo = "nauta";
             txtUserNauta = UserNauta;
-          
+
         }
-        
+
         public async void LlenarLista()
-        {                    
+        {
             //try
             //{
             //    BindingContext = null;
@@ -122,7 +116,7 @@ namespace TeleYumaApp.Contactos
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
             => ((ListView)sender).SelectedItem = null;
 
-       public async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        public async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
 
             if (e.SelectedItem == null)
@@ -166,7 +160,7 @@ namespace TeleYumaApp.Contactos
             {
                 ContactoSeleccionado = _Global.VM.VMListaContactos.Contactos.First(x => x.Nombre.Equals(ListViewContactos.SelectedItem.ToString()));
                 _Global.PaisSeleccionado = new EPais { Nombre = ContactoSeleccionado.Pais, PrefijoTelefonico = ContactoSeleccionado.Prefijo };
-              
+
             }
 
             if (Transaction == TipoTransaction.Llamar)
@@ -225,7 +219,7 @@ namespace TeleYumaApp.Contactos
             {
                 int tel = Convert.ToInt32(e.NewTextValue);
                 var busqueda = _Global.ListaContactos.Where(x => Regex.Replace(x.Telefono, @"[^0-9A-Za-z]", "", RegexOptions.None).Contains(e.NewTextValue)).ToList();
-                 _Global.VM.VMListaContactos.AgruparContactos(busqueda);
+                _Global.VM.VMListaContactos.AgruparContactos(busqueda);
             }
             catch (Exception)
             {
@@ -242,83 +236,6 @@ namespace TeleYumaApp.Contactos
 
         }
 
-      
+
     }
-
-
-    //class ListaContactosViewModel : INotifyPropertyChanged
-    //{
-    //    public static List<EContacto> Contactos = new List<EContacto>();
-    //    public ObservableCollection<EContacto> Items { get; }
-    //    private ObservableCollection<Grouping<string, EContacto>> _ItemsGrouped { get; set; }
-    //    public ObservableCollection<Grouping<string, EContacto>> ItemsGrouped
-    //    {
-    //        get { return _ItemsGrouped; }
-    //        set { _ItemsGrouped = value; OnPropertyChanged(); }
-    //    }
-
-    //    public ListaContactosViewModel(List<EContacto> list)
-    //    {
-    //        Contactos = list;
-           
-    //        Items = new ObservableCollection<EContacto>(Contactos);
-
-    //        var sorted = from item in Items
-    //                     orderby item.Nombre
-    //                     group item by item.Nombre[0].ToString() into itemGroup
-    //                     select new Grouping<string, EContacto>(itemGroup.Key, itemGroup);
-
-    //        ItemsGrouped = new ObservableCollection<Grouping<string, EContacto>>(sorted);
-
-    //        RefreshDataCommand = new Command(
-    //            async () => await RefreshData());
-    //    }
-
-    //    public async void GetListContactos()
-    //    {
-
-    //        Contactos = await EContacto.GetListaContactos();
-    //        _Global.ListaContactos = Contactos;
-
-    //    }
-
-    //    public ICommand RefreshDataCommand { get; }
-
-    //    async Task RefreshData()
-    //    {
-    //        IsBusy = true;
-    //        await Task.Delay(2000);
-    //        _Global.Vistas.ListaContactos.LlenarLista();
-    //        IsBusy = false;
-    //    }
-
-    //    bool busy;
-    //    public bool IsBusy
-    //    {
-    //        get { return busy; }
-    //        set
-    //        {
-    //            busy = value;
-    //            OnPropertyChanged();
-    //            ((Command)RefreshDataCommand).ChangeCanExecute();
-    //        }
-    //    }
-
-
-    //    public event PropertyChangedEventHandler PropertyChanged;
-    //    void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
-    //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-    //    public class Grouping<K, T> : ObservableCollection<T>
-    //    {
-    //        public K Key { get; private set; }
-
-    //        public Grouping(K key, IEnumerable<T> items)
-    //        {
-    //            Key = key;
-    //            foreach (var item in items)
-    //                this.Items.Add(item);
-    //        }
-    //    }
-    //}
 }
