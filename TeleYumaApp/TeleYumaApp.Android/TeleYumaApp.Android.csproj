@@ -149,6 +149,7 @@
     <Compile Include="ChatHeadService.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DroidKeyboardHelper.cs" />
+    <Compile Include="EntryKyboardRendererAndroids.cs" />
     <Compile Include="EntryRendererAndroid.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MyFirebaseIIDServicecomo.cs" />

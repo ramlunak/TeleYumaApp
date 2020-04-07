@@ -81,6 +81,10 @@ namespace TeleYumaApp.Contactos
         {
            
         }
-               
+
+        private void txtTelefono_Unfocused(object sender, FocusEventArgs e)
+        {
+            ;
+        }
     }
 }

@@ -71,8 +71,39 @@ namespace TeleYumaApp.ViewModels
         }
         public async void LabelNumeroTappedExecute(object parameter)
         {
-            if (parameter is null) return;
-            Numero = Numero + (string)parameter;
+            try
+            {
+                if (parameter is null) return;
+                if (string.IsNullOrEmpty(Numero))
+                {
+                    Numero = Numero + (string)parameter;
+                    return;
+                }
+
+                var lista = Numero.ToList();
+                if (CursorPosition != 0 && Numero.Length > 1)
+                {
+                    var i = 0;
+                    var text = string.Empty;
+                    foreach (var item in lista)
+                    {
+                        if (CursorPosition == i)
+                            text = text + (string)parameter + item;
+                        else
+                            text = text + item;
+                        i++;
+                    }
+                    Numero = text;
+                }
+
+                else
+                    Numero = Numero + (string)parameter;
+            }
+            catch (Exception)
+            {
+
+                Numero = Numero + (string)parameter;
+            }
         }
 
 
@@ -89,6 +120,9 @@ namespace TeleYumaApp.ViewModels
             }
         }
 
+
+        public static int Position { get; set; }
+
         public async void BorrarTappedExecute(object parameter)
         {
             try
@@ -96,8 +130,10 @@ namespace TeleYumaApp.ViewModels
                 if (string.IsNullOrEmpty(Numero)) return;
 
                 var lista = Numero.ToList();
-                var position = CursorPosition;
-                lista.RemoveAt(position - 1);
+                Position = CursorPosition;
+                if (Position == 0)
+                    Position = lista.Count;
+                lista.RemoveAt(Position - 1);
                 Numero = string.Empty;
                 var text = string.Empty;
                 foreach (var item in lista)
@@ -105,9 +141,9 @@ namespace TeleYumaApp.ViewModels
                     text = text + item;
                 }
                 Numero = text;
-                CursorPosition = position;
                 TxtTelefono.Focus();
-               
+                CursorPosition = Position;
+
             }
             catch (Exception ex)
             {
