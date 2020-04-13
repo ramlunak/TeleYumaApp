@@ -13,7 +13,7 @@ using TeleYumaApp;
 using TeleYumaApp.Droid;
 using Android.Views.InputMethods;
 
-[assembly: ExportRenderer(typeof(Entry), typeof(EntryKyboardRendererAndroids))]
+[assembly: ExportRenderer(typeof(EntryKyboard), typeof(EntryKyboardRendererAndroids))]
 
 namespace TeleYumaApp.Droid
 {

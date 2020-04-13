@@ -407,7 +407,7 @@ namespace TeleYumaApp.ViewModels
                 _Global.ListaRecargas.Lista.Add(new Recarga {Code = resultMovil.Code, tipo = "movil", numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
                 ResetForm();
             }
-            else
+            else if (TipoProducto == "nauta")
             {
                 if (SelectedItem == null || string.IsNullOrEmpty(txtNauta) || string.IsNullOrEmpty(txtMonto))
                 {

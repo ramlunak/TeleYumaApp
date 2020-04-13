@@ -106,8 +106,6 @@ namespace TeleYumaApp.Droid
                 App.Current.MainPage.DisplayAlert("System", ex.Message, "ok");
             }
 
-
-
             try
             {
                 var config = new PayPalConfiguration(PayPalEnvironment.Production, "Ae4zGNWtak5RGzB1HXRLmUwDqMgpBd_8oxMZZ_CQNiqKZyHTdjudpoDqMDs69XMdHcgi7NUCDpWFLizK")
@@ -129,6 +127,14 @@ namespace TeleYumaApp.Droid
                 };
 
                 CrossPayPalManager.Init(config, this);
+            }
+            catch (System.Exception ex)
+            {
+                ;
+            }
+
+            try
+            {                
 
                 if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)
                     && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.CallPhone) == (int)Permission.Granted)

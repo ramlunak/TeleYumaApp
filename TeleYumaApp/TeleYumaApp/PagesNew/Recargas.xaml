@@ -275,17 +275,23 @@
                     <StackLayout Padding="0" Margin="0">
 
                         <StackLayout  VerticalOptions="Center"  BackgroundColor="#085AF3">
-                            <Label Margin="10" Text="Seleccione el producto" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            <Label Margin="10" Text="SELECCIONE EL PRODUCTO" FontSize="18" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                         </StackLayout>
 
 
                         <StackLayout VerticalOptions="Start" Margin="5">
 
-                            <Grid>
+                            <Grid RowSpacing="15">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="30"/>
                                 </Grid.RowDefinitions>
 
                                 <StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="Center">
@@ -296,7 +302,7 @@
 
                                     <Image Source="ic_phone_android_black_48dp" HeightRequest="40"  VerticalOptions="Center"/>
 
-                                    <Label Text="Recarga Movil" VerticalOptions="Center" VerticalTextAlignment="Center"  HorizontalTextAlignment="Center"/>
+                                    <Label Text="RECARGA MOVIL" TextColor="Black" VerticalOptions="Center" VerticalTextAlignment="Center"  HorizontalTextAlignment="Center"/>
 
                                 </StackLayout>
 
@@ -309,7 +315,46 @@
 
                                     <Image Source="ic_wifi_black_24dp" HeightRequest="40"  VerticalOptions="Center"/>
 
-                                    <Label Text="Recarga Nauta" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="RECARGA NAUTA" TextColor="Black" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                                </StackLayout>
+
+                                <BoxView BackgroundColor="Gray" HeightRequest="1" Grid.Row="3"/>
+
+                                <StackLayout Grid.Row="4" Orientation="Horizontal" VerticalOptions="Center">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ProductoTappedCommand}" CommandParameter="Nauta"/>
+                                    </StackLayout.GestureRecognizers>
+
+                                    <Image Source="datosMoviles" HeightRequest="40"  VerticalOptions="Center"/>
+
+                                    <Label Text="PAQUETE DATOS 600MB" TextColor="Black" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                                </StackLayout>
+
+                                <BoxView BackgroundColor="Gray" HeightRequest="1" Grid.Row="5"/>
+
+                                <StackLayout Grid.Row="6" Orientation="Horizontal" VerticalOptions="Center">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ProductoTappedCommand}" CommandParameter="Nauta"/>
+                                    </StackLayout.GestureRecognizers>
+
+                                    <Image Source="datosMoviles" HeightRequest="40"  VerticalOptions="Center"/>
+
+                                    <Label Text="PAQUETE DATOS 1G" TextColor="Black" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                                </StackLayout>
+
+                                <BoxView BackgroundColor="Gray" HeightRequest="1" Grid.Row="7"/>
+
+                                <StackLayout Grid.Row="8" Orientation="Horizontal" VerticalOptions="Center">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ProductoTappedCommand}" CommandParameter="Nauta"/>
+                                    </StackLayout.GestureRecognizers>
+
+                                    <Image Source="datosMoviles" HeightRequest="40"  VerticalOptions="Center"/>
+
+                                    <Label Text="PAQUETE DATOS 1G" TextColor="Black" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
                                 </StackLayout>
 

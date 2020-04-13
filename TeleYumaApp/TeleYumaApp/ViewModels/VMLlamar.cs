@@ -143,7 +143,7 @@ namespace TeleYumaApp.ViewModels
                 Numero = text;
                 TxtTelefono.Focus();
                 CursorPosition = Position;
-
+                TxtTelefono.Focus();
             }
             catch (Exception ex)
             {
