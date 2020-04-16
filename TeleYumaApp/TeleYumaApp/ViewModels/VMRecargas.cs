@@ -229,11 +229,17 @@ namespace TeleYumaApp.ViewModels
                 MovilSelected = true;
                 NautaSelected = false;
             }
-            else
+            else if(parameter.ToString() == "Nauta")
             {
                 TipoProducto = "nauta";
                 MovilSelected = false;
                 NautaSelected = true;
+            }
+            else if(parameter.ToString() == "datos600MG" || parameter.ToString() == "datos1G" || parameter.ToString() == "datos2_5G")
+            {
+                TipoProducto = parameter.ToString();
+                MovilSelected = true;
+                NautaSelected = false;
             }
             ListaProductoVisible = false;
         }
@@ -422,16 +428,16 @@ namespace TeleYumaApp.ViewModels
                     return;
                 }
                 
-                var validarMovil = new ValidateProducto
+                var validarDatos = new ValidateProducto
                 {
                     Producto = Prefijo + txtNumero,
                     TipoProducto = TipoProducto,
                     IdCuenta = _Global.CurrentAccount.i_account.ToString(),
                     Monto = (float)Convert.ToDecimal(txtMonto)
                 };
-                var resultMovil = await _Global.Post<Producto>("Producto", validarMovil);
+                var resultDatos = await _Global.Post<Producto>("Producto", validarDatos);
 
-                if (resultMovil is null || resultMovil.Name is null)
+                if (resultDatos is null || resultDatos.Name is null)
                 {
                     CurrentPage.DisplayAlert("TeleYuma", "El número no es correcto", "Ok");
                     OpcionesCargandoVisible = false;
@@ -439,12 +445,12 @@ namespace TeleYumaApp.ViewModels
                 }
 
                 var monto = (float)Convert.ToDecimal(txtMonto);
-                var min = resultMovil.MinValue;
-                var max = resultMovil.MaxValue;
+                var min = resultDatos.MinValue;
+                var max = resultDatos.MaxValue;
 
                 if (monto < min || monto > max)
                 {
-                    CurrentPage.DisplayAlert("TeleYuma", "El rango del monto debe ser " + resultMovil.DisplayText, "Ok");
+                    CurrentPage.DisplayAlert("TeleYuma", "El rango del monto debe ser " + resultDatos.DisplayText, "Ok");
                     OpcionesCargandoVisible = false;
                     return;
                 }
@@ -457,14 +463,13 @@ namespace TeleYumaApp.ViewModels
                     Producto = Prefijo + txtNumero,
                     Monto = (float)Convert.ToDecimal(txtMonto),
                     Precio = precio,
-                    Bono = resultMovil.Bono,
+                    Bono = resultDatos.Bono,
                     Estado = EstadoCompra.Espera
                 };
                 OpcionesCargandoVisible = false;
-
-
+                
                 _Global.VM.VMCompras.Compras.Add(compra);
-                _Global.ListaRecargas.Lista.Add(new Recarga { Code = resultMovil.Code, tipo = "movil", numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
+                _Global.ListaRecargas.Lista.Add(new Recarga { Code = resultDatos.Code, tipo = TipoProducto, numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
                 ResetForm();
             }
             else if (TipoProducto == "nauta")

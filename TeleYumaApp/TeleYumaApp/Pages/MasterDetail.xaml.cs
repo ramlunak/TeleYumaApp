@@ -22,11 +22,26 @@ namespace TeleYumaApp.Pages
             //    BarBackgroundColor = Color.FromHex("#1648CA"),
             //    BarTextColor = Color.White
             //};
-            Detail = new NavigationPage(new Pages.HomeTabbedPage())
+
+            if (_Global.ModoPrueba)
             {
-                BarBackgroundColor = Color.FromHex("#1648CA"),
-                BarTextColor = Color.White
-            };
+                Detail = new NavigationPage(new Pages.HomeTabbedPage())
+                {
+                    BarBackgroundColor = Color.DarkRed,
+                    BarTextColor = Color.White,
+                    Title = "MODO PRUEBA"
+                };
+            }
+            else
+            {
+                Detail = new NavigationPage(new Pages.HomeTabbedPage())
+                {
+                    BarBackgroundColor = Color.FromHex("#1648CA"),
+                    BarTextColor = Color.White
+                };
+            }
+
+          
 
         }
 
