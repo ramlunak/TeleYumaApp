@@ -42,7 +42,6 @@ namespace TeleYumaApp
             }
             else
             {
-
                 _Global.VM.VMRecargas.OpcionesRecargaVisible = false;
                 _Global.VM.VMCompras.CargarDetalle();
                 this.Navigation.PushAsync(new Compras());

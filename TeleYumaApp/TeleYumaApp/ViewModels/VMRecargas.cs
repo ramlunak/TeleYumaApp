@@ -341,10 +341,9 @@ namespace TeleYumaApp.ViewModels
                 OpcionesCargandoVisible = false;
                 return;
             }
-
-
+            
             OpcionesCargandoVisible = true;
-
+            
             if (TipoProducto == "movil")
             {
                 if (SelectedItem == null || string.IsNullOrEmpty(txtNumero) || string.IsNullOrEmpty(txtMonto))
@@ -405,6 +404,67 @@ namespace TeleYumaApp.ViewModels
 
                 _Global.VM.VMCompras.Compras.Add(compra);
                 _Global.ListaRecargas.Lista.Add(new Recarga {Code = resultMovil.Code, tipo = "movil", numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
+                ResetForm();
+            }
+            else if (TipoProducto == "datos600MG" || TipoProducto == "datos1G" || TipoProducto == "datos2_5G")
+            {
+                if (SelectedItem == null || string.IsNullOrEmpty(txtNumero) || string.IsNullOrEmpty(txtMonto))
+                {
+                    CurrentPage.DisplayAlert("TeleYuma", "Complete la los datos correctamente", "Ok");
+                    OpcionesCargandoVisible = false;
+                    return;
+                }
+
+                if (_Global.VM.VMCompras.Compras.Where(x => x.Producto == (Prefijo + txtNumero).ToString()).Any())
+                {
+                    CurrentPage.DisplayAlert("TeleYuma", "Para recargar el mismo numero de telefono espere 5 minutos", "Ok");
+                    OpcionesCargandoVisible = false;
+                    return;
+                }
+                
+                var validarMovil = new ValidateProducto
+                {
+                    Producto = Prefijo + txtNumero,
+                    TipoProducto = TipoProducto,
+                    IdCuenta = _Global.CurrentAccount.i_account.ToString(),
+                    Monto = (float)Convert.ToDecimal(txtMonto)
+                };
+                var resultMovil = await _Global.Post<Producto>("Producto", validarMovil);
+
+                if (resultMovil is null || resultMovil.Name is null)
+                {
+                    CurrentPage.DisplayAlert("TeleYuma", "El número no es correcto", "Ok");
+                    OpcionesCargandoVisible = false;
+                    return;
+                }
+
+                var monto = (float)Convert.ToDecimal(txtMonto);
+                var min = resultMovil.MinValue;
+                var max = resultMovil.MaxValue;
+
+                if (monto < min || monto > max)
+                {
+                    CurrentPage.DisplayAlert("TeleYuma", "El rango del monto debe ser " + resultMovil.DisplayText, "Ok");
+                    OpcionesCargandoVisible = false;
+                    return;
+                }
+
+                var precio = await CalcularPrecioMovil((float)Convert.ToDecimal(txtMonto));
+
+                var compra = new Compra
+                {
+                    TipoProducto = TipoProducto,
+                    Producto = Prefijo + txtNumero,
+                    Monto = (float)Convert.ToDecimal(txtMonto),
+                    Precio = precio,
+                    Bono = resultMovil.Bono,
+                    Estado = EstadoCompra.Espera
+                };
+                OpcionesCargandoVisible = false;
+
+
+                _Global.VM.VMCompras.Compras.Add(compra);
+                _Global.ListaRecargas.Lista.Add(new Recarga { Code = resultMovil.Code, tipo = "movil", numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
                 ResetForm();
             }
             else if (TipoProducto == "nauta")
@@ -470,6 +530,7 @@ namespace TeleYumaApp.ViewModels
                 _Global.ListaRecargas.Lista.Add(new Recarga { Code = resultNauta.Code,tipo = "nauta", numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
                 ResetForm();
             }
+
             OpcionesRecargaVisible = true;
             SelectedItem = null;
             OpcionesCargandoVisible = false;

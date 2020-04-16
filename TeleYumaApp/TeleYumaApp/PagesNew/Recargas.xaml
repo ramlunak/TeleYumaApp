@@ -354,7 +354,7 @@
 
                                     <Image Source="datosMoviles" HeightRequest="40"  VerticalOptions="Center"/>
 
-                                    <Label Text="PAQUETE DATOS 1G" TextColor="Black" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="PAQUETE DATOS 2.5G" TextColor="Black" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
                                 </StackLayout>
 

@@ -7,8 +7,8 @@
              xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects" 
              x:Class="TeleYumaApp.PagesInicio.Login">
     <ContentPage.Content>
-
-        <Grid>
+        <AbsoluteLayout>           
+                <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40*"/>           
                 <RowDefinition Height="60*"/>
@@ -80,7 +80,7 @@
             </StackLayout>
             
         </Grid>
-        
-        
+            <rlk:rlkLoading IsVisible="False"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
