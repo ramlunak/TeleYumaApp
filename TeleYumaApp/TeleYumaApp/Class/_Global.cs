@@ -335,7 +335,7 @@ namespace TeleYumaApp.Class
             public static SMS.NewSMS NewSMS = new SMS.NewSMS();
         }
 
-        public  async static Task<string> GetAuthInfoAdminJson()
+        public async static Task<string> GetAuthInfoAdminJson()
         {
             var credenciales = await Get<Credenciales>("credenciales/2");
 
@@ -451,6 +451,7 @@ namespace TeleYumaApp.Class
             public const string Session = "Session";
             public const string Customer = "Customer";
             public const string Account = "Account";
+            public const string Generic = "Generic";
         }
 
         public class Metodo
@@ -482,6 +483,11 @@ namespace TeleYumaApp.Class
             public const string validate_account_info = "validate_account_info";
             public const string get_xdr_list = "get_xdr_list";
             #endregion
+
+            #region  Generic
+            public const string get_subdivisions_list = "get_subdivisions_list";
+            #endregion
+
 
         }
 
