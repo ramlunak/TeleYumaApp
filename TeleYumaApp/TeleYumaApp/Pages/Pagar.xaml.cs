@@ -145,9 +145,7 @@ namespace TeleYumaApp.Pages
 
             if (_Global.TipoRecarga == "movil")
             {
-
-                MostrarCargando(true);
-                
+                MostrarCargando(true);                
               
                 await _Global.CurrentAccount.MakeTransaction_EcommercePayment(_Global.ListaRecargas.TotalPagar, "Lista de Recargas");
 

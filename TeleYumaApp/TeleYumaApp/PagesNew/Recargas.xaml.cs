@@ -19,8 +19,6 @@ namespace TeleYumaApp
             _Global.VM.VMRecargas.CargarPromo();
 
         }
-
-
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             _Global.VM.VMRecargas.ListaProductoVisible = false;

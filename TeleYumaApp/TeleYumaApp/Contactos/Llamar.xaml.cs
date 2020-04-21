@@ -86,5 +86,10 @@ namespace TeleYumaApp.Contactos
         {
             ;
         }
+
+        private void txtTelefono_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

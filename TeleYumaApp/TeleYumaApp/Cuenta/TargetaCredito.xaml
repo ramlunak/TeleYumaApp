@@ -29,11 +29,6 @@
 
                 </Picker>
 
-                <StackLayout  >
-                    <Label Text="Nombre de la tarjeta:" TextColor="Gray"  />
-                    <custom:CustomEntry  LineColor="#232397" x:Name="txt_name"  Text="{Binding name}" />
-                </StackLayout>
-                
                 <Label Text="Número de tarjeta" Margin="0,10,0,0"/>
                 <custom:CustomEntry LineColor="#232397" x:Name="txt_number"  Keyboard="Numeric" TextColor="Black" Placeholder="#### #### #### ####" PlaceholderColor="LightGray" >
                     <custom:CustomEntry.Behaviors>
@@ -59,19 +54,47 @@
                             </custom:CustomEntry.Behaviors>
                         </custom:CustomEntry>
                     </StackLayout>
-
-                    <StackLayout  >
-                        <Label Text="Código Postal:" TextColor="Gray"  />
-                        <custom:CustomEntry  LineColor="#232397" x:Name="txt_zip" Keyboard="Numeric" Text="{Binding zip}" />
-                    </StackLayout>
                 </StackLayout>
 
-                
+                <StackLayout  >
+                    <Label Text="Nombre de la tarjeta:" TextColor="Gray"  />
+                    <custom:CustomEntry  LineColor="#232397" x:Name="txt_name"  Text="{Binding name}" />
+                </StackLayout>
+
+                <StackLayout  >
+                    <Label Text="País:" TextColor="Gray" />
+                    <Picker Title="Seleccione el país"
+                            TitleColor="Gray" 
+                            ItemsSource="{Binding Countrys}"
+                            SelectedItem="{Binding CountrySelectedItem}"
+                            ItemDisplayBinding="{Binding name}">
+
+                        <Picker.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SelectedIndexChangedCommand}"/>
+                        </Picker.Behaviors>
+                    </Picker>
+
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Estado/Provincia:" TextColor="Gray" />
+                    <Picker Title="Seleccione el Estado/Provincia"
+                            TitleColor="Gray" 
+                            ItemsSource="{Binding SubCountrys}"
+                            SelectedItem="{Binding SubCountrySelectedItem}"
+                            ItemDisplayBinding="{Binding name}">
+                    </Picker>
+
+                </StackLayout>
+
                 <StackLayout  >
                     <Label Text="Dirección:" TextColor="Gray" />
                     <custom:CustomEntry  LineColor="#232397" x:Name="txt_addres" Text="{Binding address}"/>
                 </StackLayout>
-              
+                <StackLayout  >
+                    <Label Text="Código Postal:" TextColor="Gray"  />
+                    <custom:CustomEntry  LineColor="#232397" x:Name="txt_zip" Keyboard="Numeric" Text="{Binding zip}" />
+                </StackLayout>
 
 
                 <StackLayout IsVisible="false">

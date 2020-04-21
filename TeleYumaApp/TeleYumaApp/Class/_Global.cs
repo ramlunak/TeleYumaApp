@@ -77,6 +77,7 @@ namespace TeleYumaApp.Class
     {
 
         public static bool ModoPrueba = true;
+        public static int NumeroCursorPosition { get; set; }
 
         [DefaultValue(false)]
         public static bool IsOpen { get; set; }
@@ -133,6 +134,54 @@ namespace TeleYumaApp.Class
             public static List<Esms> sms = new List<Esms>();
         }
 
+        public static class telinta
+        {
+            public static async Task<List<CountryInfo>> GetCountryList()
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    try
+                    {
+                        var URL = _Global.BaseUrlAdmin + _Global.Servicio.Generic + "/" + _Global.Metodo.get_countries_list + "/" + await _Global.GetAuthInfoAdminJson();
+                        var response = await client.GetAsync(URL);
+                        var Result = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<CountryObjet>(Result).countries_list;
+                    }
+                    catch (Exception ex)
+                    {
+                        return default;
+                    }
+
+                }
+
+            }
+
+            public static async Task<List<SubdivisionInfo>> GetSubdivisionList(string iso_3166_1_a2)
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    GetSubdivisionsListRequest getSubdivisionsListRequest = new GetSubdivisionsListRequest { iso_3166_1_a2 = iso_3166_1_a2 };
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    try
+                    {
+                        var param = JsonConvert.SerializeObject(getSubdivisionsListRequest);
+                        var URL = _Global.BaseUrlAdmin + _Global.Servicio.Generic + "/" + _Global.Metodo.get_subdivisions_list + "/" +await _Global.GetAuthInfoAdminJson() + "/" + param;
+                        var response = await client.GetAsync(URL);
+                        var Result = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<SubdivisionsObjet>(Result).subdivisions_list;
+                    }
+                    catch (Exception ex)
+                    {
+                        return default;
+                    }
+
+                }
+
+            }
+        }
         public static class phone
         {
             public static SQLiteAsyncConnection db
@@ -305,6 +354,7 @@ namespace TeleYumaApp.Class
 
             public static VMListaContactos VMListaContactos = new VMListaContactos();
 
+            public static VMTarjetaCredito VMTarjetaCredito = new VMTarjetaCredito();
         }
 
         public static class Vistas
@@ -485,7 +535,10 @@ namespace TeleYumaApp.Class
             #endregion
 
             #region  Generic
-            public const string get_subdivisions_list = "get_subdivisions_list";
+
+            public const string get_countries_list = "get_countries_list";
+            public const string get_subdivisions_list = "get_subdivisions_list";           
+
             #endregion
 
 

@@ -204,9 +204,10 @@ namespace TeleYumaApp.Teleyuma
         public class SendTransferResponse
         {
             public string ResultCode { get; set; }
-            public string[] ErrorCodes { get; set; }
+            public error[] ErrorCodes { get; set; }
             public TransferRecord TransferRecord { get; set; }
         }
+
 
         public class TransferRecord
         {

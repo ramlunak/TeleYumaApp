@@ -31,21 +31,70 @@ namespace TeleYumaApp
 
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             ;
             try
             {
                 _Global.TipoRecarga = "movil";
-                this.Navigation.PushAsync(_Global.Vistas.Pagar);
+                if(_Global.ModoPrueba)
+                {
+                  await RecargarModoPrueba();
+                }
+                else
+                {
+                  await  this.Navigation.PushAsync(_Global.Vistas.Pagar);
+                }
+              
                 _Global.Vistas.Pagar.ActualizarInformacionMonto();
             }
             catch (Exception)
             {
                 ;
-
             }
         }
+
+        public async Task<bool> RecargarModoPrueba()
+        {
+            decimal montoRecargaSinError = 0;
+            if (_Global.ListaRecargas.Lista.Any())
+            {
+                // recargar
+                foreach (var recarga in _Global.ListaRecargas.Lista)
+                {
+                    if (_Global.ModoPrueba)
+                        await recarga.Simular();
+
+                }
+
+                //monto de las recargas echas sin error               
+                foreach (var recarga in _Global.ListaRecargas.Lista)
+                {
+                    if (recarga.topupResponse.error_code == "0")
+                    {
+                        // await _Global.CurrentAccount.MakeTransaction_Manualcharge(Convert.ToDecimal(recarga.precio), "Recarga a " + recarga.numero);
+                        montoRecargaSinError += recarga.TotalPagar;
+                    }
+
+                }
+
+            }
+
+            if (montoRecargaSinError > 0)
+            {
+                await DisplayAlert("TeleYuma", "El sistema completó la solicitud", "OK");
+
+            }
+            else
+            {
+
+                await DisplayAlert("TeleYuma", "El sistema completó la solicitud con errores", "OK");
+            }
+           
+            return true;
+        }
+
+
 
         public async void PayPalPayment()
         {

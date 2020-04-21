@@ -21,13 +21,12 @@
                     <rlkcontroles:entry
                         x:Name="txtTelefono" 
                         Text="{Binding Numero}"
-                        CursorPosition="{Binding CursorPosition,Mode=TwoWay}" 
+                        CursorPosition="{Binding CursorPosition,Mode=OneWayToSource}" 
                         HorizontalTextAlignment="Center" 
                         FontSize="30"  
-                        HorizontalOptions="FillAndExpand" 
+                        HorizontalOptions="FillAndExpand"
                         Unfocused="txtTelefono_Unfocused"
-                        effects:KeyboardEffect.EnableKeyboard="False"
-                        effects:KeyboardEffect.RequestFocus="True">
+                        >
                         <Entry.Effects>
                             <effects:KeyboardEnableEffect/>
                         </Entry.Effects>
@@ -120,7 +119,7 @@
                             <TapGestureRecognizer Command="{Binding LabelNumeroTappedCommand}" CommandParameter="0"/>
                         </rlkcontroles:rlkLabelButton.GestureRecognizers>
                     </rlkcontroles:rlkLabelButton>
-                    <rlkcontroles:rlkLabelButton Text="#" Grid.Row="3" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="40">
+                    <rlkcontroles:rlkLabelButton Text="{Binding CursorPosition}" Grid.Row="3" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="40">
 
                         <rlkcontroles:rlkLabelButton.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding LabelNumeroTappedCommand}" CommandParameter="#"/>

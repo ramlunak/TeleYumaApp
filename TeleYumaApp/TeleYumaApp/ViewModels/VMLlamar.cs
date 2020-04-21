@@ -71,9 +71,11 @@ namespace TeleYumaApp.ViewModels
         }
         public async void LabelNumeroTappedExecute(object parameter)
         {
+            if (parameter is null) return;
+
             try
             {
-                if (parameter is null) return;
+
                 if (string.IsNullOrEmpty(Numero))
                 {
                     Numero = Numero + (string)parameter;
@@ -81,29 +83,51 @@ namespace TeleYumaApp.ViewModels
                 }
 
                 var lista = Numero.ToList();
-                if (CursorPosition != 0 && Numero.Length > 1)
+
+
+                var i = 0;
+                bool insert = false;
+                var text = string.Empty;
+
+                var posi = CursorPosition;
+
+                if (posi == 0)
+                    posi = lista.Count;
+
+                foreach (var item in lista)
                 {
-                    var i = 0;
-                    var text = string.Empty;
-                    foreach (var item in lista)
+                    if (posi == i)
                     {
-                        if (CursorPosition == i)
-                            text = text + (string)parameter + item;
-                        else
-                            text = text + item;
-                        i++;
+                        text = text+ (string)parameter + item;
+                        insert = true;
                     }
+                    else
+                        text = text + item;
+                    i++;
+                }
+
+                if (insert)
+                {
+                    var position = CursorPosition;
                     Numero = text;
+                    CursorPosition = position + 1;
+                    //if(CursorPosition !=0)
+                    //CursorPosition = position + 1;
                 }
 
                 else
-                    Numero = Numero + (string)parameter;
-            }
-            catch (Exception)
-            {
+                    Numero = text + (string)parameter;
 
+            }
+            catch (Exception ex)
+            {
                 Numero = Numero + (string)parameter;
             }
+
+
+
+            //TxtTelefono.Focus();
+
         }
 
 
@@ -125,31 +149,35 @@ namespace TeleYumaApp.ViewModels
 
         public async void BorrarTappedExecute(object parameter)
         {
+            if (string.IsNullOrEmpty(Numero)) return;
+            var lista = Numero.ToList();
             try
             {
-                if (string.IsNullOrEmpty(Numero)) return;
-
-                var lista = Numero.ToList();
                 Position = CursorPosition;
                 if (Position == 0)
                     Position = lista.Count;
                 lista.RemoveAt(Position - 1);
-                Numero = string.Empty;
+
                 var text = string.Empty;
                 foreach (var item in lista)
                 {
                     text = text + item;
                 }
                 Numero = text;
-                TxtTelefono.Focus();
-                CursorPosition = Position;
-                TxtTelefono.Focus();
+                CursorPosition = Position - 1;
             }
             catch (Exception ex)
             {
-
+                lista.RemoveAt(lista.Count - 1);
+                var text = string.Empty;
+                foreach (var item in lista)
+                {
+                    text = text + item;
+                }
+                Numero = text;
                 ;
             }
+            // TxtTelefono.Focus();
         }
 
     }
