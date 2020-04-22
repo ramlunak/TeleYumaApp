@@ -164,6 +164,7 @@ namespace TeleYumaApp.ViewModels
                     text = text + item;
                 }
                 Numero = text;
+                if(CursorPosition != 0)
                 CursorPosition = Position - 1;
             }
             catch (Exception ex)
