@@ -19,7 +19,7 @@ namespace TeleYumaApp.Contactos
         public Llamar()
         {
             InitializeComponent();
-            this.BindingContext = new ViewModels.VMLlamar(ref txtTelefono);
+            this.BindingContext = _Global.VM.VMLlamar;
         }
 
        

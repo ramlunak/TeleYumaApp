@@ -29,9 +29,9 @@ namespace TeleYumaApp.ViewModels
 
         public rlkControles.entry TxtTelefono { get; set; }
 
-        public VMLlamar(ref rlkControles.entry txtTelefono)
+        public VMLlamar()
         {
-            TxtTelefono = txtTelefono;
+           
         }
 
         private string _numero;

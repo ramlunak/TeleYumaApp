@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using TeleYumaApp.Teleyuma;
 using TeleYumaApp.ViewModels;
+using TeleYumaApp.PagesNew;
 
 namespace TeleYumaApp.Class
 {
@@ -355,6 +356,11 @@ namespace TeleYumaApp.Class
             public static VMListaContactos VMListaContactos = new VMListaContactos();
 
             public static VMTarjetaCredito VMTarjetaCredito = new VMTarjetaCredito();
+
+            public static VMLlamar VMLlamar = new VMLlamar();
+
+            public static VMTabbedLlamardas VMTabbedLlamardas = new VMTabbedLlamardas();
+
         }
 
         public static class Vistas

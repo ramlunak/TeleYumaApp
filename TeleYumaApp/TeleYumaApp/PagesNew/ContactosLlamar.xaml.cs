@@ -116,7 +116,7 @@ namespace TeleYumaApp.PagesNew
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
             => ((ListView)sender).SelectedItem = null;
 
-        public async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        public async void Handle_ItemSelectedold(object sender, SelectedItemChangedEventArgs e)
         {
 
             if (e.SelectedItem == null)
@@ -190,6 +190,15 @@ namespace TeleYumaApp.PagesNew
             }
 
         }
+
+        public async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null)
+                return;
+            _Global.VM.VMLlamar.Numero = ((EContacto)e.SelectedItem).Telefono.Replace("+","").Replace(" ", "").Replace("-", "").Replace("/", "").Replace("(", "").Replace(")", "").Trim();
+            _Global.VM.VMTabbedLlamardas.SelectedPage("_cpLlamar");
+        }
+
 
         private void BtnAddContacto_Tapped(object sender, EventArgs e)
         {

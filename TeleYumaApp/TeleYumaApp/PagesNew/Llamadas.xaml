@@ -7,10 +7,11 @@
              xmlns:pages="clr-namespace:TeleYumaApp.Pages"
              xmlns:pagesNew="clr-namespace:TeleYumaApp.PagesNew"
              mc:Ignorable="d"
-             BarBackgroundColor="#1648CA"
+             x:Name="_tbPage"
+             BarBackgroundColor="#1648CA"               
              x:Class="TeleYumaApp.PagesNew.Llamadas">
-  <!--Pages can be added as references or inline-->
-    <contactos:Llamar IconImageSource="NewMarcar" />
-    <pagesNew:ContactosLlamar IconImageSource="NewGrupo" />
+    <!--Pages can be added as references or inline-->
+    <contactos:Llamar x:Name="_cpLlamar" IconImageSource="NewMarcar"  />
+    <pagesNew:ContactosLlamar  IconImageSource="NewGrupo" />
     <pagesNew:HistorialLlamadas IconImageSource="NewHistorial" />
 </TabbedPage>
