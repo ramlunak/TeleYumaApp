@@ -77,7 +77,7 @@ namespace TeleYumaApp.Class
     public static class _Global
     {
 
-        public static bool ModoPrueba = true;
+        public static bool ModoPrueba = false;
         public static int NumeroCursorPosition { get; set; }
 
         [DefaultValue(false)]
