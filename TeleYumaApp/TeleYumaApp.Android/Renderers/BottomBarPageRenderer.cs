@@ -58,7 +58,14 @@ namespace BottomBar.Droid.Renderers
 
 					if (pageRenderer != null) {
 						pageRenderer.View.RemoveFromParent ();
-						pageRenderer.Dispose ();
+						try
+						{
+							pageRenderer.Dispose();
+						}
+						catch (Exception ex)
+						{
+							;
+						}
 					}
 
                     pageToRemove.PropertyChanged -= OnPagePropertyChanged;
