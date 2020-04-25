@@ -34,7 +34,7 @@
                 </Grid>
             </Frame>
 
-            <ListView x:Name="listGistorial"  HasUnevenRows="True" SelectionMode="None">
+            <ListView x:Name="listGistorial"  HasUnevenRows="True" SelectionMode="None" ItemSelected="listGistorial_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -58,6 +58,9 @@
                                     <Label Text="{Binding charged_amount2}" Font="13" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="3" Margin="0,0,15,0" />
 
                                 </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding CLD}"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

@@ -27,7 +27,7 @@ namespace TeleYumaApp.PagesNew
 
         public async void CargarXDR()
         {
-            var GetAccountXDRListResponse = await _Global.CurrentAccount.GetAccountXDR(new GetAccountXDRListRequest { i_service = 3, from_date = _Global.GetDateFormat_YYMMDD(DateTime.Now), to_date = _Global.GetDateFormat_YYMMDD(DateTime.Now, "final") });
+            var GetAccountXDRListResponse = await _Global.CurrentAccount.GetAccountXDR(new GetAccountXDRListRequest { i_service = 3, from_date = _Global.GetDateFormat_YYMMDD(DateTime.Now.AddMonths(-2)), to_date = _Global.GetDateFormat_YYMMDD(DateTime.Now, "final") });
             listGistorial.ItemsSource = null;
             listGistorial.ItemsSource = GetAccountXDRListResponse.xdr_list;
 
@@ -45,5 +45,22 @@ namespace TeleYumaApp.PagesNew
 
         }
 
+        private void listGistorial_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {            
+            try
+            {
+                var evento = e as TappedEventArgs;
+                DependencyService.Get<ICallService>().Call("+"+ evento.Parameter);
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

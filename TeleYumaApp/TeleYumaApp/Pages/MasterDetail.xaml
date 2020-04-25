@@ -2,57 +2,55 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeleYumaApp.Pages.MasterDetail" >
-   
-    <MasterDetailPage.Master >      
-        <ContentPage Title="Menu" BackgroundColor="Transparent">                            
-                
-                <Grid  RowSpacing="5"  VerticalOptions="FillAndExpand" BackgroundColor="White" HorizontalOptions="FillAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="100*"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="100*" />
-                </Grid.ColumnDefinitions>
 
-                <Image Source="info" Grid.Row="0" Grid.Column="0" HeightRequest="40" Margin="5"/>
-                <Label  Grid.Row="0" Font="16" Grid.Column="1" Text="Información" TextColor="Black" VerticalOptions="Center" />
+    <MasterDetailPage.Master >
+        <ContentPage Title="Menu" BackgroundColor="White">
 
-                <Label  Grid.Row="1" Font="16" Grid.Column="0" Grid.ColumnSpan="2" 
-                        Text="Soporte técnico" BackgroundColor="#4472C4" HorizontalTextAlignment="Center" 
-                        Margin="0,5,0,5" TextColor="White"  />
+            <StackLayout VerticalOptions="FillAndExpand" Margin="0" Padding="0">
 
-               <!-- <Image Source="home" Grid.Row="2" Grid.Column="0" HeightRequest="30" Margin="5"/>
-                <Label  Grid.Row="2" Font="16" Grid.Column="1" Text="238 E 9 ST #1 Hialeah, FL, 33010" 
-                        TextColor="Black" VerticalOptions="Center" />
-              -->
-                <Image Source="llamar" Grid.Row="3" Grid.Column="0" HeightRequest="30" Margin="5"/>
-                <Label x:Name="lblNumeroSoporte" Grid.Row="3" Font="16" Grid.Column="1" Text="1 305 447 7549" TextColor="Blue" VerticalOptions="Center" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="LlamarSoporte_Tapped"/>
-                    </Label.GestureRecognizers>
-                </Label>
+                <Grid RowSpacing="0" Margin="0" Padding="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
 
-                <Image Source="email" Grid.Row="4" Grid.Column="0" HeightRequest="30" Margin="5"/>
-                <Label  Grid.Row="4" Font="16" Grid.Column="1" Text="support@teleyuma.com" TextColor="Black" VerticalOptions="Center" />
+                    <Image Source="bluebackground.jpg" Aspect="AspectFill" Grid.Row="0" />
 
-                <BoxView BackgroundColor="#4472C4" HeightRequest="1" Grid.Row="6" Grid.ColumnSpan="2"/>
+                    <StackLayout Orientation="Horizontal" Padding="20" HorizontalOptions="CenterAndExpand" Grid.Row="0" Margin="25,0,0,0" VerticalOptions="CenterAndExpand">
+                        <Image Source="icon.png" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Margin="25,0,5,0">
+                        <ListView x:Name="lvOpciones" ItemsSource="{Binding opciones}" HasUnevenRows="false" ItemSelected="LvOpciones_ItemSelected">
+                            <ListView.ItemTemplate >
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <Image Source="{Binding icon}" WidthRequest="30" HeightRequest="30"/>
+                                            <Label Text="{Binding text}" VerticalOptions="Center" TextColor="Black"/>
+                                            <Image Source="next.png" WidthRequest="10"  HeightRequest="10" HorizontalOptions="EndAndExpand"/>
 
-                <Label Margin="5"  Grid.Row="7" Font="10" Grid.Column="0" Grid.ColumnSpan="2" Text="Copyright 2018 © Teleyuma. Todos los derechos reservados." TextColor="Black" VerticalOptions="Center" />
-            </Grid>
-                     
-            
-            
-            
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackLayout>
+                    <BoxView Grid.Row="2" />
+                    <Image Source="bluebackground.jpg" Aspect="AspectFill" Grid.Row="2" />
+
+                    <StackLayout Orientation="Horizontal" Grid.Row="2" Margin="5">
+                        <Image Source="shutdown.png" WidthRequest="20" HeightRequest="20"/>
+                        <Label Text="Cerrar sesión" VerticalOptions="Center" TextColor="Red"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_7"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                </Grid>
+
+            </StackLayout>
         </ContentPage>
-    </MasterDetailPage.Master>    
+    </MasterDetailPage.Master>
 </MasterDetailPage>

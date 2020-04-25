@@ -59,7 +59,7 @@
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal" Margin="0,15,0,0">
+                <StackLayout Orientation="Horizontal" Margin="0,15,0,0" Spacing="3">
                     <Label Text="Al continuar, también acepta los" LineBreakMode="NoWrap"/>
                     <Label Text="Términos de Servicio " LineBreakMode="NoWrap" TextDecorations="Underline" TextColor="Blue">
                         <Label.GestureRecognizers>

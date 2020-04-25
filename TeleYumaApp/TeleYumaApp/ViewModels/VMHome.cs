@@ -19,27 +19,27 @@ namespace TeleYumaApp.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-       // public BottomBarPage BarPage = new BottomBarPage();
 
-        public VMHome(object page = null)
+        public BottonBar.BottomBarPage BarPage = new BottonBar.BottomBarPage();
+
+        public VMHome(BottonBar.BottomBarPage page = null)
         {
             if (page is null) return;
-          //  BarPage = page;
-            _Global.phone.CargarContactos();
+            BarPage = page;
+            _Global.phone.CargarContactos();          
         }
-             
-
+        
         public void CargarPantallaSms()
         {
-          //  TabIndex = BarPage.Children[1];
+            //  TabIndex = BarPage.Children[1];
         }
 
         private Page _TabIndex;
         public Page TabIndex
         {
             get { return _TabIndex; }
-            set { _TabIndex = value;OnPropertyChanged(); }
+            set { _TabIndex = value; OnPropertyChanged(); }
         }
-        
+
     }
 }
