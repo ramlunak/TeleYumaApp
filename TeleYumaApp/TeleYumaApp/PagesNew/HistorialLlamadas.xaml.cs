@@ -71,7 +71,8 @@ namespace TeleYumaApp.PagesNew
             try
             {
                 var evento = e as TappedEventArgs;
-                DependencyService.Get<ICallService>().Call("+" + evento.Parameter);
+                var llamada = "7868717144,011" + evento.Parameter;
+                DependencyService.Get<ICallService>().Call(llamada);
             }
             catch
             {

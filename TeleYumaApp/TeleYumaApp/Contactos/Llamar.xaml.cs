@@ -39,10 +39,8 @@ namespace TeleYumaApp.Contactos
             }
             catch
             {
-
                 ;
             }
-
         }
 
         private async void BtnLlamar_Clicked(object sender, EventArgs e)

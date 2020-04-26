@@ -821,6 +821,15 @@ namespace TeleYumaApp.Class
         }
 
         [DataMember]
+        public string hora
+        {
+            get
+            {
+                return DateTime.Parse(connect_time).ToString("h:mm tt");
+            }
+        }
+
+        [DataMember]
         public string time
         {
             get

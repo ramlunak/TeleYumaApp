@@ -80,7 +80,8 @@
                                         <Label  Text="{Binding country}" Font="12" />
                                     </StackLayout>
                                   
-                                    <Label Text="{Binding time}" Font="13" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="3" Margin="0,0,15,0" />
+                                    <Label Text="{Binding hora}" Font="13" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="3" Margin="0,0,15,0" />
+                                    <Label Text="{Binding time}" TextColor="Blue" Font="13" HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="3" Margin="0,0,15,0" />
                                     <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" BackgroundColor="LightGray" Margin="0,0,15,0"/>
                                 </Grid>
                                 <StackLayout.GestureRecognizers>
