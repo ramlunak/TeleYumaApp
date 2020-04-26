@@ -48,7 +48,7 @@
                         <ViewCell Height="25">
                             <Grid VerticalOptions="FillAndExpand">
                                 <StackLayout>
-                                    <Label Margin="3,0,0,0" Text="{Binding Key}"  HorizontalOptions="Center" TextColor="Gray"/>      
+                                    <Label Margin="0,5,0,0" Text="{Binding Key}"  HorizontalOptions="Center" TextColor="Gray"/>      
                                 </StackLayout>
                             </Grid>
                         </ViewCell>
@@ -58,7 +58,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>                         
-                            <StackLayout Margin="0,15,0,0">
+                            <StackLayout Margin="0,5,0,15">
                                 <Grid RowSpacing="2" Margin="2">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="25"/>
