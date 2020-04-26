@@ -220,8 +220,17 @@ namespace BottomBar.Droid.Renderers
 					}
 				}
 
-				_bottomBar.Measure (MeasureSpecFactory.MakeMeasureSpec (width, MeasureSpecMode.Exactly), MeasureSpecFactory.MakeMeasureSpec (tabsHeight, MeasureSpecMode.Exactly));
-				_bottomBar.Layout (0, 0, width, tabsHeight);
+				try
+				{
+					_bottomBar.Measure(MeasureSpecFactory.MakeMeasureSpec(width, MeasureSpecMode.Exactly), MeasureSpecFactory.MakeMeasureSpec(tabsHeight, MeasureSpecMode.Exactly));
+					_bottomBar.Layout(0, 0, width, tabsHeight);
+				}
+				catch (Exception)
+				{
+								
+					
+					;
+				}
 			}
 
 			base.OnLayout (changed, l, t, r, b);

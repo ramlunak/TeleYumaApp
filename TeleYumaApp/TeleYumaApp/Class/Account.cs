@@ -734,7 +734,7 @@ namespace TeleYumaApp.Class
     {
 
         [DataMember]
-        public string i_account { get; set; } 
+        public string i_account { get; set; }
         [DataMember]
         public int i_service { get; set; }
         [DataMember]
@@ -804,10 +804,69 @@ namespace TeleYumaApp.Class
         [DataMember]
         public string charged_quantity { get; set; }
         [DataMember]
-        public string call_recording_url { get; set; }       
+        public string call_recording_url { get; set; }
         [DataMember]
         public string disconnect_time { get; set; }
 
+
+        //Propiedades adicionales
+
+        [DataMember]
+        public string data
+        {
+            get
+            {
+                return DateTime.Parse(connect_time).ToString("dddd, dd MMMM yyyy");
+            }
+        }
+
+        [DataMember]
+        public string time
+        {
+            get
+            {
+                var inicio = DateTime.Parse(connect_time);
+                var fin = DateTime.Parse(disconnect_time);
+                var data = fin - inicio;
+                var horas = data.ToString();
+                return horas;
+            }
+        }
+
+        [DataMember]
+        public string Contacto
+        {
+            get
+            {
+                try
+                {
+                    if (_Global.ListaContactos is null) return CLD;
+                    if (_Global.ListaContactos.Count == 0) return CLD;
+                    foreach (var c in _Global.ListaContactos)
+                    {
+                        try
+                        {
+                            if (c.Nombre == "william 1")
+                                ;
+                            if (c.Telefono.Contains(CLD))
+                                return c.Nombre;
+                        }
+                        catch 
+                        {
+
+                        }
+                    }
+                    return CLD;
+                }
+                catch(Exception ex) 
+                {
+                    return CLD;
+                }               
+            }
+        }
+
+
+        
     }
 
 

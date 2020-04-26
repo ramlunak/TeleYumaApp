@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,9 +30,24 @@ namespace TeleYumaApp.PagesNew
         {
             var GetAccountXDRListResponse = await _Global.CurrentAccount.GetAccountXDR(new GetAccountXDRListRequest { i_service = 3, from_date = _Global.GetDateFormat_YYMMDD(DateTime.Now.AddMonths(-2)), to_date = _Global.GetDateFormat_YYMMDD(DateTime.Now, "final") });
             listGistorial.ItemsSource = null;
-            listGistorial.ItemsSource = GetAccountXDRListResponse.xdr_list;
 
+            //Use linq to sorty our monkeys by name and then group them by the new name sort property
+            try
+            {
+                var xdr_list = GetAccountXDRListResponse.xdr_list.ToList();
+                var sorted = from xdr in xdr_list
+                             orderby xdr.i_xdr descending
+                             group xdr by xdr.data into xdrGroup
+                             select new Grouping<string, XDRInfo>(xdrGroup.Key, xdrGroup);
+
+                listGistorial.ItemsSource = new ObservableCollection<Grouping<string, XDRInfo>>(sorted);
+            }
+            catch (Exception ex)
+            {
+                ;
+            }
         }
+
 
         private async void imgBuscar_Tapped(object sender, EventArgs e)
         {
@@ -47,15 +63,15 @@ namespace TeleYumaApp.PagesNew
 
         private void listGistorial_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            
+
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {            
+        {
             try
             {
                 var evento = e as TappedEventArgs;
-                DependencyService.Get<ICallService>().Call("+"+ evento.Parameter);
+                DependencyService.Get<ICallService>().Call("+" + evento.Parameter);
             }
             catch
             {
@@ -63,4 +79,17 @@ namespace TeleYumaApp.PagesNew
             }
         }
     }
+
+    public class Grouping<K, T> : ObservableCollection<T>
+    {
+        public K Key { get; private set; }
+
+        public Grouping(K key, IEnumerable<T> items)
+        {
+            Key = key;
+            foreach (var item in items)
+                this.Items.Add(item);
+        }
+    }
+
 }
