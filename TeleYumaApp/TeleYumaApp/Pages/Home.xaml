@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"
+             xmlns:rlkcontroles="clr-namespace:TeleYumaApp.rlkControles"
              x:Class="TeleYumaApp.Pages.Home" Title="TeleYuma" BackgroundColor="#232397">
     <ContentPage.ToolbarItems>
          <!--<ToolbarItem x:Name="btnContastos" Icon="contactosHome" Clicked="btnContastos_Clicked"/>-->
@@ -90,11 +91,11 @@
                                 <RowDefinition Height="100*" />
                                 <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
-                            <Image Source="llamar" Grid.Row="0" VerticalOptions="FillAndExpand" >
+                            <rlkcontroles:rlkImageButton Source="llamar" Grid.Row="0" VerticalOptions="FillAndExpand" >
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="BtnLlamar_Tapped"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>
-                            </Image>
+                            </rlkcontroles:rlkImageButton>
                             <Label Text="LLAMAR" Grid.Row="1"  HorizontalOptions="Center" TextColor="Black"   FontFamily="Calibri" />
                         </Grid>
                         <ContentView.GestureRecognizers>
@@ -109,11 +110,11 @@
                                 <RowDefinition Height="100*" />
                                 <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
-                            <Image Source="agregar.jpg" Grid.Row="0" VerticalOptions="FillAndExpand" >
+                            <rlkcontroles:rlkImageButton Source="agregar.jpg" Grid.Row="0" VerticalOptions="FillAndExpand" >
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="BtnTransferirSaldo_Tapped"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>
-                            </Image>
+                            </rlkcontroles:rlkImageButton>
                             <Label Text="AGREGAR SALDO" Grid.Row="1"  HorizontalOptions="Center" TextColor="Black"  FontFamily="Calibri" ></Label>
                         </Grid>
                         <ContentView.GestureRecognizers>

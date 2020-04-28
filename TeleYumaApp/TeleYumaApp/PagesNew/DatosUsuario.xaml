@@ -71,17 +71,17 @@
                                           
                        TextColor="DarkBlue"/>
 
-                <Image Source="newEdit" Grid.Column="2" IsVisible="{Binding !ShowEditEmail}">
+                <rlk:rlkImageButton Source="newEdit" Grid.Column="2" IsVisible="{Binding !ShowEditEmail}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ShowEditEmailCommand}"/>
                     </Image.GestureRecognizers>
-                </Image>
+                </rlk:rlkImageButton>
 
-                <Image Source="ok" Grid.Column="2" IsVisible="{Binding ShowEditEmail}">
+                <rlk:rlkImageButton Source="ok" Grid.Column="2" IsVisible="{Binding ShowEditEmail}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ActualizarEmailCommand}"/>
                     </Image.GestureRecognizers>
-                </Image>
+                </rlk:rlkImageButton>
 
             </Grid>
 

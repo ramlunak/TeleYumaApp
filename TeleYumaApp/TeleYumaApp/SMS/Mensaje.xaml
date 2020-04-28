@@ -4,6 +4,8 @@
               xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"
               xmlns:custom="clr-namespace:TeleYumaApp"
               xmlns:behaviors="clr-namespace:TeleYumaApp.Behaviors"
+             xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
+             BackgroundColor="White"
              x:Class="TeleYumaApp.SMS.Mensaje" Title="{Binding Contacto}">
 
     <ContentPage.ToolbarItems>
@@ -15,7 +17,7 @@
     <ContentPage.Content>
         <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-            <StackLayout BackgroundColor="Azure" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
                 <StackLayout>
 
                     <Grid BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
@@ -24,7 +26,7 @@
                             <RowDefinition Height="100*"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <StackLayout Grid.Row="0" IsVisible="{Binding ShowSerach}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <rlk:rlkStackLayoutButton Grid.Row="0" IsVisible="{Binding ShowSerach}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <custom:CustomEntry LineColor="Gray" x:Name="txtSearch" Image="ic_search" HorizontalOptions="FillAndExpand">
                                 <custom:CustomEntry.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchTextChangedCommand}"/>
@@ -35,7 +37,7 @@
                                     <TapGestureRecognizer Command="{Binding SearchTappedCommand}"/>
                                 </Image.GestureRecognizers>
                             </Image>
-                        </StackLayout>
+                        </rlk:rlkStackLayoutButton>
 
                         <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand">
                             <custom:ScrollableListView  x:Name="listSMS" ItemsSource="{Binding ItemsGrouped,Mode=TwoWay}" BackgroundColor="White"
@@ -88,7 +90,7 @@
                                                                 </StackLayout>
                                                                 <Label Text="{Binding inicial}"   TextColor="White" FontSize="20"  Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" />
 
-                                                                <Frame CornerRadius="15" BackgroundColor="LightGray" Padding="5" Grid.Column="1">
+                                                                <Frame CornerRadius="15"  Padding="5" Grid.Column="1">
                                                                     <Label Text="{Binding Mensaje}" FontAttributes="Bold" Font="16" TextColor="Black"
                                                                            VerticalOptions="Center"  VerticalTextAlignment="Center" />
                                                                 </Frame>
@@ -145,7 +147,7 @@
 
                     </Grid>
 
-                    <StackLayout x:Name="LayoutButtonAdd" BackgroundColor="White" >
+                    <StackLayout x:Name="LayoutButtonAdd" BackgroundColor="White" Margin="5">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
@@ -183,7 +185,7 @@
                             <Label x:Name="LabelCount"  Text="160/1" Font="10" TextColor="Black" Grid.Row="1" Grid.Column="2" VerticalOptions="End"/>
                             <Label x:Name="LabelCosto"  Text="$ 0.05" Font="10" TextColor="Black" Grid.Row="2" Grid.Column="2" VerticalOptions="Start"/>
 
-                            <Image
+                            <rlk:rlkImageButton
                         Source="enviar.png"
                         Grid.Row="1"
                         Grid.Column="3"
@@ -194,7 +196,7 @@
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer x:Name="IMG_ENVIAR" Command="{Binding EnviarCommand}"></TapGestureRecognizer>
                                 </Image.GestureRecognizers>
-                            </Image>
+                            </rlk:rlkImageButton>
                         </Grid>
                     </StackLayout>
                     <!--<Frame CornerRadius="15" BackgroundColor="#EAEFEF" Margin="5" Padding="2">
@@ -218,7 +220,7 @@
             </StackLayout>
             <!--Popup Area-->
 
-            <ContentView x:Name="popupOpciones" BackgroundColor="#C0808080" Padding="0" 
+            <ContentView x:Name="popupOpciones"  Padding="0" 
                          IsVisible="{Binding popupOpcionesVisible}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
                 <ContentView.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />

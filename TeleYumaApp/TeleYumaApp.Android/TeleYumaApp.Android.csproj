@@ -156,6 +156,7 @@
     <Compile Include="MyFirebaseMessagingService.cs" />
     <Compile Include="Renderers\AndroidLongPressedEffect.cs" />
     <Compile Include="Renderers\BottomBarPageRenderer.cs" />
+    <Compile Include="Renderers\CustomEditorRenderer.cs" />
     <Compile Include="Renderers\CustomListViewDroid.cs" />
     <Compile Include="Renderers\CustomPickerRenderer.cs" />
     <Compile Include="Renderers\CustomTabbedPageRenderer.cs" />
@@ -1401,6 +1402,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\llamada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\busqueda.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

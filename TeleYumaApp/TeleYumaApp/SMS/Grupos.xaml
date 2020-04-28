@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:custom="clr-namespace:TeleYumaApp"             
               xmlns:behaviors="clr-namespace:TeleYumaApp.Behaviors"
+             xmlns:rlk="clr-namespace:TeleYumaApp.rlkControles"
              x:Class="TeleYumaApp.SMS.Grupos" Title="Mensajes">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnSalir" Icon="ic_search" Command="{Binding SearchCommand}"/>
@@ -12,7 +13,7 @@
         <!--<AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">-->
         <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-            <StackLayout IsVisible="{Binding ShowSerach}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <rlk:rlkStackLayoutButton IsVisible="{Binding ShowSerach}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <custom:CustomEntry LineColor="Gray" x:Name="txtSearch" Image="ic_search" HorizontalOptions="FillAndExpand">
                     <custom:CustomEntry.Behaviors>
                         <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchTextChangedCommand}"/>
@@ -23,7 +24,7 @@
                         <TapGestureRecognizer Command="{Binding SearchTappedCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
-            </StackLayout>
+            </rlk:rlkStackLayoutButton>
 
             <Grid VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
@@ -98,11 +99,11 @@
                     </ListView.ItemTemplate>
                 </custom:ScrollableListView>
 
-                <Image Source="flotante" Grid.Row="1" Grid.Column="0"  HorizontalOptions="End" Margin="10,5,0,5">
+                <rlk:rlkImageButton Source="flotante" Grid.Row="1" Grid.Column="0"  HorizontalOptions="End" Margin="10,5,0,5">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer x:Name="IMG_NEW_SMS" Tapped="IMG_NEW_SMS_Tapped"></TapGestureRecognizer>
                     </Image.GestureRecognizers>
-                </Image>
+                </rlk:rlkImageButton>
             </Grid>
 
             <ContentView x:Name="popupOpciones" BackgroundColor="#C0808080" Padding="0" 

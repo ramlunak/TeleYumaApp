@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TeleYumaApp.Pages.MasterDetail" >
+                  xmlns:rlkcontroles="clr-namespace:TeleYumaApp.rlkControles"
+                  x:Class="TeleYumaApp.Pages.MasterDetail" >
 
     <MasterDetailPage.Master >
         <ContentPage Title="Menu" BackgroundColor="White">
@@ -40,13 +41,13 @@
                     <BoxView Grid.Row="2" />
                     <Image Source="bluebackground.jpg" Aspect="AspectFill" Grid.Row="2" />
 
-                    <StackLayout Orientation="Horizontal" Grid.Row="2" Margin="5">
+                    <rlkcontroles:rlkStackLayoutButton Orientation="Horizontal" Grid.Row="2" Margin="5">
                         <Image Source="shutdown.png" WidthRequest="20" HeightRequest="20"/>
                         <Label Text="Cerrar sesión" VerticalOptions="Center" TextColor="Red"/>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_7"/>
                         </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                    </rlkcontroles:rlkStackLayoutButton>
 
                 </Grid>
 

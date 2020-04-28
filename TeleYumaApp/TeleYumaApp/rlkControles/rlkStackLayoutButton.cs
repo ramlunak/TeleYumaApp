@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace TeleYumaApp.rlkControles
 {
-    public class rlkImageButton : Image
+    public class rlkStackLayoutButton : StackLayout
     {
-        public rlkImageButton() : base()
+        public rlkStackLayoutButton() : base()
         {
             const int _animationTime = 2;
             this.GestureRecognizers.Add(new TapGestureRecognizer
@@ -19,6 +19,23 @@ namespace TeleYumaApp.rlkControles
                   await this.ScaleTo(1, 50, Easing.CubicIn);
               })
             });
+
+
+           // var iconTap = new TapGestureRecognizer();
+            //iconTap.Tapped += async (sender, e) =>
+            //{
+            //    try
+            //    {
+            //        var btn = (rlkImageButton)sender;
+            //        await btn.ScaleTo(5, _animationTime);
+            //        //await btn.ScaleTo(1, _animationTime);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        ;
+            //    }
+            //};
+
         }
     }
 }

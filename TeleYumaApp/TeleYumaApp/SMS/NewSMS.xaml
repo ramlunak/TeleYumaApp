@@ -4,6 +4,7 @@
              xmlns:custom="clr-namespace:TeleYumaApp"
              xmlns:ef="clr-namespace:AiForms.Effects;assembly=AiForms.Effects"              
               xmlns:behaviors="clr-namespace:TeleYumaApp.Behaviors"
+             xmlns:rlkcontroles="clr-namespace:TeleYumaApp.rlkControles"
              x:Class="TeleYumaApp.SMS.NewSMS" Title="Nuevo Mensaje">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
@@ -29,11 +30,11 @@
                                              Keyboard="Numeric" Grid.Row="0" Grid.Column="0"/>
                         
                       
-                        <Image x:Name="imgContactos" Source="user_black" HeightRequest="30" Grid.Row="0" Grid.Column="1">
+                        <rlkcontroles:rlkImageButton x:Name="imgContactos" Source="user_black" HeightRequest="30" Grid.Row="0" Grid.Column="1">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="imgContactos_cliked" />
                             </Image.GestureRecognizers>
-                        </Image>
+                        </rlkcontroles:rlkImageButton>
                     </Grid>
                       <ActivityIndicator x:Name="WaintTelefono" HeightRequest="20"
                                            IsVisible="True" IsRunning="False" Color="Orange"/>
@@ -64,7 +65,7 @@
                             Margin="2"                           
                             ef:Placeholder.On="true"
 		                    ef:Placeholder.Text="Escribir mensaje"                           
-		                    ef:Placeholder.Color="Gray"
+		                    ef:Placeholder.Color="Gray"                                
                             TextChanged="txtSms_TextChanged" >                               
                             </custom:ExpandableEditor>
                         </Frame>
@@ -72,7 +73,7 @@
                         <Label x:Name="LabelCount"  Text="160/1" Font="10" TextColor="Black" Grid.Row="1" Grid.Column="2" VerticalOptions="End"/>
                         <Label x:Name="LabelCosto"  Text="$ 0.05" Font="10" TextColor="Black" Grid.Row="2" Grid.Column="2" VerticalOptions="Start"/>
 
-                        <Image
+                        <rlkcontroles:rlkImageButton
                             Source="enviar.png"                            
                             Grid.Row="1"
                             Grid.Column="3"
@@ -83,7 +84,7 @@
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer x:Name="IMG_ENVIAR" Tapped="IMG_ENVIAR_Tapped"></TapGestureRecognizer>
                             </Image.GestureRecognizers>
-                        </Image>
+                        </rlkcontroles:rlkImageButton>
                     </Grid>
                 </StackLayout>
             </StackLayout>

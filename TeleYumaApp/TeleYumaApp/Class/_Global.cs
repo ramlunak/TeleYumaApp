@@ -199,7 +199,6 @@ namespace TeleYumaApp.Class
 
             public static async Task CargarContactos()
             {
-
                 var ListaContactos = new List<EContacto>();
                 var PhoneContactos = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
                 foreach (var item in PhoneContactos)

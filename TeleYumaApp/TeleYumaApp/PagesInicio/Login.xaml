@@ -40,24 +40,24 @@
                         <TapGestureRecognizer x:Name="lblRecuperar" Tapped="lblRecuperar_Tapped"/>
                     </Label.GestureRecognizers>
                 </Label>
-                
-                <StackLayout>
+
+                    <rlk:rlkStackLayoutButton>
                     <Frame Padding="10" CornerRadius="25" BackgroundColor="#0A66B8">
                         <Label HorizontalTextAlignment="Center" TextColor="White" FontSize="Large" FontFamily="Arial" Text="Entrar"/>
                     </Frame>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="bntConectar_Clicked"/>
                     </StackLayout.GestureRecognizers>
-                </StackLayout>
+                </rlk:rlkStackLayoutButton>
 
-                <StackLayout>
+                    <rlk:rlkStackLayoutButton>
                     <Frame Padding="10" CornerRadius="25" BackgroundColor="#18AB07">
                         <Label HorizontalTextAlignment="Center" TextColor="White" FontSize="Medium" FontFamily="Arial" Text="No tienes cuenta? Registrate"/>
                     </Frame>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer  Tapped="bntCrearCuenta_Clicked"/>
                     </StackLayout.GestureRecognizers>
-                </StackLayout>
+                </rlk:rlkStackLayoutButton>
 
                 <StackLayout Orientation="Horizontal" Margin="0,15,0,0" Spacing="3">
                     <Label Text="Al continuar, también acepta los" LineBreakMode="NoWrap"/>

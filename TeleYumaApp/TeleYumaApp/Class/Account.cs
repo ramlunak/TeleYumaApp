@@ -495,15 +495,15 @@ namespace TeleYumaApp.Class
                     var param = JsonConvert.SerializeObject(GetAccountXDRListRequest);
                     var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_xdr_list + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
                     var response = await client.GetAsync(URL);
-                    var Result = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<GetAccountXDRListResponse>(Result);
-
+                    var json = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<GetAccountXDRListResponse>(json);
+                    return result;
                 }
                 catch
                 {
-
+                    return new GetAccountXDRListResponse();
                 }
-                return new GetAccountXDRListResponse();
+                
             }
         }
 
