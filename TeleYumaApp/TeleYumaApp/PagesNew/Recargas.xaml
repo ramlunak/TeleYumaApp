@@ -388,6 +388,47 @@
 
             </ContentView>
 
+            <ContentView IsVisible="{Binding ListaPrecios}" x:Name="popupOpcionesProductos"  BackgroundColor="#A5252528" Padding="0"  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
+
+                <StackLayout Margin="10">
+                    <Button Text="x" HorizontalOptions="End" BackgroundColor="OrangeRed" WidthRequest="40" Margin="5" TextColor="White" FontSize="20" Clicked="TapGestureRecognizer_Tapped_2"/>
+                    <ListView 
+                    ItemsSource="{Binding PreciosProductos}"
+                      HasUnevenRows="True"         
+                      IsPullToRefreshEnabled="False"
+                      CachingStrategy="RecycleElement"
+                      SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame CornerRadius="5" Padding="10" Margin="5">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand">
+                                                <Label Text="Enviá" FontAttributes="Bold" FontSize="14"/>
+                                                <Label Text="{Binding MinValue,StringFormat='{0} USD'}" FontSize="14" TextColor="Goldenrod" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                            <Image Source="producto" WidthRequest="50" Grid.Column="1"/>
+                                            <StackLayout Grid.Column="2" HorizontalOptions="EndAndExpand">
+                                                <Label Text="Recibe" FontAttributes="Bold" FontSize="14" />
+                                                <Label Text="{Binding DisplayText}" FontSize="14" TextColor="Goldenrod" FontAttributes="Bold"/>
+                                            </StackLayout>
+
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>                       
+                    </ListView>
+                </StackLayout>
+                
+            </ContentView>
+
             <ContentView IsVisible="{Binding OpcionesCargandoVisible}" x:Name="popupOpcionesCargando"  BackgroundColor="#C0808080" Padding="0"  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
 
                 <StackLayout BackgroundColor="Transparent"  WidthRequest="250" VerticalOptions="Center" HorizontalOptions="Center" Spacing="0" Padding="0" Margin="15">

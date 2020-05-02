@@ -35,11 +35,13 @@ namespace TeleYumaApp.ViewModels
             CargarFotoPais();
             MovilSelected = true;
             NautaSelected = false;
+            ListaPrecios = false;
             ListaProductoVisible = false;
             OpcionesRecargaVisible = false;
             PaisLeftImage = "place";
             OpcionesCargandoVisible = false;
-            txtNauta=string.Empty;
+            txtNauta = string.Empty;
+
         }
 
         private bool CanSubmitExecute(object parameter)
@@ -180,6 +182,14 @@ namespace TeleYumaApp.ViewModels
 
         #region Producto
 
+        private ObservableCollection<Producto> _preciosProductos;
+
+        public ObservableCollection<Producto> PreciosProductos
+        {
+            get { return _preciosProductos; }
+            set { _preciosProductos = value; OnPropertyChanged(); }
+        }
+
         public string TipoProducto { get; set; }
 
         private bool _MovilSelected;
@@ -196,6 +206,14 @@ namespace TeleYumaApp.ViewModels
         {
             get { return _NautaSelected; }
             set { _NautaSelected = value; OnPropertyChanged(); }
+        }
+
+        private bool _ListaPrecios;
+
+        public bool ListaPrecios
+        {
+            get { return _ListaPrecios; }
+            set { _ListaPrecios = value; OnPropertyChanged(); }
         }
 
         private bool _ListaProductoVisible;
@@ -229,13 +247,13 @@ namespace TeleYumaApp.ViewModels
                 MovilSelected = true;
                 NautaSelected = false;
             }
-            else if(parameter.ToString() == "Nauta")
+            else if (parameter.ToString() == "Nauta")
             {
                 TipoProducto = "nauta";
                 MovilSelected = false;
                 NautaSelected = true;
             }
-            else if(parameter.ToString() == "datos600MG" || parameter.ToString() == "datos1G" || parameter.ToString() == "datos2_5G")
+            else if (parameter.ToString() == "datos600MG" || parameter.ToString() == "datos1G" || parameter.ToString() == "datos2_5G")
             {
                 TipoProducto = parameter.ToString();
                 MovilSelected = true;
@@ -317,10 +335,31 @@ namespace TeleYumaApp.ViewModels
                 return _AddToCartCommand;
             }
         }
-        
+
 
         public async void AddToCartExecute(object parameter)
         {
+            ListaPrecios = true;
+            PreciosProductos = new ObservableCollection<Producto>(new List<Producto> {
+            new Producto{
+            MinValue = (float)2.7,
+            DisplayText = "BRL 10"
+            },
+            new Producto{
+            MinValue = (float)3.2,
+            DisplayText = "BRL 13"
+            },  new Producto{
+            MinValue = (float)5,
+            DisplayText = "BRL 25"
+            },  new Producto{
+            MinValue = (float)10,
+            DisplayText = "BRL 47"
+            }, new Producto{
+            MinValue = (float)20,
+            DisplayText = "BRL 95"
+            }
+            });
+            return;
 
             //var compra1 = new Compra
             //{
@@ -347,9 +386,9 @@ namespace TeleYumaApp.ViewModels
                 OpcionesCargandoVisible = false;
                 return;
             }
-            
+
             OpcionesCargandoVisible = true;
-            
+
             if (TipoProducto == "movil")
             {
                 if (SelectedItem == null || string.IsNullOrEmpty(txtNumero) || string.IsNullOrEmpty(txtMonto))
@@ -359,7 +398,7 @@ namespace TeleYumaApp.ViewModels
                     return;
                 }
 
-                if (_Global.VM.VMCompras.Compras.Where(x=>x.Producto == (Prefijo + txtNumero).ToString()).Any())
+                if (_Global.VM.VMCompras.Compras.Where(x => x.Producto == (Prefijo + txtNumero).ToString()).Any())
                 {
                     CurrentPage.DisplayAlert("TeleYuma", "Para recargar el mismo numero de telefono espere 5 minutos", "Ok");
                     OpcionesCargandoVisible = false;
@@ -406,10 +445,10 @@ namespace TeleYumaApp.ViewModels
                     Estado = EstadoCompra.Espera
                 };
                 OpcionesCargandoVisible = false;
-                               
+
 
                 _Global.VM.VMCompras.Compras.Add(compra);
-                _Global.ListaRecargas.Lista.Add(new Recarga {Code = resultMovil.Code, tipo = "movil", numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
+                _Global.ListaRecargas.Lista.Add(new Recarga { Code = resultMovil.Code, tipo = "movil", numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
                 ResetForm();
             }
             else if (TipoProducto == "datos600MG" || TipoProducto == "datos1G" || TipoProducto == "datos2_5G")
@@ -427,7 +466,7 @@ namespace TeleYumaApp.ViewModels
                     OpcionesCargandoVisible = false;
                     return;
                 }
-                
+
                 var validarDatos = new ValidateProducto
                 {
                     Producto = Prefijo + txtNumero,
@@ -467,7 +506,7 @@ namespace TeleYumaApp.ViewModels
                     Estado = EstadoCompra.Espera
                 };
                 OpcionesCargandoVisible = false;
-                
+
                 _Global.VM.VMCompras.Compras.Add(compra);
                 _Global.ListaRecargas.Lista.Add(new Recarga { Code = resultDatos.Code, tipo = TipoProducto, numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
                 ResetForm();
@@ -490,7 +529,7 @@ namespace TeleYumaApp.ViewModels
 
                 var validarNauta = new ValidateProducto
                 {
-                    Producto = txtNauta +"@nauta.com.cu",
+                    Producto = txtNauta + "@nauta.com.cu",
                     TipoProducto = TipoProducto,
                     IdCuenta = _Global.CurrentAccount.i_account.ToString(),
                     Monto = (float)Convert.ToDecimal(txtMonto)
@@ -529,10 +568,10 @@ namespace TeleYumaApp.ViewModels
                 };
                 OpcionesCargandoVisible = false;
 
-                
+
 
                 _Global.VM.VMCompras.Compras.Add(compra);
-                _Global.ListaRecargas.Lista.Add(new Recarga { Code = resultNauta.Code,tipo = "nauta", numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
+                _Global.ListaRecargas.Lista.Add(new Recarga { Code = resultNauta.Code, tipo = "nauta", numero = compra.Producto, monto = compra.Monto, precio = compra.Precio });
                 ResetForm();
             }
 
