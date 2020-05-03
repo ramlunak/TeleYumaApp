@@ -55,5 +55,15 @@ namespace TeleYumaApp
         {
             _Global.VM.VMRecargas.ListaPrecios = false;
         }
+
+        private void TexBoxPrefijo_Focused(object sender, FocusEventArgs e)
+        {
+            _Global.VM.VMRecargas.Prefijo = string.Empty;
+        }
+
+        private void TexBoxPrefijo_Unfocused(object sender, FocusEventArgs e)
+        {
+            _Global.VM.VMRecargas.CargarPaisByPrefijo();
+        }
     }
 }

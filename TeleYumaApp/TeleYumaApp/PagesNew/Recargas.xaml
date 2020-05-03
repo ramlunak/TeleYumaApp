@@ -69,7 +69,7 @@
                 <Grid RowSpacing="0" IsVisible="{Binding MovilSelected}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="100*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
@@ -82,8 +82,21 @@
 
                     <Image Grid.Row="0" Grid.Column="0"  
                            Source="phone_black" WidthRequest="25" HeightRequest="25" VerticalOptions="Center"/>
-                    <Label Grid.Row="0" Grid.Column="1"  
-                           Text="{Binding Prefijo,Mode=TwoWay}" FontSize="16" TextColor="Gray" VerticalTextAlignment="Center" VerticalOptions="Center" />
+
+                    <rlk:entry Placeholder="Pref." Text="{Binding Prefijo,Mode=TwoWay}" 
+                        Grid.Row="0"   Grid.Column="1"   
+                        x:Name="TexBoxPrefijo"
+                        FontSize="15"
+                        Keyboard="Numeric"   
+                        PlaceholderColor="Gray" 
+                        HorizontalTextAlignment="End"
+                        HorizontalOptions="CenterAndExpand"                          
+                        VerticalTextAlignment="Center"
+                        VerticalOptions="Center"
+                        Focused="TexBoxPrefijo_Focused"
+                        Unfocused="TexBoxPrefijo_Unfocused">
+                        
+                    </rlk:entry>
 
 
                     <Grid  Grid.Row="0" Grid.Column="2" VerticalOptions="Center">
@@ -102,7 +115,7 @@
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                         </Image.GestureRecognizers>
-                    </rlk:rlkImageButton>                   
+                    </rlk:rlkImageButton>
 
                     <BoxView Margin="0,4,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
                              BackgroundColor="Blue" HeightRequest="1" />
@@ -285,7 +298,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30"/>
                                     <RowDefinition Height="1"/>
-                                    <RowDefinition Height="30"/>                                  
+                                    <RowDefinition Height="30"/>
                                 </Grid.RowDefinitions>
 
                                 <rlk:rlkStackLayoutButton Grid.Row="0" Orientation="Horizontal" VerticalOptions="Center">
@@ -314,7 +327,9 @@
                                 </rlk:rlkStackLayoutButton>
 
                                 <!--<BoxView BackgroundColor="Gray" HeightRequest="1" Grid.Row="3" />
-                                --><!--datos600MG--><!--
+                                -->
+                                <!--datos600MG-->
+                                <!--
                                 <rlk:rlkStackLayoutButton Grid.Row="4" Orientation="Horizontal" VerticalOptions="Center">
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ProductoTappedCommand}" CommandParameter="datos600MG"/>
@@ -327,7 +342,9 @@
                                 </rlk:rlkStackLayoutButton>
 
                                 <BoxView BackgroundColor="Gray" HeightRequest="1" Grid.Row="5"/>
-                                --><!--datos1G--><!--
+                                -->
+                                <!--datos1G-->
+                                <!--
                                 <rlk:rlkStackLayoutButton Grid.Row="6" Orientation="Horizontal" VerticalOptions="Center">
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ProductoTappedCommand}" CommandParameter="datos1G"/>
@@ -340,7 +357,9 @@
                                 </rlk:rlkStackLayoutButton>
 
                                 <BoxView BackgroundColor="Gray" HeightRequest="1" Grid.Row="7"/>
-                                --><!--datos2_5G--><!--
+                                -->
+                                <!--datos2_5G-->
+                                <!--
                                 <rlk:rlkStackLayoutButton Grid.Row="8" Orientation="Horizontal" VerticalOptions="Center">
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ProductoTappedCommand}" CommandParameter="datos2_5G"/>
@@ -395,6 +414,8 @@
                     <ListView 
                     ItemsSource="{Binding PreciosProductos}"
                       HasUnevenRows="True"         
+                       
+                      SelectedItem="{Binding PrecioSelected}"                       
                       IsPullToRefreshEnabled="False"
                       CachingStrategy="RecycleElement"
                       SeparatorVisibility="None">
@@ -404,16 +425,21 @@
                                     <Frame CornerRadius="5" Padding="10" Margin="5">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="30*"/>
+                                                <ColumnDefinition Width="40*"/>
+                                                <ColumnDefinition Width="30*"/>
                                             </Grid.ColumnDefinitions>
 
                                             <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand">
                                                 <Label Text="Enviá" FontAttributes="Bold" FontSize="14"/>
                                                 <Label Text="{Binding MinValue,StringFormat='{0} USD'}" FontSize="14" TextColor="Goldenrod" FontAttributes="Bold"/>
                                             </StackLayout>
-                                            <Image Source="producto" WidthRequest="50" Grid.Column="1"/>
+
+                                            <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand">
+                                                <Image Source="movil2" WidthRequest="30" />
+                                                <Label Text="{Binding Name}" TextColor="Blue"  HorizontalTextAlignment="Center" />
+                                            </StackLayout>
+
                                             <StackLayout Grid.Column="2" HorizontalOptions="EndAndExpand">
                                                 <Label Text="Recibe" FontAttributes="Bold" FontSize="14" />
                                                 <Label Text="{Binding DisplayText}" FontSize="14" TextColor="Goldenrod" FontAttributes="Bold"/>
@@ -423,10 +449,13 @@
                                     </Frame>
                                 </ViewCell>
                             </DataTemplate>
-                        </ListView.ItemTemplate>                       
+                        </ListView.ItemTemplate>
+                        <ListView.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding PrecioProducoSelectCommand}"/>
+                        </ListView.Behaviors>
                     </ListView>
                 </StackLayout>
-                
+
             </ContentView>
 
             <ContentView IsVisible="{Binding OpcionesCargandoVisible}" x:Name="popupOpcionesCargando"  BackgroundColor="#C0808080" Padding="0"  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >

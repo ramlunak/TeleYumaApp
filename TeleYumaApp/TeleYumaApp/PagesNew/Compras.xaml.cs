@@ -16,6 +16,7 @@ namespace TeleYumaApp
         public Compras()
         {
             InitializeComponent();
+            BindingContext = null;
             BindingContext = _Global.VM.VMCompras;
         }
 
@@ -169,6 +170,23 @@ namespace TeleYumaApp
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             PayPalPayment();
+        }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+            ;
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            var compra = ((Button)sender).BindingContext;
+            
+            _Global.VM.VMCompras.SelectedItem = (Compra)compra;
+            if(await DisplayAlert("TeleYuma","Esta seguro que desea eliminar esta compra?", "Si", "Cancelar"))
+            {
+                _Global.VM.VMCompras.Eliminar();
+            }
+           
         }
     }
 }

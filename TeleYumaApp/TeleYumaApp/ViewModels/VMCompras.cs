@@ -121,6 +121,18 @@ namespace TeleYumaApp.ViewModels
             }
         }
 
+        public void Eliminar()
+        {
+            if (SelectedItem != null)
+            {
+                this.Compras.Remove(SelectedItem);
+                var rec = _Global.ListaRecargas.Lista.Where(x => x.numero == SelectedItem.Producto).First();
+                _Global.ListaRecargas.Lista.Remove(rec);
+                CargarDetalle();
+                popupOpcionesVisible = false;
+            }
+        }
+
         private ICommand _deleteCommand;
         public ICommand deleteCommand
         {

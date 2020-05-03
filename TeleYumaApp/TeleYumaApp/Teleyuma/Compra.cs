@@ -9,6 +9,7 @@ namespace TeleYumaApp.Teleyuma
     {
         public string TipoProducto { get; set; }
         public string Producto { get; set; }
+        public string Empresa { get; set; }
         public string LabelProducto
         {
             get
@@ -32,13 +33,21 @@ namespace TeleYumaApp.Teleyuma
             get
             {
                 if (TipoProducto == "movil")
-                    return "phone_blue";
-                else return "wifi_green";
+                    return "movil2";
+                else return "conexion3g";
             }
         }
         public float Monto { get; set; }
         public float Precio { get; set; }
         public string Bono { get; set; }
+        
+        public bool BonoVisible
+        {
+            get
+            {
+                return string.IsNullOrEmpty(Bono) ? false : true;
+            }
+        }
         public EstadoCompra Estado { get; set; }
 
     }

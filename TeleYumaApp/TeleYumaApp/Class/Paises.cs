@@ -22,12 +22,27 @@ namespace TeleYumaApp.Class
     {
         public static string GetPrefijo(string nombre)
         {
-            return GetList().First(x => x.Nombre.ToLower() == nombre.ToLower()).PrefijoTelefonico.ToString();
+            return GetList().First(x => x.Nombre.ToLower() == nombre.ToLower()).PrefijoTelefonico.ToString().Trim();
         }
 
+        public static string GetPrefijoByiso(string iso2)
+        {
+            return GetList().First(x => x.iso2.ToLower() == iso2.ToLower()).PrefijoTelefonico.ToString().Trim();
+        }
+        
         public static string GetIso2(string nombre)
         {
-            return GetList().First(x => x.Nombre.ToLower() == nombre.ToLower()).iso2.ToLower().ToString();
+            return GetList().First(x => x.Nombre.ToLower() == nombre.ToLower()).iso2.ToLower().ToString().Trim();
+        }
+
+        public static string GetIso2ByPrefijo(string pefijo)
+        {
+            return GetList().First(x => x.PrefijoTelefonico.ToLower() == pefijo.ToLower()).iso2.ToLower().ToString().Trim();
+        }
+
+        public static EPais GetPaisByPrefijo(string pefijo)
+        {
+            return GetList().First(x => x.PrefijoTelefonico.ToLower() == pefijo.ToLower());
         }
 
         public static IEnumerable<string> Paises => from lista in GetList() select lista.Nombre;           
