@@ -6,7 +6,12 @@
     
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand">
-            <ActivityIndicator Grid.Row="0" IsRunning="True"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <StackLayout Grid.Row="0" x:Name="StackLayoutSinResultados" IsVisible="False" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Image Source="sinresultado" WidthRequest="200"/>
+                <Label Text="No se encontraron registros en el periodo seleccionado" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+             <ActivityIndicator x:Name="ActivityIndicatorLoading" IsVisible="False" Grid.Row="0" IsRunning="True"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+           
             <StackLayout Grid.Row="0">
             <Frame Margin="5" Padding="5">
                 <Grid RowSpacing="2" Margin="2" >

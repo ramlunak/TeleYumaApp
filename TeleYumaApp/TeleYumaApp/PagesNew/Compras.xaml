@@ -25,9 +25,9 @@
                     <Label Text="Cargo por transacción:" FontAttributes="Bold" FontSize="14" Grid.Row="1" Grid.Column="0"/>
                     <Label Text="Total a pagar:" Grid.Row="2" FontAttributes="Bold" FontSize="14" Grid.Column="0"/>
 
-                    <Label Text="{Binding Subtotal,StringFormat='${0} USD'}" TextColor="DarkGoldenrod" FontSize="15" Grid.Row="0" Grid.Column="1"/>
-                    <Label Text="{Binding Cargo,StringFormat='${0} USD'}"  TextColor="DarkGoldenrod" FontSize="15" Grid.Row="1" Grid.Column="1"/>
-                    <Label Text="{Binding Subtotal,StringFormat='${0} USD'}" TextColor="Green" FontSize="15" Grid.Row="2" Grid.Column="1"/>
+                    <Label Text="{Binding Subtotal,StringFormat='${0:F} USD'}" TextColor="DarkGoldenrod" FontSize="15" Grid.Row="0" Grid.Column="1"/>
+                    <Label Text="{Binding Cargo,StringFormat='${0:F} USD'}"  TextColor="DarkGoldenrod" FontSize="15" Grid.Row="1" Grid.Column="1"/>
+                    <Label Text="{Binding Subtotal,StringFormat='${0:F} USD'}" TextColor="Green" FontSize="15" Grid.Row="2" Grid.Column="1"/>
                 </Grid>
               
             </StackLayout>
@@ -170,8 +170,8 @@
                                                         <Label Text="{Binding Producto}"  TextColor="Black" FontSize="16" LineBreakMode="TailTruncation"/>
                                                         <Label Text="{Binding Empresa}" TextColor="Gray" FontAttributes="Italic" FontSize="12"/>
                                                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                                            <Label Text="{Binding Monto,StringFormat='Valor ${0} USD'}" TextColor="DarkGoldenrod" FontAttributes="Italic" FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"/>
-                                                            <Label Text="{Binding Precio,StringFormat='A Pagar ${0} USD'}" TextColor="Green" FontAttributes="Italic" FontSize="12" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                                                            <Label Text="{Binding Monto,StringFormat='Valor ${0:F} USD'}" TextColor="DarkGoldenrod" FontAttributes="Italic" FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"/>
+                                                            <Label Text="{Binding Precio,StringFormat='A Pagar ${0:F} USD'}" TextColor="Green" FontAttributes="Italic" FontSize="12" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
                                                         </StackLayout>
                                                     </StackLayout>
                                                 </StackLayout>

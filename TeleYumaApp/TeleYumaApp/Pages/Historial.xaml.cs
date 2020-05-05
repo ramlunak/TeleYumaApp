@@ -37,10 +37,9 @@ namespace TeleYumaApp.Pages
             //listGistorial.ItemsSource = GetAccountXDRListResponse.xdr_list;
             //if (GetAccountXDRListResponse.xdr_list.Length == 0)
             //    DisplayAlert("TeleYuma", "No se encontraron registros en el periodo seleccionado", "ok");
-
+            ActivityIndicatorLoading.IsVisible = true;
             try
             {
-
                 var desde = _Global.GetDateFormat_YYMMDD(pkrDesde.Date);
                 var hasta = _Global.GetDateFormat_YYMMDD(pkrHasta.Date, "final");
 
@@ -48,19 +47,27 @@ namespace TeleYumaApp.Pages
 
                 listGistorial.ItemsSource = null;
                 listGistorial.ItemsSource = GetAccountXDRListResponse.xdr_list;
-                if (listGistorial.ItemsSource is null )
-                    DisplayAlert("TeleYuma", "No se encontraron registros en el periodo seleccionado", "ok");
+                if (GetAccountXDRListResponse.xdr_list is null || GetAccountXDRListResponse.xdr_list.Length == 0)
+                {
+                    StackLayoutSinResultados.IsVisible = true;
+                }
+                else
+                {
+                    StackLayoutSinResultados.IsVisible = false;
+                }
+                   
             }
             catch (Exception ex)
             {
-                               ;
+                ;
             }
+            ActivityIndicatorLoading.IsVisible = false;
         }
 
         private async void imgBuscar_Tapped(object sender, EventArgs e)
         {
             CargarXDR();
         }
-              
+
     }
 }

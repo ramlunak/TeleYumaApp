@@ -432,7 +432,7 @@
 
                                             <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand">
                                                 <Label Text="Enviá" FontAttributes="Bold" FontSize="14"/>
-                                                <Label Text="{Binding MinValue,StringFormat='{0} USD'}" FontSize="14" TextColor="Goldenrod" FontAttributes="Bold"/>
+                                                <Label Text="{Binding MinValue,StringFormat='{0:F} USD'}" FontSize="14" TextColor="Goldenrod" FontAttributes="Bold"/>
                                             </StackLayout>
 
                                             <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand">

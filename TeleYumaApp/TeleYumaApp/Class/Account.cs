@@ -503,7 +503,7 @@ namespace TeleYumaApp.Class
                 {
                     return new GetAccountXDRListResponse();
                 }
-                
+
             }
         }
 
@@ -766,8 +766,40 @@ namespace TeleYumaApp.Class
         public string CLD { get; set; }
         [DataMember]
         public string call_recording_server_url { get; set; }
+
+        private string _connect_time { get; set; }
         [DataMember]
-        public string connect_time { get; set; }
+        public string connect_time
+        {
+            get
+            {
+                return _connect_time;
+            }
+            set
+            {
+                try
+                {
+                    TimeZoneInfo easternZone;
+
+                    try
+                    {
+                        easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+                    }
+                    catch (TimeZoneNotFoundException)
+                    {
+                        easternZone = TimeZoneInfo.FindSystemTimeZoneById("America/New_York");
+                    }
+                    _connect_time = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Parse(value), "UTC", easternZone.Id).ToString("yyyy-MM-dd h:mm:ss tt");
+
+                }
+                catch (Exception ex)
+                {
+
+                    _connect_time = value;
+                }
+            }
+        }
+
         [DataMember]
         public string CLI { get; set; }
         [DataMember]
@@ -805,9 +837,39 @@ namespace TeleYumaApp.Class
         public string charged_quantity { get; set; }
         [DataMember]
         public string call_recording_url { get; set; }
+     
+        private string _disconnect_time { get; set; }
         [DataMember]
-        public string disconnect_time { get; set; }
+        public string disconnect_time
+        {
+            get
+            {
+                return _disconnect_time;
+            }
+            set
+            {
+                try
+                {
+                    TimeZoneInfo easternZone;
 
+                    try
+                    {
+                        easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+                    }
+                    catch (TimeZoneNotFoundException)
+                    {
+                        easternZone = TimeZoneInfo.FindSystemTimeZoneById("America/New_York");
+                    }
+                    _disconnect_time = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Parse(value), "UTC", easternZone.Id).ToString("yyyy-MM-dd h:mm:ss tt");
+
+                }
+                catch (Exception ex)
+                {
+
+                    _disconnect_time = value;
+                }
+            }
+        }
 
         //Propiedades adicionales
 
@@ -860,22 +922,22 @@ namespace TeleYumaApp.Class
                             if (c.Telefono.Contains(CLD))
                                 return c.Nombre;
                         }
-                        catch 
+                        catch
                         {
 
                         }
                     }
                     return CLD;
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
                     return CLD;
-                }               
+                }
             }
         }
 
 
-        
+
     }
 
 
