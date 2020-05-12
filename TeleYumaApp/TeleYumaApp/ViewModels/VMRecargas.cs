@@ -218,7 +218,7 @@ namespace TeleYumaApp.ViewModels
         }
 
         public string TipoProducto { get; set; }
-      
+
         private bool _MovilSelected;
 
         public bool MovilSelected
@@ -414,13 +414,29 @@ namespace TeleYumaApp.ViewModels
                         OpcionesCargandoVisible = false;
                         return;
                     }
+                   
+                    var validarMovil = new ValidateProducto();
 
-                    var validarMovil = new ValidateProducto
+                    if (string.IsNullOrEmpty(txtMonto))
                     {
-                        Producto = Prefijo + txtNumero,
-                        TipoProducto = TipoProducto,
-                        IdCuenta = _Global.CurrentAccount.i_account.ToString()                      
-                    };
+                         validarMovil = new ValidateProducto
+                        {
+                            Producto = Prefijo + txtNumero,
+                            TipoProducto = TipoProducto,                          
+                            IdCuenta = _Global.CurrentAccount.i_account.ToString()
+                        };
+                    }
+                    else
+                    {
+                         validarMovil = new ValidateProducto
+                        {
+                            Producto = Prefijo + txtNumero,
+                            TipoProducto = TipoProducto,
+                            Monto = (float)Convert.ToDecimal(txtMonto),
+                            IdCuenta = _Global.CurrentAccount.i_account.ToString()
+                        };
+                    }
+
                     var resultMovil = await _Global.Post<Producto>("Producto", validarMovil);
 
                     if ((resultMovil != null && resultMovil.Name != null) && string.IsNullOrEmpty(txtMonto))
@@ -428,8 +444,9 @@ namespace TeleYumaApp.ViewModels
                         CurrentPage.DisplayAlert("TeleYuma", "El rango del monto debe ser " + resultMovil.DisplayText, "Ok");
                         OpcionesCargandoVisible = false;
                         return;
-                    } 
-
+                    }
+                    
+                  
                     if (resultMovil is null || resultMovil.Name is null)
                     {
 
