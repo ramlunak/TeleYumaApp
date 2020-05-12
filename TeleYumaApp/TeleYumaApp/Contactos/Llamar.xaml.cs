@@ -54,7 +54,7 @@ namespace TeleYumaApp.Contactos
             try
             {
                 var numero = txtTelefono.Text;
-                var llamada = "7868717144,011" + numero;
+                var llamada = "+551142805356,011" + numero;
                 DependencyService.Get<ICallService>().Call(llamada);
 
             }

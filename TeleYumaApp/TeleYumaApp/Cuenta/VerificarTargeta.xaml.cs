@@ -36,7 +36,7 @@ namespace TeleYumaApp.Cuenta
         decimal RandomMonto()
         {
             var Ran = new Random();
-            int numeroAleatorio = Ran.Next(10, 99);
+            int numeroAleatorio = Ran.Next(51, 99);
             decimal monto;
             monto = Convert.ToDecimal("0," + numeroAleatorio.ToString());
             if (monto >= 1)
