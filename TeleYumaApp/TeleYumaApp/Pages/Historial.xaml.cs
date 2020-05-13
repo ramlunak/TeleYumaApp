@@ -43,7 +43,7 @@ namespace TeleYumaApp.Pages
                 var desde = _Global.GetDateFormat_YYMMDD(pkrDesde.Date);
                 var hasta = _Global.GetDateFormat_YYMMDD(pkrHasta.Date, "final");
 
-                var GetAccountXDRListResponse = await _Global.CurrentAccount.GetAccountXDR(new GetAccountXDRListRequest { i_service = 3, from_date = desde, to_date = hasta });
+                var GetAccountXDRListResponse = await _Global.CurrentAccount.GetAccountXDR(new GetAccountXDRListAllRequest {  from_date = desde, to_date = hasta });
 
                 listGistorial.ItemsSource = null;
                 listGistorial.ItemsSource = GetAccountXDRListResponse.xdr_list;

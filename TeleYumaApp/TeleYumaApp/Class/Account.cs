@@ -507,6 +507,32 @@ namespace TeleYumaApp.Class
             }
         }
 
+        public async Task<GetAccountXDRListResponse> GetAccountXDR(GetAccountXDRListAllRequest GetAccountXDRListRequest)
+        {
+            GetAccountXDRListRequest.i_account = this.i_account.ToString();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var param = JsonConvert.SerializeObject(GetAccountXDRListRequest);
+                    var URL = _Global.BaseUrlAdmin + _Global.Servicio.Account + "/" + _Global.Metodo.get_xdr_list + "/" + await _Global.GetAuthInfoAdminJson() + "/" + param;
+                    var response = await client.GetAsync(URL);
+                    var json = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<GetAccountXDRListResponse>(json);
+                    return result;
+                }
+                catch
+                {
+                    return new GetAccountXDRListResponse();
+                }
+
+            }
+        }
+
+
         public async Task<PaymentMethodObject> PaymentMethodInfo()
         {
             var PaymentMethodObject = new PaymentMethodObject();
@@ -729,6 +755,17 @@ namespace TeleYumaApp.Class
         }
     }
 
+    public class GetAccountXDRListAllRequest
+    {
+
+        [DataMember]
+        public string i_account { get; set; }      
+        [DataMember]
+        public string from_date { get; set; }
+        [DataMember]
+        public string to_date { get; set; }
+
+    }
 
     public class GetAccountXDRListRequest
     {
