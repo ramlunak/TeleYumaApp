@@ -58,8 +58,15 @@
                         <Entry Placeholder="Confirmar contraseña"  x:Name="txt_Password2" Text="{Binding password}" IsPassword="True"/>
                             <Label x:Name="validate_txt_Password2" TextColor="Orange" HorizontalOptions="End" />
                         </StackLayout>
-
-                    </Grid>
+                    <ActivityIndicator IsRunning="True"  IsVisible="False"
+                                   x:Name="Loading"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   ScaleX="3"
+                                   Color="Orange"
+                                   Grid.Row="0" 
+                                   Grid.RowSpan="8"/>
+                </Grid>
                
             </ScrollView>
             <StackLayout HorizontalOptions="FillAndExpand">

@@ -232,8 +232,10 @@ namespace TeleYumaApp.PagesInicio
 
         private void btnCompletar_Clicked(object sender, EventArgs e)
         {
+           
             if (!ValidarForm()) return;           
-                SetAccount();         
+                SetAccount();
+          
         }
 
         public async void SetAccount()
@@ -244,16 +246,16 @@ namespace TeleYumaApp.PagesInicio
             _Global.CurrentAccount.login = txt_email.Text.Trim();
             _Global.CurrentAccount.h323_password = _Global.ServicePassword.ToString();                    
             _Global.CurrentAccount.password = txt_Password.Text.Trim();
-
+            Loading.IsVisible = true;
             var valid = await ValidarCuenta();
             if (valid)
             {
-                CrearCuenta();
+              await CrearCuenta();
             }
-
+            Loading.IsVisible = false;
         }
 
-        public async void CrearCuenta()
+        public async Task CrearCuenta()
         {
 
             using (HttpClient client = new HttpClient())

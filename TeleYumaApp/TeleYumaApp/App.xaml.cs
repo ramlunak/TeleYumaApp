@@ -27,8 +27,7 @@ namespace TeleYumaApp
 
         public App()
         {
-            InitializeComponent();
-          
+            InitializeComponent();           
             Login();
         }
 

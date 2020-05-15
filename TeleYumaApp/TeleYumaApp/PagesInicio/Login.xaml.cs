@@ -38,14 +38,11 @@ namespace TeleYumaApp.PagesInicio
         public async Task MostrarAlerta()
         {
             await DisplayAlert("TeleYuma", "No se ha podido cargar los parámetros de configuración, verifique su conexión ó contacte a soporte", "ok");
-
         }
 
         public void MostrarCargando(bool value)
         {
-          //  LayoutBotones.IsVisible = !value;
-           // LayoutFormulario.IsVisible = !value;
-           // LayoutCargando.IsVisible = value;
+            Loading.IsVisible = value;
         }
 
         decimal RandomMonto()
