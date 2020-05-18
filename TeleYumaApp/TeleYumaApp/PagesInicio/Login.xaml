@@ -95,8 +95,7 @@
                 <ActivityIndicator IsRunning="True" IsVisible="False"
                                    x:Name="Loading"
                                    VerticalOptions="Center"
-                                   HorizontalOptions="Center"
-                                   ScaleX="3"
+                                   HorizontalOptions="Center"                                 
                                    Color="Orange"
                                    Grid.Row="0" 
                                    Grid.RowSpan="2"/>
