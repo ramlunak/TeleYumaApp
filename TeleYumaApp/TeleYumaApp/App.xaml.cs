@@ -27,11 +27,10 @@ namespace TeleYumaApp
 
         public App()
         {
-            InitializeComponent();           
-            Login();
+            InitializeComponent();
+            Login();           
         }
-
-
+        
         public async void Login()
         {
          

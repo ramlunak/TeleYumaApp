@@ -110,8 +110,11 @@ namespace TeleYumaApp.Pages
             }
             if (_Global.CurrentAccount.phone2 != EstadoTarjeta.TarjetaComprovada.ToString())
             {
-                await DisplayAlert("TeleYuma", "Debe comprobar que es el propetario de esta tarjeta", "OK");
-                await this.Navigation.PushAsync(new Cuenta.VerificarTarjeta());
+                var array = lblNumeroTarjeta.Text.Split('x');
+                var ultimosnumeros = array.Last();
+                var result = await DisplayAlert("Una cosa más", "Debemos verificar su tarjeta que termina en (" + ultimosnumeros + ") para asegurarnos que usted es el propetario de esta tarjeta", "ENTIENDO", "CANCELAR");
+                if (result)
+                    await this.Navigation.PushAsync(new Cuenta.VerificarTarjeta());
                 return;
             }
 
@@ -145,8 +148,8 @@ namespace TeleYumaApp.Pages
 
             if (_Global.TipoRecarga == "movil")
             {
-                MostrarCargando(true);                
-              
+                MostrarCargando(true);
+
                 await _Global.CurrentAccount.MakeTransaction_EcommercePayment(_Global.ListaRecargas.TotalPagar, "Lista de Recargas");
 
                 if ((_Global.TransactionResponse.result_code == "1" || _Global.TransactionResponse.result_code == "A01") && _Global.TransactionResponse.transaction_id != "0")
@@ -265,9 +268,9 @@ namespace TeleYumaApp.Pages
             }
 
             if (montoRecargaSinError > 0)
-            {               
+            {
                 await DisplayAlert("TeleYuma", "El sistema completó la solicitud", "OK");
-                               
+
             }
             else
             {

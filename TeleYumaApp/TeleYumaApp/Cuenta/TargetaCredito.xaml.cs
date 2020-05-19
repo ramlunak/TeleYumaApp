@@ -144,15 +144,25 @@ namespace TeleYumaApp.Cuenta
                         await DisplayAlert("Update Payment Method Error", ErrorHandling.faultstring, "OK");
                     else
                     {
-                        await DisplayAlert("TeleYuma", "Datos actualizados correctamente, la aplicación  debe comprobar que es propietario de esta tarjeta.", "OK");
-                        _Global.Vistas.Pagar.ActualizarLbabelNumero();
-                        _Global.CurrentAccount.phone2 = "";
-                        _Global.CurrentAccount.cont2 = "0";
-                        _Global.CaptureMonto = 0;
+                        var cantidad = UpdateAccountPaymentMethodRequest.payment_method_info.number.Length;                       
+                        var ultimosnumeros = UpdateAccountPaymentMethodRequest.payment_method_info.number.Substring(cantidad - 5,4);
+                        var result = await DisplayAlert("Una cosa más", "Debemos verificar su tarjeta que termina en (" + ultimosnumeros + ") para asegurarnos que usted es el propetario de esta tarjeta", "ENTIENDO", "CANCELAR");
 
-                        await _Global.CurrentAccount.New_Actualizar();
-                        await this.Navigation.PushAsync(new Cuenta.VerificarTarjeta());
+                        var resul = await DisplayAlert("Una cosa más", ".","ENTIENDO", "CANCELAR");
+                        if (resul) {
+                            _Global.Vistas.Pagar.ActualizarLbabelNumero();
+                            _Global.CurrentAccount.phone2 = "";
+                            _Global.CurrentAccount.cont2 = "0";
+                            _Global.CaptureMonto = 0;
 
+                            await _Global.CurrentAccount.New_Actualizar();
+                            await this.Navigation.PushAsync(new Cuenta.VerificarTarjeta());
+                        }
+                        else
+                        {
+                            return;
+                        }
+                        
                     }
                 }
                 catch
