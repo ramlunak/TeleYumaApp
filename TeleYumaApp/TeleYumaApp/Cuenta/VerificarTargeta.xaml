@@ -66,7 +66,7 @@
                                 <Image Source="errordecmprobacion" WidthRequest="60"/>
                                 <StackLayout Margin="5">
                                     <Label FontSize="16" TextColor="Red" Text="El valor no corresponde"/>
-                                    <Label FontSize="14" TextColor="Gray" Text="(Por seguridad su cuenta de TeleYuma será bloquida si falla mas una vez)"/>
+                                    <Label FontSize="14" TextColor="Gray" Text="(Por seguridad su cuenta de TeleYuma será bloqueada si falla mas una vez)"/>
                                 </StackLayout>
                                   </StackLayout>
                         </Frame>
