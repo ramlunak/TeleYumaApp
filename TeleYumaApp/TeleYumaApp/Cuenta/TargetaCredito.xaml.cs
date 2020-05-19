@@ -145,11 +145,10 @@ namespace TeleYumaApp.Cuenta
                     else
                     {
                         var cantidad = UpdateAccountPaymentMethodRequest.payment_method_info.number.Length;                       
-                        var ultimosnumeros = UpdateAccountPaymentMethodRequest.payment_method_info.number.Substring(cantidad - 5,4);
+                        var ultimosnumeros = UpdateAccountPaymentMethodRequest.payment_method_info.number.Substring(cantidad - 4,4);
                         var result = await DisplayAlert("Una cosa más", "Debemos verificar su tarjeta que termina en (" + ultimosnumeros + ") para asegurarnos que usted es el propetario de esta tarjeta", "ENTIENDO", "CANCELAR");
-
-                        var resul = await DisplayAlert("Una cosa más", ".","ENTIENDO", "CANCELAR");
-                        if (resul) {
+                                               
+                        if (result) {
                             _Global.Vistas.Pagar.ActualizarLbabelNumero();
                             _Global.CurrentAccount.phone2 = "";
                             _Global.CurrentAccount.cont2 = "0";
