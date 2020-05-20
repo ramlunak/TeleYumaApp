@@ -58,6 +58,7 @@ namespace TeleYumaApp.Cuenta
             var respuesta_autorize = await _Global.CurrentAccount.New_MakeTransaction_AuthorizationOnly(CaptureMonto);
             if ((respuesta_autorize.result_code == "1" || respuesta_autorize.result_code == "A01") && respuesta_autorize.transaction_id != "0")
             {
+                _Global.CurrentAccount.New_MakeTransaction_Refund(CaptureMonto, respuesta_autorize.transaction_id);
                 _Global.CurrentAccount.AuthorizationOnlyTransaction_id = respuesta_autorize.transaction_id;
                 MostarCangandoAutorize(false);               
                 return true;
