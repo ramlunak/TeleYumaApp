@@ -134,10 +134,30 @@ namespace TeleYumaApp.Droid
             }
 
             try
-            {                
+            {
 
-                if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)
-                    && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.CallPhone) == (int)Permission.Granted)
+                //if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)
+                //    && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.CallPhone) == (int)Permission.Granted)
+                //     && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
+                //{
+                //    var IdSms = this.Intent.GetStringExtra("sms");
+                //    var open = _Global.IsOpen;
+
+                //    if (IdSms == null)
+                //    {
+                //        // startService();
+                //    }
+
+                //    LoadApplication(new TeleYumaApp.App());
+
+                //}
+                //else
+                //{
+                //    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts, Manifest.Permission.CallPhone, Manifest.Permission.ReadExternalStorage }, 0);
+
+                //}
+
+                if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)                    
                      && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
                 {
                     var IdSms = this.Intent.GetStringExtra("sms");
@@ -153,7 +173,7 @@ namespace TeleYumaApp.Droid
                 }
                 else
                 {
-                    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts, Manifest.Permission.CallPhone, Manifest.Permission.ReadExternalStorage }, 0);
+                    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts,Manifest.Permission.ReadExternalStorage }, 0);
 
                 }
             }
