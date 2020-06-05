@@ -20,12 +20,20 @@ namespace TeleYumaApp.Teleyuma
             public string countryIso { get; set; }
         }
 
+        public async static Task<string> GetApikey()
+        {
+            var credenciales = await _Global.Get<Credenciales>("credenciales/2");
+            return credenciales.KeyGenerate;
+        }
+               
         public static async Task<GetProductsResponse> GetProductsBycountryIso(string iso)
         {
+            var api_key = await GetApikey();
+
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Add("api_key", "GuXIN76oLlt6H9SXQf2w5n");
+                client.DefaultRequestHeaders.Add("api_key", api_key);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -45,10 +53,12 @@ namespace TeleYumaApp.Teleyuma
 
         public static async Task<SendTransferResponse> SendTransfer(SendTransferRequest entity)
         {
+            var api_key = await GetApikey();
+
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Add("api_key", "GuXIN76oLlt6H9SXQf2w5n");
+                client.DefaultRequestHeaders.Add("api_key", api_key);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -68,10 +78,12 @@ namespace TeleYumaApp.Teleyuma
 
         public static async Task<SendTransferResponse> SimulateTransfer(SendTransferRequest entity)
         {
+            var api_key = await GetApikey();
+
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Add("api_key", "GuXIN76oLlt6H9SXQf2w5n");
+                client.DefaultRequestHeaders.Add("api_key", api_key);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -91,10 +103,12 @@ namespace TeleYumaApp.Teleyuma
 
         public static async Task<DingPromo> GetPromoActiva()
         {
+            var api_key = await GetApikey();
+
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Add("api_key", "GuXIN76oLlt6H9SXQf2w5n");
+                client.DefaultRequestHeaders.Add("api_key", api_key);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
