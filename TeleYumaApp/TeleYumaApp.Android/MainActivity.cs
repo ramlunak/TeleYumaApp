@@ -136,28 +136,8 @@ namespace TeleYumaApp.Droid
             try
             {
 
-                //if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)
-                //    && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.CallPhone) == (int)Permission.Granted)
-                //     && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
-                //{
-                //    var IdSms = this.Intent.GetStringExtra("sms");
-                //    var open = _Global.IsOpen;
-
-                //    if (IdSms == null)
-                //    {
-                //        // startService();
-                //    }
-
-                //    LoadApplication(new TeleYumaApp.App());
-
-                //}
-                //else
-                //{
-                //    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts, Manifest.Permission.CallPhone, Manifest.Permission.ReadExternalStorage }, 0);
-
-                //}
-
-                if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)                    
+                if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)
+                    && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.CallPhone) == (int)Permission.Granted)
                      && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
                 {
                     var IdSms = this.Intent.GetStringExtra("sms");
@@ -173,9 +153,29 @@ namespace TeleYumaApp.Droid
                 }
                 else
                 {
-                    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts,Manifest.Permission.ReadExternalStorage }, 0);
+                    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts, Manifest.Permission.CallPhone, Manifest.Permission.ReadExternalStorage }, 0);
 
                 }
+
+                //if ((ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadContacts) == (int)Permission.Granted)                    
+                //     && (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
+                //{
+                //    var IdSms = this.Intent.GetStringExtra("sms");
+                //    var open = _Global.IsOpen;
+
+                //    if (IdSms == null)
+                //    {
+                //        // startService();
+                //    }
+
+                //    LoadApplication(new TeleYumaApp.App());
+
+                //}
+                //else
+                //{
+                //    ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadContacts,Manifest.Permission.ReadExternalStorage }, 0);
+
+                //}
             }
             catch (System.Exception ex)
             {
@@ -184,6 +184,28 @@ namespace TeleYumaApp.Droid
             }
 
         }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+
+            if ((grantResults[0] == Permission.Granted) && (grantResults[1] == Permission.Granted) && (grantResults[2] == Permission.Granted))
+            {
+                LoadApplication(new TeleYumaApp.App());
+            }
+            else
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.SetMessage("La aplicaión necesita permisos de llamada y lectura de contáctos")
+                   .SetCancelable(false)
+                   .SetNeutralButton("Ok", delegate
+                   {
+                       Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                   });
+                AlertDialog alert = builder.Create();
+                alert.Show();
+            }
+        }
+
 
         #region 
 
@@ -266,29 +288,7 @@ namespace TeleYumaApp.Droid
             }
 
         }
-       
-
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
-        {
-
-            if ((grantResults[0] == Permission.Granted) && (grantResults[1] == Permission.Granted))
-            {
-                LoadApplication(new TeleYumaApp.App());
-            }
-            else
-            {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.SetMessage("La aplicaión necesita permisos de llamada y lectura de contáctos")
-                   .SetCancelable(false)
-                   .SetNeutralButton("Ok", delegate
-                   {
-                       Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-                   });
-                AlertDialog alert = builder.Create();
-                alert.Show();
-            }
-        }
-
+               
         protected override void OnDestroy()
         {
             try

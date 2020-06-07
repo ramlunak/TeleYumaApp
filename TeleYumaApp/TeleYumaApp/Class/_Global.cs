@@ -297,7 +297,7 @@ namespace TeleYumaApp.Class
         //public static string MasterURL = "http://smsteleyuma.azurewebsites.net/Service1.svc/"; // url nube
 
         public static ERecMovilConfig RecMovilConfig = new ERecMovilConfig();
-
+         
         public static EPromocion Promocion = new EPromocion();
 
         public static string TipoRecarga = string.Empty;

@@ -143,8 +143,16 @@ namespace TeleYumaApp.Class
 
         public bool Error { get; set; }
 
+        public async static Task<string> GetApikey()
+        {
+            var credenciales = await _Global.Get<Credenciales>("credenciales/4");
+            return credenciales.KeyGenerate;
+        }
+
         public async Task<MessageResponse> Enviar()
         {
+            var apiKey = await GetApikey();
+
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Clear();
@@ -153,14 +161,14 @@ namespace TeleYumaApp.Class
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
 
-                var URL = "https://www.innoverit.com/api/smssend/?apikey=04a26d8f1534598bdf73fb93a0025867&number=+" + this.NumeroTelefono + "&content=" + this.Mensaje;
+                var URL = "https://www.innoverit.com/api/smssend/?apikey=" + apiKey + "&number=+" + this.NumeroTelefono + "&content=" + this.Mensaje;
 
                 try
                 {
                     var response = await client.GetAsync(URL);
                     var json = await response.Content.ReadAsStringAsync();
                     var sendResponse = JsonConvert.DeserializeObject<innoverit.SendResponse>(json);
-                    return new MessageResponse { ErrorCode = sendResponse.error_code ,ErrorMessage = sendResponse.message};
+                    return new MessageResponse { ErrorCode = sendResponse.error_code, ErrorMessage = sendResponse.message };
                 }
                 catch (Exception ex)
                 {
