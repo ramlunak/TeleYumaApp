@@ -22,7 +22,7 @@ namespace TeleYumaApp.Teleyuma
 
         public async static Task<string> GetApikey()
         {
-            var credenciales = await _Global.Get<Credenciales>("credenciales/2");
+            var credenciales = await _Global.Get<Credenciales>("credenciales/3");
             return credenciales.KeyGenerate;
         }
                
